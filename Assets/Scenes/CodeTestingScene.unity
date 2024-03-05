@@ -368,6 +368,14 @@ PrefabInstance:
       propertyPath: XYAxis
       value: 
       objectReference: {fileID: 6115773184665623664, guid: 3739cde1b7934f64e8fc1c449d16d062, type: 3}
+    - target: {fileID: 7266735325855091816, guid: 511e4a810a780c54b8c5e6002e6f90bf, type: 3}
+      propertyPath: airAccel
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266735325855091816, guid: 511e4a810a780c54b8c5e6002e6f90bf, type: 3}
+      propertyPath: jumpForce
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8499334167860727582, guid: 511e4a810a780c54b8c5e6002e6f90bf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
