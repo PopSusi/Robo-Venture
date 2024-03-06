@@ -13,8 +13,9 @@ public class ThirdPersonPlayerController : MonoBehaviour
     Camera cam;
     //Vector2 targetVelocity;
     Vector2 moveVelocity;
-    float fallSpeed;
-    const float gravity=-9.81f;
+    float ySpeed;
+    [SerializeField]
+    const float gravity=-20f;
     [SerializeField]
     CinemachineFreeLook cinemachineFreeLook;
     [SerializeField]
@@ -53,19 +54,19 @@ public class ThirdPersonPlayerController : MonoBehaviour
         targetVelocity = Quaternion.Inverse(rot) * targetVelocity;
         moveVelocity = Vector2.MoveTowards(moveVelocity, targetVelocity,(controller.isGrounded? accel:airAccel));
         
-        controller.Move( new Vector3(moveVelocity.x, fallSpeed, moveVelocity.y) * Time.fixedDeltaTime);
+        controller.Move( new Vector3(moveVelocity.x, ySpeed, moveVelocity.y) * Time.fixedDeltaTime);
         if (moveAction.IsPressed())
         {
             this.transform.rotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
         }
         if (!controller.isGrounded)
         {
-            fallSpeed += gravity * Time.fixedDeltaTime;
+            ySpeed += gravity * Time.fixedDeltaTime;
 
         }
         else
         {
-            fallSpeed = -0.1f;
+            ySpeed = -0.1f;
         }
         
       
@@ -81,7 +82,7 @@ public class ThirdPersonPlayerController : MonoBehaviour
         if (controller.isGrounded)
         {
             print("should jump");
-            fallSpeed = Mathf.Sqrt(jumpForce * -3.0f * gravity);
+            ySpeed = Mathf.Sqrt(jumpForce * -3.0f * gravity);
             //isGrounded = false;
         }
     }
