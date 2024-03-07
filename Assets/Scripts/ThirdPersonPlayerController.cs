@@ -20,6 +20,7 @@ public class ThirdPersonPlayerController : MonoBehaviour
     CinemachineFreeLook cinemachineFreeLook;
     [SerializeField]
     float speed, accel, airAccel,jumpForce;
+    //bool 
     private void Awake()
     {
         cam = Camera.main;
@@ -52,7 +53,7 @@ public class ThirdPersonPlayerController : MonoBehaviour
 
         Quaternion rot = Quaternion.AngleAxis(cinemachineFreeLook.m_XAxis.Value, Vector3.forward);
         targetVelocity = Quaternion.Inverse(rot) * targetVelocity;
-        moveVelocity = Vector2.MoveTowards(moveVelocity, targetVelocity,(controller.isGrounded? accel:airAccel));
+        moveVelocity = Vector2.MoveTowards(new Vector2(controller.velocity.x,controller.velocity.z), targetVelocity,(controller.isGrounded? accel:airAccel));
         
         controller.Move( new Vector3(moveVelocity.x, ySpeed, moveVelocity.y) * Time.fixedDeltaTime);
         if (moveAction.IsPressed())
@@ -72,7 +73,7 @@ public class ThirdPersonPlayerController : MonoBehaviour
       
         
     }
-
+    
     void OnMove(InputAction.CallbackContext context)
     {
 
@@ -85,6 +86,11 @@ public class ThirdPersonPlayerController : MonoBehaviour
             ySpeed = Mathf.Sqrt(jumpForce * -3.0f * gravity);
             //isGrounded = false;
         }
+    }
+    
+    void KnockBack(Vector3 force)
+    {
+       controller.Move(force * Time.fixedDeltaTime);
     }
 
 }
