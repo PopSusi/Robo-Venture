@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 5498610598082435525}
   - component: {fileID: 7459825945135575066}
   - component: {fileID: 7266735325855091816}
-  - component: {fileID: 4096923715445309055}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -165,7 +164,7 @@ Transform:
   - {fileID: 1120894308181826395}
   - {fileID: 8955812293856477049}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1836673719895033623
 MeshFilter:
@@ -289,20 +288,6 @@ MonoBehaviour:
   accel: 2
   airAccel: 0.2
   jumpForce: 2
---- !u!114 &4096923715445309055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2693278240361699662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8845b852505cb2458cb28666dd784d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashDistance: 5
-  dashSpeed: 0
 --- !u!1 &2896959099171502135
 GameObject:
   m_ObjectHideFlags: 0
