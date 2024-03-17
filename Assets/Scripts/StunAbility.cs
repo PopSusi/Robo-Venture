@@ -31,8 +31,10 @@ public class StunAbility : Ability
 		}
     }
 	private void StunStarted(InputAction.CallbackContext context){
-		active = true;
-		Debug.Log("clicked");
+		if(canAbility){
+			active = true;
+			Debug.Log("clicked");
+		}
 	}
 	private void StunRelease(InputAction.CallbackContext context){
 		if(canAbility){

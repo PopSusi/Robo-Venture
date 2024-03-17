@@ -22,6 +22,6 @@ public class StunDetect : MonoBehaviour
         //IMPLEMENT TARGET = FIND GROUND POINT
         //FOR NOW TARGET == WHERE IT LANDS
         Instantiate(AOE, transform.position, Quaternion.identity);
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

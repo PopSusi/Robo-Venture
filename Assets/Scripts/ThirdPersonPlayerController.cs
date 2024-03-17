@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class ThirdPersonPlayerController : MonoBehaviour
+public class ThirdPersonPlayerController : Damageable
 {
     CharacterController controller;
     PlayerInput input;
