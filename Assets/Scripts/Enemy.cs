@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Enemy : Damageable
 {
-    // Start is called before the first frame update
-    void Start()
+    public virtual void TakeDamage(float damage)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (vulnerable)
+        {
+            HP -= damage;
+            vulnerable = false;
+            GetComponent<AudioSource>().Play();
+            StartCoroutine("DamageDelay");
+            
+        }
     }
 }

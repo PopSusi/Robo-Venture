@@ -31,7 +31,8 @@ public class ThirdPersonPlayerController : MonoBehaviour
     public Vector2 moveDir { get; private set; }
 
     PlayerMovementState playerMovement;
-    //bool 
+    public int punchIndex;
+    public GameObject[] hitboxes;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -134,7 +135,10 @@ public class ThirdPersonPlayerController : MonoBehaviour
     }
     void OnPunch(InputAction.CallbackContext context)
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Punch"))
+        punchIndex += 1;
+        punchIndex = punchIndex == 4 ? 1 : punchIndex; 
+        Instantiate(hitboxes[punchIndex - 1], transform);
+        /*if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Punch"))
         {
             return;
         }
@@ -147,7 +151,7 @@ public class ThirdPersonPlayerController : MonoBehaviour
         else
         {
 
-        }
+        }*/
 
     }
 

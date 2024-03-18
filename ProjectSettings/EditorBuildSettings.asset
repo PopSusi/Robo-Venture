@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ArtShowcase.unity
     guid: 7a3ae3c4859a9406a9b3cafa26d8e6dc
+  - enabled: 0
+    path: Assets/Scenes/CodeTestingScene.unity
+    guid: b50dc9a7924e1184dbed125582d496f2
   m_configObjects: {}

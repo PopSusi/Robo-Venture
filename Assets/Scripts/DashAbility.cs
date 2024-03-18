@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DashAbility : MonoBehaviour
+public class DashAbility : Ability
 {
     [SerializeField]
     float dashDistance,dashSpeed,cooldownTime;
     float distanceTraveled;
-    InputAction moveAction;
     bool isDashing;
-    ThirdPersonPlayerController playerController;
     Vector2 dashDir;
     private void Awake()
     {
