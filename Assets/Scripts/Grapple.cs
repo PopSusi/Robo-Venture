@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Grapple : MonoBehaviour
+public class Grapple : Ability
 {
-    PlayerInput input;
     Camera cam;
     [SerializeField]
     float grappleDistance;
     Transform grappleTarget;
     bool isGrappling;
-    private void Awake()
-    {
-        PlayerInput input = GetComponent<PlayerInput>();
-        cam = Camera.main;
-        input.actions["Grapple"].performed += OnGrapple;
-    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        input = GetComponent<PlayerInput>();
+        cam = Camera.main;
+        player = this.gameObject;
+        characterController = GetComponent<CharacterController>();
+        playerController = GetComponent<ThirdPersonPlayerController>();
+        input.actions["Grapple"].performed += OnGrapple;
     }
 
     // Update is called once per frame
@@ -46,7 +45,7 @@ public class Grapple : MonoBehaviour
         {
             grappleTarget = null;
         }
-        print(grappleTarget);
+        //print(grappleTarget);
     }
     private void FixedUpdate()
     {
@@ -66,7 +65,7 @@ public class Grapple : MonoBehaviour
     {
         if (grappleTarget == null) { return; }
         isGrappling = true;
-        GetComponent<Animator>().SetBool("Grapple",true);
+        anim.SetBool("Grapple",true);
 
     }
 }

@@ -7,7 +7,9 @@ public class Ability : MonoBehaviour
 {
     protected PlayerInput input;
     protected CharacterController characterController;
+    protected ThirdPersonPlayerController playerController;
     protected InputAction moveAction;
+    protected Animator anim;
     protected GameObject player;
     public float cooldown;
     protected bool canAbility = true;
