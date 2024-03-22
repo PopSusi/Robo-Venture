@@ -8,6 +8,7 @@ public class Hub : RoboLevels
     // Start is called before the first frame update
     void Start()
     {
+        FindPlayer();
         int temp = (int) currLevel;
 
         player.transform.position = spawnPoints[temp].position;

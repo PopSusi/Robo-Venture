@@ -13,5 +13,11 @@ public class RoboLevels : MonoBehaviour
     };
     public static Levels currLevel = Levels.Hub;
     public GameObject player;
-
+    public GameObject GOobjUI;
+    public int objIndex = 0;
+    public string[] objText;
+    protected void FindPlayer()
+    {
+        player = GameObject.Find("player");
+    }
 }
