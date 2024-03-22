@@ -14,16 +14,27 @@ public class RoboLevels : MonoBehaviour
     };
     public static Levels currLevel = Levels.HubInitial;
     public GameObject playerPrefab;
-    public GameObject playerCurr;
+    protected GameObject playerCurr;
     public GameObject GOobjUI; //ObjectiveUI
-    public int objIndex = 0; //ObjectiveIndex for String[]
-    public string[] objText; //List of Objective for a level
+    public string[] objectiveText; //List of Objective for a level
+    public int objectiveIndex = 0; //ObjectiveIndex for String[]
 	public Transform[] checkPoints;
 	public int chkpntIndexLevels;
+	public bool overrideSpawn;
+	public int overrideSpawnIndex;
 	protected virtual void RespawnPlayer(){
-		playerCurr = Instantiate(playerPrefab,
-			checkPoints[chkpntIndexLevels].position,
-			checkPoints[chkpntIndexLevels].rotation);
+		if (!overrideSpawn)
+		{
+			playerCurr = Instantiate(playerPrefab,
+				checkPoints[chkpntIndexLevels].position,
+				checkPoints[chkpntIndexLevels].rotation);
+		}
+		else
+		{
+			playerCurr = Instantiate(playerPrefab,
+				checkPoints[overrideSpawnIndex].position,
+				checkPoints[overrideSpawnIndex].rotation);
+		}
 	}
     protected void FindPlayer()
     {
