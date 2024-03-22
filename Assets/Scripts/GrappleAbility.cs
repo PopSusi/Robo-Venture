@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Grapple : Ability
+public class GrappleAbility : Ability
 {
     Camera cam;
     [SerializeField]
