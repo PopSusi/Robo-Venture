@@ -29,11 +29,17 @@ public class ThirdPersonPlayerController : MonoBehaviour
     public float Gravity { get { return gravity; } }
     Animator anim;
     public Vector2 moveDir { get; private set; }
-
     PlayerMovementState playerMovement;
     public int punchIndex;
     public GameObject[] hitboxes;
+    public static bool dash, wall, grapple;
     private void Awake()
+    {
+        Initialize();
+        AbilitiesInitialize();
+    }
+
+    private void Initialize() //Variables and Components
     {
         anim = GetComponent<Animator>();
         cam = Camera.main;
@@ -44,8 +50,42 @@ public class ThirdPersonPlayerController : MonoBehaviour
         input.actions["Jump"].performed+=OnJump;
         input.actions["Punch"].performed+=OnPunch;
         moveAction.performed += OnMove;
-
         playerMovement = new PlayerMovementState(moveAction, controller, this.transform,accel,airAccel,gravity);
+
+    }
+
+    private void AbilitiesInitialize()
+    {
+        if (dash)
+        {
+            GetComponent<DashAbility>().enabled = true;
+        }
+        if (grapple)
+        {
+            GetComponent<GrappleAbility>().enabled = true;
+        }
+        if (wall)
+        {
+            GetComponent<WallAbility>().enabled = true;
+        }
+    }
+
+    private void SetAbility(string ability) //dash, grapple, wall
+    {
+        switch(ability)
+        {
+            case "dash":
+                GetComponent<DashAbility>().enabled = true;
+                break;
+            case "grapple":
+                GetComponent<GrappleAbility>().enabled = true;
+                break;
+            case "wall":
+                GetComponent<WallAbility>().enabled = true;
+                break;
+            default:
+                break;
+        }
     }
     // Start is called before the first frame update
     void Start()

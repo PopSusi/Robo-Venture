@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Hub : RoboLevels
 {
-    public Transform[] spawnPoints; //In order: Hub, Dash, Grapple, Wall
+    public Transform[] spawnPoints; //In order: HubInitial, HubShip, Dash, Grapple, Wall
     // Start is called before the first frame update
+	public int overrideSpawn;
     void Start()
     {
-        FindPlayer();
         int temp = (int) currLevel;
-
-        player.transform.position = spawnPoints[temp].position;
-        player.transform.rotation = spawnPoints[temp].rotation;
+		if(overrideSpawn > 0){
+			temp = overrideSpawn;
+		}
+		Instantiate(playerPrefab, spawnPoints[temp].position, spawnPoints[temp].rotation);
+		FindPlayer();
+		Debug.Log("Fuck you");
     }
 
     // Update is called once per frame

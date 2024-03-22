@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class DashAbility : Ability
 {
     [SerializeField]
-    float dashDistance,dashSpeed,cooldownTime;
+    float dashDistance,dashSpeed;
     float distanceTraveled;
     bool isDashing;
     Vector2 dashDir;

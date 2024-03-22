@@ -6,18 +6,27 @@ public class RoboLevels : MonoBehaviour
 {
     public enum Levels
     {
-        Hub = 0,
+        HubInitial = 0,
+		HubShip,
         Dash,
         Grapple,
         Wall
     };
-    public static Levels currLevel = Levels.Hub;
-    public GameObject player;
-    public GameObject GOobjUI;
-    public int objIndex = 0;
-    public string[] objText;
+    public static Levels currLevel = Levels.HubInitial;
+    public GameObject playerPrefab;
+    public GameObject playerCurr;
+    public GameObject GOobjUI; //ObjectiveUI
+    public int objIndex = 0; //ObjectiveIndex for String[]
+    public string[] objText; //List of Objective for a level
+	public Transform[] checkPoints;
+	public int chkpntIndexLevels;
+	protected virtual void RespawnPlayer(){
+		playerCurr = Instantiate(playerPrefab,
+			checkPoints[chkpntIndexLevels].position,
+			checkPoints[chkpntIndexLevels].rotation);
+	}
     protected void FindPlayer()
     {
-        player = GameObject.Find("player");
+        playerCurr = GameObject.Find("player");
     }
 }
