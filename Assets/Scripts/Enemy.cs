@@ -11,7 +11,7 @@ public class Enemy : Damageable
         myTrigger = tempHold[0].gameObject.GetComponent<CombatTriggers>();
         StartCoroutine("Fuckingdie");
     }
-    public virtual void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
         if (vulnerable)
         {

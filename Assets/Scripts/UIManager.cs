@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class UIManager : MonoBehaviour
 {
     //Menu Components
-    public GameObject pauseMenu, optionsMenu, verifyMenu;
+    public GameObject pauseMenu, optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
+    List<GameObject> MenuList = new List<GameObject>();
 
     //GameplayComponents
     private GameObject playerCurr;
@@ -20,20 +21,18 @@ public class UIManager : MonoBehaviour
         get{return allModChips;}
         set{allModChips = value;
             if(playerRef != null){
-                playerRef.AbilitiesInitialize();
+                playerRef.OptionsInitialize();
             }}
     }
+    public bool infiniteHealth;
+    public bool hardMode;
     // Start is called before the first frame update
     void Start()
     {
-        playerCurr = gameObject;
+        playerCurr = gameObject.GetComponent<RoboLevels>().playerCurr;
         playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        pI = playerCurr.GetComponent<PlayerInput>();
+        FillList();
     }
 
     public void EndGame(){
@@ -44,14 +43,22 @@ public class UIManager : MonoBehaviour
 			paused = true;
 			Time.timeScale = 0;
 			pI.SwitchCurrentActionMap("UI");
-			pauseMenu.SetActive(true);
+			MenuList[0].SetActive(true);
 		} else { //currently paused
 			paused = false;
 			Time.timeScale = 1;
 			pI.SwitchCurrentActionMap("Player");
-			pauseMenu.SetActive(false);
-			optionsMenu.SetActive(false);
-			verifyMenu.SetActive(false);
+			foreach(GameObject menuObj in MenuList){
+                menuObj.SetActive(false);
+            }
 		}
 	} 
+    private void FillList(){
+        MenuList.Add(pauseMenu);
+        MenuList.Add(optionsMenu);
+        MenuList.Add(verifyMenu);
+        MenuList.Add(howToMenu);
+        MenuList.Add(KeyboardMenu);
+        MenuList.Add(ControllerMenu);
+    }
 }

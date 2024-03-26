@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class ThirdPersonPlayerController : MonoBehaviour
+public class ThirdPersonPlayerController : Damageable
 {
     //Controller Components
     CharacterController controller;
@@ -38,11 +38,14 @@ public class ThirdPersonPlayerController : MonoBehaviour
     public Vector2 moveDir { get; private set; }
     public int punchIndex;
     public GameObject[] hitboxes;
+
+    //Options
     public static bool dash, wall, grapple;
+    bool invincible;
     private void Awake()
     {
         Initialize();
-        AbilitiesInitialize();
+        OptionsInitialize();
     }
 
     private void Initialize() //Variables and Components
@@ -51,9 +54,10 @@ public class ThirdPersonPlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         input = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
-        cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
+        //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         cam = Camera.main;
         myGM = GameObject.FindWithTag("LevelGM").GetComponent<RoboLevels>();
+        UIman = myGM.GetComponent<UIManager>();
 
         //Move Inputs
         moveAction = input.actions["Move"];
@@ -64,10 +68,14 @@ public class ThirdPersonPlayerController : MonoBehaviour
         input.actions["Jump"].performed+=OnJump;
         input.actions["Punch"].performed+=OnPunch;
         input.actions["Pause"].performed+=OnPause;
+        input.SwitchCurrentActionMap("UI");
+        input.actions["Pause"].performed+=OnPause;
+        input.SwitchCurrentActionMap("Player");
     }
 
-    public void AbilitiesInitialize()
+    public void OptionsInitialize()
     {
+        invincible = UIman.infiniteHealth;
         if(UIman.allModChips){
             dash = true;
             grapple = true;
@@ -104,21 +112,11 @@ public class ThirdPersonPlayerController : MonoBehaviour
                 break;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
     private void OnEnable()
     {
         cinemachineFreeLook.GetComponent<CinemachineInputProvider>().PlayerIndex = input.playerIndex;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void FixedUpdate()
     {
 
@@ -216,5 +214,19 @@ public class ThirdPersonPlayerController : MonoBehaviour
     }
     private void OnPause(InputAction.CallbackContext context){
         UIman.PauseGame();
+    }
+    public override void TakeDamage(float damage)
+    {
+        if (vulnerable && !invincible)
+        {
+            HP -= damage;
+            if(!(HP <= 0)){//Not at zero
+                vulnerable = false;
+                GetComponent<AudioSource>().Play();
+                StartCoroutine("DamageDelay");
+            } else {
+                Die();
+            }
+        }
     }
 }

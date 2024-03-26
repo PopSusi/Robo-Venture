@@ -15,7 +15,7 @@ public class RoboLevels : MonoBehaviour
 	//LEVEL
     public static Levels currLevel = Levels.HubInitial;
     public GameObject playerPrefab;
-    protected GameObject playerCurr;
+    public GameObject playerCurr;
 	
 
 	//UI
@@ -31,7 +31,7 @@ public class RoboLevels : MonoBehaviour
 
 	//AUDIO
 	public AudioClip BGM;
-
+	
 	public virtual void RespawnPlayer(){
 		if (!overrideSpawn)
 		{
