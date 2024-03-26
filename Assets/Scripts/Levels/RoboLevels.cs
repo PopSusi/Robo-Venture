@@ -12,17 +12,26 @@ public class RoboLevels : MonoBehaviour
         Grapple,
         Wall
     };
+	//LEVEL
     public static Levels currLevel = Levels.HubInitial;
     public GameObject playerPrefab;
     protected GameObject playerCurr;
-    public GameObject GOobjUI; //ObjectiveUI
+	
+
+	//UI
+    public GameObject GOobjUI;
     public string[] objectiveText; //List of Objective for a level
     public int objectiveIndex = 0; //ObjectiveIndex for String[]
-	public GameObject[] checkPoints;
-	public int chkpntIndexLevels;
-	public bool overrideSpawn;
-	public int overrideSpawnIndex;
+
+	//CHECKPOINTS
+	public GameObject[] checkPoints; //List of Checkpoints
+	public int chkpntIndexLevels; //Current Checkpoint
+	public bool overrideSpawn; //Set true if you want to go to certain checkpoint
+	public int overrideSpawnIndex; //Override Checkpoint
+
+	//AUDIO
 	public AudioClip BGM;
+
 	public virtual void RespawnPlayer(){
 		if (!overrideSpawn)
 		{
@@ -41,4 +50,5 @@ public class RoboLevels : MonoBehaviour
     {
         playerCurr = GameObject.Find("player");
     }
+
 }

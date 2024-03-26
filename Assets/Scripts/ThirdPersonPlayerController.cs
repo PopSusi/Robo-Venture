@@ -7,29 +7,35 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonPlayerController : MonoBehaviour
 {
-
+    //Controller Components
     CharacterController controller;
     PlayerInput input;
     public InputAction moveAction { get;private set; }
     Camera cam;
-    //Vector2 targetVelocity;
+    PlayerMovementState playerMovement;
+    Animator anim;
+    RoboLevels myGM;
+    public UIManager UIman;
+
+    //Move vars
+                //Vector2 targetVelocity;
     Vector2 moveVelocity;
-    float ySpeed;
-    [SerializeField]
-    const float gravity=-20f;
     [SerializeField]
     CinemachineFreeLook cinemachineFreeLook;
     [SerializeField]
     float speed, accel, airAccel,jumpForce;
-    float punchDistanceTraveled;
     public float Speed { get { return speed; } }
     public float Accel { get { return accel; } }
     public float AirAccel { get { return airAccel; } }
     public float JumpForce { get { return jumpForce; } }
     public float Gravity { get { return gravity; } }
-    Animator anim;
+    float ySpeed;
+    [SerializeField]
+    const float gravity=-20f;
+
+    //Punches
+    float punchDistanceTraveled;
     public Vector2 moveDir { get; private set; }
-    PlayerMovementState playerMovement;
     public int punchIndex;
     public GameObject[] hitboxes;
     public static bool dash, wall, grapple;
@@ -41,21 +47,32 @@ public class ThirdPersonPlayerController : MonoBehaviour
 
     private void Initialize() //Variables and Components
     {
+        //Component Gets
         anim = GetComponent<Animator>();
-        cam = Camera.main;
-        //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         input = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
+        cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
+        cam = Camera.main;
+        myGM = GameObject.FindWithTag("LevelGM").GetComponent<RoboLevels>();
+
+        //Move Inputs
         moveAction = input.actions["Move"];
+        moveAction.performed += OnMove;
+        //playerMovement = new PlayerMovementState(moveAction, controller, this.transform,accel,airAccel,gravity);
+
+        //Other Inputs
         input.actions["Jump"].performed+=OnJump;
         input.actions["Punch"].performed+=OnPunch;
-        moveAction.performed += OnMove;
-        playerMovement = new PlayerMovementState(moveAction, controller, this.transform,accel,airAccel,gravity);
-
+        input.actions["Pause"].performed+=OnPause;
     }
 
-    private void AbilitiesInitialize()
+    public void AbilitiesInitialize()
     {
+        if(UIman.allModChips){
+            dash = true;
+            grapple = true;
+            wall = true;
+        }
         if (dash)
         {
             GetComponent<DashAbility>().enabled = true;
@@ -197,5 +214,7 @@ public class ThirdPersonPlayerController : MonoBehaviour
     public void Die(){
         Destroy(this.gameObject);
     }
-
+    private void OnPause(InputAction.CallbackContext context){
+        UIman.PauseGame();
+    }
 }
