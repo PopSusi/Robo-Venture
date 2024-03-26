@@ -6,7 +6,7 @@ public class Testboxes : MonoBehaviour
 {
      float timeAlive;
 
-     float duration = 1;
+     float duration = .25f;
     // Start is called before the first frame update
     void Start()
     {
