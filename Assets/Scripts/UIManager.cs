@@ -32,12 +32,21 @@ public class UIManager : MonoBehaviour
         playerCurr = gameObject.GetComponent<RoboLevels>().playerCurr;
         playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
         input = playerCurr.GetComponent<PlayerInput>();
+        
+        //Need to switch and switch back to set Pause for UI and Player maps
+        input.actions["Pause"].performed+=OnPause;
+        input.SwitchCurrentActionMap("UI");
+        input.actions["Pause"].performed+=OnPause;
+        input.SwitchCurrentActionMap("Player");
         FillList();
     }
 
     public void EndGame(){
 		Application.Quit();
 	}
+    private void OnPause(InputAction.CallbackContext context){
+        PauseGame();
+    }
 	public void PauseGame(){
 		if(!paused){ //not currently paused
 			paused = true;

@@ -68,12 +68,6 @@ public class ThirdPersonPlayerController : Damageable
 
         //Other Inputs
         input.actions["Jump"].performed+=OnJump;
-
-        //Need to switch and switch back to set Pause for UI and Player maps
-        input.actions["Pause"].performed+=OnPause;
-        input.SwitchCurrentActionMap("UI");
-        input.actions["Pause"].performed+=OnPause;
-        input.SwitchCurrentActionMap("Player");
     }
 
     public void OptionsInitialize()
@@ -173,9 +167,6 @@ public class ThirdPersonPlayerController : Damageable
     }
     public void Die(){
         Destroy(this.gameObject);
-    }
-    private void OnPause(InputAction.CallbackContext context){
-        UIman.PauseGame();
     }
     public override void TakeDamage(float damage)
     {

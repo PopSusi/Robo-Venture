@@ -8,7 +8,6 @@ public class PunchAbility : Ability
     public int punchIndex;
     public GameObject[] hitboxes;
     public Vector3[] offset;
-    private bool canPunch = true;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -19,10 +18,10 @@ public class PunchAbility : Ability
     }
     void OnPunch(InputAction.CallbackContext context)
     {
-        if(canPunch){
-            canPunch = false;
-            punchIndex += 1;
-            punchIndex = punchIndex == 4 ? 1 : punchIndex; 
+        if(canAbility){
+            canAbility = false;
+            punchIndex += 1; //Cycle Through Punch 1/2
+            punchIndex = punchIndex == 4 ? 1 : punchIndex; //Cycle Through Punch 2/2 
             Instantiate(hitboxes[punchIndex - 1], transform.position + offset[punchIndex -1], Quaternion.identity);
             anim.Play("Punch");
             StartCoroutine("PunchDelay");
@@ -31,6 +30,6 @@ public class PunchAbility : Ability
     }
     IEnumerator PunchDelay(){
         yield return new WaitForSeconds(.15f);
-        canPunch = true;
+        canAbility = true;
     }
 }

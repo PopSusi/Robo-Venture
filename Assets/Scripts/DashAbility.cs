@@ -19,14 +19,6 @@ public class DashAbility : Ability
         input.actions["Dash"].performed+=OnDash;
         moveAction=input.actions["Move"];
     }
-    // Start is called before the first frame update
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void FixedUpdate()
     {
         if (isDashing)
