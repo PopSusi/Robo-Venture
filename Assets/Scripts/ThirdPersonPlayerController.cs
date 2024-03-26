@@ -36,8 +36,10 @@ public class ThirdPersonPlayerController : Damageable
     //Punches
     float punchDistanceTraveled;
     public Vector2 moveDir { get; private set; }
-    public int punchIndex;
-    public GameObject[] hitboxes;
+    //public int punchIndex;
+    //public GameObject[] hitboxes;
+    //public Vector3[] offset;
+    //private bool canPunch;
 
     //Options
     public static bool dash, wall, grapple;
@@ -66,7 +68,8 @@ public class ThirdPersonPlayerController : Damageable
 
         //Other Inputs
         input.actions["Jump"].performed+=OnJump;
-        input.actions["Punch"].performed+=OnPunch;
+
+        //Need to switch and switch back to set Pause for UI and Player maps
         input.actions["Pause"].performed+=OnPause;
         input.SwitchCurrentActionMap("UI");
         input.actions["Pause"].performed+=OnPause;
@@ -76,23 +79,17 @@ public class ThirdPersonPlayerController : Damageable
     public void OptionsInitialize()
     {
         invincible = UIman.infiniteHealth;
-        if(UIman.allModChips){
+        if(UIman.allModChips){ //First check for All
             dash = true;
             grapple = true;
             wall = true;
+        } else {
+            //NEED TO FUNCTIONALITY TO READ SAVE FILE AND SEE WHATS ACTIVE
         }
-        if (dash)
-        {
-            GetComponent<DashAbility>().enabled = true;
-        }
-        if (grapple)
-        {
-            GetComponent<GrappleAbility>().enabled = true;
-        }
-        if (wall)
-        {
-            GetComponent<WallAbility>().enabled = true;
-        }
+        //Enable one by one
+        GetComponent<DashAbility>().enabled = dash;
+        GetComponent<GrappleAbility>().enabled = grapple;
+        GetComponent<WallAbility>().enabled = wall;
     }
 
     private void SetAbility(string ability) //dash, grapple, wall
@@ -130,11 +127,7 @@ public class ThirdPersonPlayerController : Damageable
         if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Base"))
         {
            Movement(targetVelocity);
-        }else if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Punch"))
-        {
-            Punching();
         }
-       
 
 
     }
@@ -177,37 +170,6 @@ public class ThirdPersonPlayerController : Damageable
     void KnockBack(Vector3 force)
     {
        controller.Move(force * Time.fixedDeltaTime);
-    }
-    void Punching()
-    {
-        controller.Move(this.transform.forward * 3 *10 * (Time.fixedDeltaTime));
-        punchDistanceTraveled += 3 * 10 * (Time.fixedDeltaTime);
-        if (punchDistanceTraveled >= 3)
-        {
-            anim.Play("Grounded");
-            punchDistanceTraveled = 0;
-        }
-    }
-    void OnPunch(InputAction.CallbackContext context)
-    {
-        punchIndex += 1;
-        punchIndex = punchIndex == 4 ? 1 : punchIndex; 
-        Instantiate(hitboxes[punchIndex - 1], transform);
-        /*if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Punch"))
-        {
-            return;
-        }
-        anim.Play("Punch");
-        RaycastHit hit;
-        if(Physics.SphereCast(this.transform.position,.5f,new Vector3(moveDir.x,0, moveDir.y),out hit,5))
-        {
-
-        }
-        else
-        {
-
-        }*/
-
     }
     public void Die(){
         Destroy(this.gameObject);

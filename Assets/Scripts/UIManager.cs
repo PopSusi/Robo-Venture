@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
 
     //GameplayComponents
     private GameObject playerCurr;
-    private PlayerInput pI;
+    private PlayerInput input;
     private ThirdPersonPlayerController playerRef;
     bool paused;
 
@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     {
         playerCurr = gameObject.GetComponent<RoboLevels>().playerCurr;
         playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
-        pI = playerCurr.GetComponent<PlayerInput>();
+        input = playerCurr.GetComponent<PlayerInput>();
         FillList();
     }
 
@@ -42,13 +42,13 @@ public class UIManager : MonoBehaviour
 		if(!paused){ //not currently paused
 			paused = true;
 			Time.timeScale = 0;
-			pI.SwitchCurrentActionMap("UI");
+			input.SwitchCurrentActionMap("UI"); //Go to UI Controls for controller
 			MenuList[0].SetActive(true);
 		} else { //currently paused
 			paused = false;
 			Time.timeScale = 1;
-			pI.SwitchCurrentActionMap("Player");
-			foreach(GameObject menuObj in MenuList){
+			input.SwitchCurrentActionMap("Player"); //Go to Gameplay Controls
+			foreach(GameObject menuObj in MenuList){ //Cycle through all GameObjects and disable them
                 menuObj.SetActive(false);
             }
 		}
