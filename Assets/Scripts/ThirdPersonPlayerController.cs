@@ -32,15 +32,14 @@ public class ThirdPersonPlayerController : Damageable
     float ySpeed;
     [SerializeField]
     const float gravity=-20f;
-
-    //Punches
-    float punchDistanceTraveled;
     public Vector2 moveDir { get; private set; }
-    //public int punchIndex;
-    //public GameObject[] hitboxes;
-    //public Vector3[] offset;
-    //private bool canPunch;
 
+    //Audio
+    [SerializeField]
+    private AudioSource footSource, sptnsSource;
+
+    [SerializeField]
+    private AudioClip hit, hitVariant, footSteps;
     //Options
     public static bool dash, wall, grapple;
     bool invincible;

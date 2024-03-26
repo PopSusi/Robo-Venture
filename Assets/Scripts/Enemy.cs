@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Enemy : Damageable
 {
+    private AudioSource mainAudio;
+    [SerializeField]
+    private AudioSource scndryAudio;
     public CombatTriggers myTrigger;
     [SerializeField] private LayerMask layermask;
     public void Start(){
+        mainAudio = GetComponent<AudioSource>();
         Collider[] tempHold = Physics.OverlapBox(transform.position, transform.localScale/2, Quaternion.identity, layermask);
         myTrigger = tempHold[0].gameObject.GetComponent<CombatTriggers>();
         StartCoroutine("Fuckingdie");

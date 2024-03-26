@@ -10,10 +10,6 @@ public class PunchAbility : Ability
     public Vector3[] offset;
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        playerController = GetComponent<ThirdPersonPlayerController>();
-        characterController = GetComponent<CharacterController>();
-        input = GetComponent<PlayerInput>();
         input.actions["Punch"].performed+=OnPunch;
     }
     void OnPunch(InputAction.CallbackContext context)

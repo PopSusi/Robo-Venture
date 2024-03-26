@@ -12,10 +12,7 @@ public class DashAbility : Ability
     Vector2 dashDir;
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        playerController = GetComponent<ThirdPersonPlayerController>();
-        characterController = GetComponent<CharacterController>();
-        input = GetComponent<PlayerInput>();
+        Initialize();
         input.actions["Dash"].performed+=OnDash;
         moveAction=input.actions["Move"];
     }
