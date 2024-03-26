@@ -22,6 +22,7 @@ public class RoboLevels : MonoBehaviour
 	public int chkpntIndexLevels;
 	public bool overrideSpawn;
 	public int overrideSpawnIndex;
+	public AudioClip BGM;
 	protected virtual void RespawnPlayer(){
 		if (!overrideSpawn)
 		{

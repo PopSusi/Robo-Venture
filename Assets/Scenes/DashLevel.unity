@@ -1223,7 +1223,7 @@ GameObject:
   - component: {fileID: 817608419}
   m_Layer: 0
   m_Name: DashGM
-  m_TagString: Untagged
+  m_TagString: LevelGM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1248,6 +1248,7 @@ MonoBehaviour:
   chkpntIndexLevels: 0
   overrideSpawn: 0
   overrideSpawnIndex: 0
+  BGM: {fileID: 0}
 --- !u!4 &817608420
 Transform:
   m_ObjectHideFlags: 0
