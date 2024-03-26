@@ -25,7 +25,7 @@ public class Enemy : Damageable
             }
         }
     }
-    private void Die(){
+    public void Die(){
         Debug.Log(myTrigger.CheckEnemies(gameObject));
         Destroy(gameObject);
     }

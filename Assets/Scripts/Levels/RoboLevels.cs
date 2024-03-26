@@ -18,23 +18,23 @@ public class RoboLevels : MonoBehaviour
     public GameObject GOobjUI; //ObjectiveUI
     public string[] objectiveText; //List of Objective for a level
     public int objectiveIndex = 0; //ObjectiveIndex for String[]
-	public Transform[] checkPoints;
+	public GameObject[] checkPoints;
 	public int chkpntIndexLevels;
 	public bool overrideSpawn;
 	public int overrideSpawnIndex;
 	public AudioClip BGM;
-	protected virtual void RespawnPlayer(){
+	public virtual void RespawnPlayer(){
 		if (!overrideSpawn)
 		{
 			playerCurr = Instantiate(playerPrefab,
-				checkPoints[chkpntIndexLevels].position,
-				checkPoints[chkpntIndexLevels].rotation);
+				checkPoints[chkpntIndexLevels].transform.position,
+				checkPoints[chkpntIndexLevels].transform.rotation);
 		}
 		else
 		{
 			playerCurr = Instantiate(playerPrefab,
-				checkPoints[overrideSpawnIndex].position,
-				checkPoints[overrideSpawnIndex].rotation);
+				checkPoints[overrideSpawnIndex].transform.position,
+				checkPoints[overrideSpawnIndex].transform.rotation);
 		}
 	}
     protected void FindPlayer()

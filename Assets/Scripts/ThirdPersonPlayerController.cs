@@ -194,5 +194,8 @@ public class ThirdPersonPlayerController : MonoBehaviour
         }*/
 
     }
+    public void Die(){
+        Destroy(this.gameObject);
+    }
 
 }
