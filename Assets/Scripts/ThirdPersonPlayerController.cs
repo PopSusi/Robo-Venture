@@ -43,7 +43,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     private AudioSource footSource, sptnsSource;
 
     [SerializeField]
-    private AudioClip hit, hitVariant, footSteps;
+    private AudioClip hitSFX, hitVariantSFX, deathSFX, footStepsSFX;
     //Options
     public static bool dash, wall, grapple;
     bool invincible;
@@ -168,8 +168,12 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     {
        controller.Move(force * Time.fixedDeltaTime);
     }
-    public void Die(){
-        Destroy(this.gameObject);
+    public void Die()
+    {
+        sptnsSource.clip = deathSFX;
+        sptnsSource.Play();
+        controller.enabled = false;
+        StartCoroutine("Death Audio Delay");
     }
     public void TakeDamage(float damage)
     {
@@ -178,11 +182,20 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
             HP -= damage;
             if(!(HP <= 0)){//Not at zero
                 vulnerable = false;
-                GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
             } else {
                 Die();
+                yield break;
             }
+
+            sptnsSource.clip = //RANDOM BETWEEN TWO;
+                sptnsSource.Play();
         }
+    }
+
+    public IEnumerator DeathAudioDelay()
+    {
+        WaitForSeconds wait = new WaitForSeconds(deathSFX.length + 1f);
+        yield return wait;
     }
 }
