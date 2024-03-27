@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -42,8 +43,11 @@ public class UIManager : MonoBehaviour
     }
 
     public void EndGame(){
-		Application.Quit();
-	}
+	    Application.Quit();
+    }
+    public void LoadGame(string scene){
+	    SceneManager.LoadScene(scene);
+    }
     private void OnPause(InputAction.CallbackContext context){
         PauseGame();
     }

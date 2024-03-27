@@ -183,19 +183,29 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
             if(!(HP <= 0)){//Not at zero
                 vulnerable = false;
                 StartCoroutine("DamageDelay");
-            } else {
-                Die();
-                yield break;
+                HitNoise();
             }
-
-            sptnsSource.clip = //RANDOM BETWEEN TWO;
-                sptnsSource.Play();
+            else
+            {
+                Die();
+            }
         }
     }
 
+    public void HitNoise()
+    {
+        sptnsSource.clip = Random.Range(0, 2) == 0 ? hitSFX : hitVariantSFX;
+        sptnsSource.Play();
+    }
+
+    public void FootStep()
+    {
+        footSource.Play();
+    }
     public IEnumerator DeathAudioDelay()
     {
         WaitForSeconds wait = new WaitForSeconds(deathSFX.length + 1f);
         yield return wait;
+        Destroy(gameObject);
     }
 }

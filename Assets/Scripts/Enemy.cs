@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour, Damageable
     private AudioSource mainAudio;
     [SerializeField]
     private AudioSource scndryAudio;
+
+    [SerializeField] private AudioClip hitSFX, hitVariantSFX, deathSFX;
     public CombatTriggers myTrigger;
     [SerializeField] private LayerMask layermask;
     public void Start(){
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour, Damageable
                 vulnerable = false;
                 GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
+                HitNoise();
             } else {
                 Die();
             }
@@ -37,11 +40,24 @@ public class Enemy : MonoBehaviour, Damageable
     }
     public void Die(){
         Debug.Log(myTrigger.CheckEnemies(gameObject));
-        Destroy(gameObject);
+        scndryAudio.clip = deathSFX;
+        scndryAudio.Play();
+        StartCoroutine("Death Audio Delay");
     }
     private IEnumerator Fuckingdie(){
         yield return new WaitForSeconds(3f);
         Die();
+    }
+    public void HitNoise()
+    {
+        scndryAudio.clip = Random.Range(0, 2) == 0 ? hitSFX : hitVariantSFX;
+        scndryAudio.Play();
+    }
+    public IEnumerator DeathAudioDelay()
+    {
+        WaitForSeconds wait = new WaitForSeconds(deathSFX.length + 1f);
+        yield return wait;
+        Destroy(gameObject);
     }
     
 }
