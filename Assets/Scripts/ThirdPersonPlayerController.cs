@@ -5,8 +5,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class ThirdPersonPlayerController : Damageable
+public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 {
+    //Damageable Variables
+    public float HP{ get; set; }  
+    public float damageDelay{ get; set; }
+    public bool vulnerable{ get; set; }
     //Controller Components
     CharacterController controller;
     PlayerInput input;
@@ -167,7 +171,7 @@ public class ThirdPersonPlayerController : Damageable
     public void Die(){
         Destroy(this.gameObject);
     }
-    public override void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         if (vulnerable && !invincible)
         {
