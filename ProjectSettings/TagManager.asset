@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - GrapplePoint
+  - LevelGM
+  - FuellCell
   layers:
   - Default
   - TransparentFX
@@ -11,13 +15,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Projectile
+  - Pickups
+  - Terrain
+  - PlayerHitboxes
+  - Triggers
   - 
   - 
   - 
