@@ -29,13 +29,13 @@ Transform:
   m_GameObject: {fileID: 7815877678581261391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.39, y: 0.81, z: 14.83}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 9.242858, y: 9.242858, z: 9.242858}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8713150027246017343}
   - {fileID: 4898940969307052904}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9021062361017681989
 MonoBehaviour:
@@ -49,9 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e26bd1e8c41242cb85b71d797140014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 5
-  damageDelay: 1
-  vulnerable: 1
   scndryAudio: {fileID: 3111850873891603300}
   myTrigger: {fileID: 0}
   layermask:
