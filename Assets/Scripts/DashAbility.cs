@@ -3,38 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DashAbility : MonoBehaviour
+public class DashAbility : Ability
 {
-    Animator anim;
-    PlayerInput input;
-    CharacterController characterController;
     [SerializeField]
-    float dashDistance,dashSpeed,cooldownTime;
-    float lastDashTime=0;
+    float dashDistance,dashSpeed;
     float distanceTraveled;
-    InputAction moveAction;
     bool isDashing;
-    ThirdPersonPlayerController playerController;
     Vector2 dashDir;
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        playerController = GetComponent<ThirdPersonPlayerController>();
-        characterController = GetComponent<CharacterController>();
-        input = GetComponent<PlayerInput>();
+        Initialize();
         input.actions["Dash"].performed+=OnDash;
         moveAction=input.actions["Move"];
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     private void FixedUpdate()
     {
@@ -47,23 +27,20 @@ public class DashAbility : MonoBehaviour
             {
                 isDashing = false;
                 GetComponent<Animator>().SetBool("Dash", false);
-                lastDashTime = Time.time;
             }
         }
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (isDashing||Time.time-lastDashTime<=cooldownTime)
+        if (canAbility)
         {
-            return;
+            GetComponent<Animator>().SetBool("Dash", true);
+            print(playerController.moveDir);
+            dashDir = playerController.moveDir;
+            this.transform.rotation = Quaternion.LookRotation(new Vector3(dashDir.x, 0, dashDir.y), Vector3.up);
+            distanceTraveled = 0;
+            isDashing = true;
         }
-        GetComponent<Animator>().SetBool("Dash",true);
-        print(playerController.moveDir);
-        dashDir = playerController.moveDir;
-        this.transform.rotation = Quaternion.LookRotation(new Vector3(dashDir.x, 0, dashDir.y), Vector3.up);
-        distanceTraveled = 0;
-        isDashing = true;
-        
 
     }
 }

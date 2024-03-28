@@ -5,62 +5,112 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class ThirdPersonPlayerController : MonoBehaviour
+public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 {
-
+    //Damageable Variables
+    public float HP{ get; set; }  
+    public float damageDelay{ get; set; }
+    public bool vulnerable{ get; set; }
+    //Controller Components
     CharacterController controller;
     PlayerInput input;
     public InputAction moveAction { get;private set; }
     Camera cam;
-    //Vector2 targetVelocity;
+    PlayerMovementState playerMovement;
+    Animator anim;
+    RoboLevels myGM;
+    public UIManager UIman;
+
+    //Move vars
+                //Vector2 targetVelocity;
     Vector2 moveVelocity;
-    float ySpeed;
-    [SerializeField]
-    const float gravity=-20f;
     [SerializeField]
     CinemachineFreeLook cinemachineFreeLook;
     [SerializeField]
     float speed, accel, airAccel,jumpForce;
-    float punchDistanceTraveled;
     public float Speed { get { return speed; } }
     public float Accel { get { return accel; } }
     public float AirAccel { get { return airAccel; } }
     public float JumpForce { get { return jumpForce; } }
     public float Gravity { get { return gravity; } }
-    Animator anim;
+    float ySpeed;
+    [SerializeField]
+    const float gravity=-20f;
     public Vector2 moveDir { get; private set; }
 
-    PlayerMovementState playerMovement;
-    //bool 
+    //Audio
+    [SerializeField]
+    private AudioSource footSource, sptnsSource;
+
+    [SerializeField]
+    private AudioClip hit, hitVariant, footSteps;
+    //Options
+    public static bool dash, wall, grapple;
+    bool invincible;
     private void Awake()
     {
+        Initialize();
+        OptionsInitialize();
+    }
+
+    private void Initialize() //Variables and Components
+    {
+        //Component Gets
         anim = GetComponent<Animator>();
-        cam = Camera.main;
-        //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         input = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
-        moveAction = input.actions["Move"];
-        input.actions["Jump"].performed+=OnJump;
-        input.actions["Punch"].performed+=OnPunch;
-        moveAction.performed += OnMove;
+        //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
+        cam = Camera.main;
+        myGM = GameObject.FindWithTag("LevelGM").GetComponent<RoboLevels>();
+        UIman = myGM.GetComponent<UIManager>();
 
-        playerMovement = new PlayerMovementState(moveAction, controller, this.transform,accel,airAccel,gravity);
+        //Move Inputs
+        moveAction = input.actions["Move"];
+        moveAction.performed += OnMove;
+        //playerMovement = new PlayerMovementState(moveAction, controller, this.transform,accel,airAccel,gravity);
+
+        //Other Inputs
+        input.actions["Jump"].performed+=OnJump;
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public void OptionsInitialize()
     {
-       
+        invincible = UIman.infiniteHealth;
+        if(UIman.allModChips){ //First check for All
+            dash = true;
+            grapple = true;
+            wall = true;
+        } else {
+            //NEED TO FUNCTIONALITY TO READ SAVE FILE AND SEE WHATS ACTIVE
+        }
+        //Enable one by one
+        GetComponent<DashAbility>().enabled = dash;
+        GetComponent<GrappleAbility>().enabled = grapple;
+        GetComponent<WallAbility>().enabled = wall;
+    }
+
+    private void SetAbility(string ability) //dash, grapple, wall
+    {
+        switch(ability)
+        {
+            case "dash":
+                GetComponent<DashAbility>().enabled = true;
+                break;
+            case "grapple":
+                GetComponent<GrappleAbility>().enabled = true;
+                break;
+            case "wall":
+                GetComponent<WallAbility>().enabled = true;
+                break;
+            default:
+                break;
+        }
     }
     private void OnEnable()
     {
         cinemachineFreeLook.GetComponent<CinemachineInputProvider>().PlayerIndex = input.playerIndex;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void FixedUpdate()
     {
 
@@ -74,11 +124,7 @@ public class ThirdPersonPlayerController : MonoBehaviour
         if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Base"))
         {
            Movement(targetVelocity);
-        }else if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Punch"))
-        {
-            Punching();
         }
-       
 
 
     }
@@ -122,33 +168,21 @@ public class ThirdPersonPlayerController : MonoBehaviour
     {
        controller.Move(force * Time.fixedDeltaTime);
     }
-    void Punching()
+    public void Die(){
+        Destroy(this.gameObject);
+    }
+    public void TakeDamage(float damage)
     {
-        controller.Move(this.transform.forward * 3 *10 * (Time.fixedDeltaTime));
-        punchDistanceTraveled += 3 * 10 * (Time.fixedDeltaTime);
-        if (punchDistanceTraveled >= 3)
+        if (vulnerable && !invincible)
         {
-            anim.Play("Grounded");
-            punchDistanceTraveled = 0;
+            HP -= damage;
+            if(!(HP <= 0)){//Not at zero
+                vulnerable = false;
+                GetComponent<AudioSource>().Play();
+                StartCoroutine("DamageDelay");
+            } else {
+                Die();
+            }
         }
     }
-    void OnPunch(InputAction.CallbackContext context)
-    {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Punch"))
-        {
-            return;
-        }
-        anim.Play("Punch");
-        RaycastHit hit;
-        if(Physics.SphereCast(this.transform.position,.5f,new Vector3(moveDir.x,0, moveDir.y),out hit,5))
-        {
-
-        }
-        else
-        {
-
-        }
-
-    }
-
 }
