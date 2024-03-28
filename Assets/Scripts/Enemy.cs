@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Damageable
+public class Enemy : MonoBehaviour, Damageable
 {
+    //Damageable Variables
+    public float HP{ get; set; }  
+    public float damageDelay{ get; set; }
+    public bool vulnerable{ get; set; }
+    
+    //Components
     private AudioSource mainAudio;
     [SerializeField]
     private AudioSource scndryAudio;
@@ -15,7 +21,7 @@ public class Enemy : Damageable
         myTrigger = tempHold[0].gameObject.GetComponent<CombatTriggers>();
         StartCoroutine("Fuckingdie");
     }
-    public override void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         if (vulnerable)
         {

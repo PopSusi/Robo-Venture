@@ -2,38 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Damageable : MonoBehaviour
+interface Damageable 
 {
-    [SerializeField]
-    protected float HP;
-    [SerializeField]
-    protected float damageDelay;
-    [SerializeField]
-    protected bool vulnerable = true;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    float HP{ get; set; }  
+    float damageDelay{ get; set; }
+    bool vulnerable{ get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public virtual void TakeDamage(float damage)
-    {
-        if (vulnerable)
-        {
-            HP -= damage;
-            vulnerable = false;
-            Debug.Log("Owie");
-            Debug.Log("takingdamage");
-            StartCoroutine("DamageDelay");
-            
-        }
-    }
+    public abstract void TakeDamage(float damage);
 
     IEnumerator DamageDelay()
     {

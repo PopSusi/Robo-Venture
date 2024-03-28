@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PunchAbility : Ability
 {
     [SerializeField]
-    private int punchIndex;
+    private int punchIndex = 0;
     [SerializeField]
     private GameObject[] hitboxes;
     [SerializeField]
@@ -21,9 +21,13 @@ public class PunchAbility : Ability
     }
     void OnPunch(InputAction.CallbackContext context)
     {
-        if(canAbility){
+        Debug.Log("Punch#: " + punchIndex);
+        if(canAbility)
+        {
+            StopCoroutine("PunchResetDelay");
             canAbility = false;
-            Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
+            GameObject tempbox = Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
+            tempbox.GetComponent<Testboxes>().duration = timing[punchIndex];
             anim.Play("Punch");
             StartCoroutine("PunchDelay");
             StartCoroutine("PunchResetDelay");
