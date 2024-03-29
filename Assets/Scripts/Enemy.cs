@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, Damageable
 {
@@ -14,12 +15,20 @@ public class Enemy : MonoBehaviour, Damageable
     [SerializeField]
     private AudioSource scndryAudio;
     public CombatTriggers myTrigger;
+    private Vector3 triggPos, currTarget;
+    private float triggSize;
     [SerializeField] private AudioClip hitSFX, hitVariantSFX, deathSFX;
     [SerializeField] private LayerMask layermask;
+    private NavMeshAgent agent;
+    private bool combat = false;
     public void Start(){
         mainAudio = GetComponent<AudioSource>();
+        agent = GetComponent<NavMeshAgent>();
         Collider[] tempHold = Physics.OverlapBox(transform.position, transform.localScale/2, Quaternion.identity, layermask);
         myTrigger = tempHold[0].gameObject.GetComponent<CombatTriggers>();
+        triggPos = myTrigger.transform.position;
+        CalculateDestinationRandom();
+        triggSize = myTrigger.transform.localScale.x;
     }
     public void TakeDamage(float damage)
     {
@@ -52,5 +61,33 @@ public class Enemy : MonoBehaviour, Damageable
         yield return wait;
         Die();
     }
-    
+    private void FixedUpdate()
+    {
+        if(Vector3.Distance(transform.position, currTarget) < .3 && !combat)
+        {
+            //Debug.Log("Close Enough");
+            CalculateDestinationRandom();
+        } else if(Vector3.Distance(transform.position, triggPos) > triggSize)
+        {
+            Debug.Log("Too far");
+            CalculateDestinationRandom();
+        }
+    }
+    private void CalculateDestinationRandom()
+    {
+        Vector2 tempRand = Random.insideUnitSphere;
+        currTarget = new Vector3(tempRand.x * Random.Range(.5f, triggSize * .66f), transform.position.y, tempRand.y * Random.Range(.5f, triggSize * .66f)) + triggPos;
+        agent.destination = currTarget;
+        //Debug.Log($"Calculated {currTarget} at {Time.timeSinceLevelLoad}");
+    }
+    public void StartCombat()
+    {
+        combat= true;
+    }
+    public void EndCombat()
+    {
+        combat= false;
+        CalculateDestinationRandom();
+    }
+
 }

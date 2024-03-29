@@ -6,55 +6,51 @@ using UnityEngine.UI;
 
 public class CooldownManager : MonoBehaviour
 {
-    public Image GrenadeMask, DashMask, GrappleMask, ChargeMask;
+    public static CooldownManager CDMInstance;
+    public Image[] masks;
+    public Image[] slots;
+    public enum ability {Dash, Grapple, Charge, Nulled};
     Image currMask;
     private int index;
     private float time;
-    public void CooldownMaskStart(int indexIn, float timeIn)
+    Dictionary<ability, int> abilityIndex = new Dictionary<ability, int>();
+    private int slotsActive = 0;
+    public void Start()
     {
-
-        index = indexIn;
-        time = timeIn;
-        switch (index)
-        {
-            case 0:
-                currMask = GrenadeMask;
-                break;
-            case 1:
-                currMask = DashMask;
-                break;
-            case 2:
-                currMask = GrappleMask;
-                break;
-            case 3:
-                currMask = ChargeMask;
-                break;
-            default: break;
-        }
-        Debug.Log(index);
+        CDMInstance = this;
+    }
+    public void CooldownMaskStart(Sprite theSprite)
+    {
+        Debug.Log(slots.Length);
+        slots[slotsActive].sprite = theSprite;
+        slots[slotsActive].transform.parent.gameObject.SetActive(true);
+        currMask = masks[slotsActive];
         StartCoroutine("CooldownMask");
+        //slotsActive++;
     }
 
     public IEnumerator CooldownMask()
     {
-        bool operating = true;
-        float timeActive = 0f;
-        float originalSize = currMask.rectTransform.rect.width;
-        while (operating)
+        if (currMask != null)
         {
-            Debug.Log("running " + timeActive / time);
-            timeActive += Time.deltaTime;
-            currMask.gameObject.SetActive(true);
-            currMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (1 - timeActive / time) * originalSize);
-            yield return new WaitForEndOfFrame();
-            if (timeActive >= time)
+            bool operating = true;
+            float timeActive = 0f;
+            float originalSize = currMask.rectTransform.rect.width;
+            while (operating)
             {
-                Debug.Log("Complete");
-                currMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize);
-                currMask.gameObject.SetActive(false);
-                operating = false;
+                timeActive += Time.deltaTime;
+                currMask.gameObject.SetActive(true);
+                currMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (1 - timeActive / time) * originalSize);
+                yield return new WaitForEndOfFrame();
+                if (timeActive >= time)
+                {
+                    currMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize);
+                    currMask.gameObject.SetActive(false);
+                    operating = false;
+                    slotsActive--;
+                }
             }
+            yield return null;
         }
-        yield return null;
     }
 }

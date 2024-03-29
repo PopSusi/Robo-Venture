@@ -64,8 +64,12 @@ public class GrappleAbility : Ability
     void OnGrapple(InputAction.CallbackContext context)
     {
         if (grappleTarget == null) { return; }
-        isGrappling = true;
-        anim.SetBool("Grapple",true);
-
+        if (unlocked)
+        {
+            isGrappling = true;
+            anim.SetBool("Grapple", true);
+            StartCooldown();
+            CooldownManager.CDMInstance.CooldownMaskStart(mySprite);
+        }
     }
 }

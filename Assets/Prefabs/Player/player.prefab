@@ -3011,11 +3011,12 @@ GameObject:
   - component: {fileID: 7266735325855091816}
   - component: {fileID: 3147830462542876348}
   - component: {fileID: 3910353399707910504}
-  - component: {fileID: 7110265781216617806}
-  - component: {fileID: -375631623941696513}
-  - component: {fileID: -3562304697507061061}
   - component: {fileID: 7323179147012840827}
   - component: {fileID: 373044372793844205}
+  - component: {fileID: 7437399880942074048}
+  - component: {fileID: 5907793377165529396}
+  - component: {fileID: 8823998080851169695}
+  - component: {fileID: 8575453612511988869}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -3046,7 +3047,7 @@ Transform:
   - {fileID: 8955812293856477049}
   - {fileID: 3466692638173019034}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &5498610598082435525
 CharacterController:
@@ -3116,6 +3117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949c3461a42096547ad2ad01dda67c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HPBarMask: {fileID: 0}
   UIman: {fileID: 0}
   cinemachineFreeLook: {fileID: 1843754320846179104}
   speed: 10
@@ -3139,7 +3141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350d1e5e689fa4b4299566d2777bbcea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
+  cooldown: 8
+  unlocked: 1
+  mySprite: {fileID: 21300000, guid: 294492e4cfe5fa04bbebc35c8e4f58a9, type: 3}
   projectile: {fileID: 1377258407512642044, guid: bdeb7a4d89ed443d08e2b74d371443fe, type: 3}
 --- !u!95 &3910353399707910504
 Animator:
@@ -3162,47 +3166,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7110265781216617806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2693278240361699662}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8845b852505cb2458cb28666dd784d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 2.5
-  dashDistance: 3
-  dashSpeed: 3
---- !u!114 &-375631623941696513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2693278240361699662}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5033af20f17c8844aa3a242addb2ba4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 1
-  grappleDistance: 10
---- !u!114 &-3562304697507061061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2693278240361699662}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 712ed463b01b2411292c4cfadb77aff0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7323179147012840827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3216,6 +3179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.15
+  unlocked: 0
+  mySprite: {fileID: 0}
   punchIndex: 0
   hitboxes:
   - {fileID: 1580769095402655732, guid: 5c3290059c4aa4c92a032f2aa8b2a850, type: 3}
@@ -3325,6 +3290,68 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7437399880942074048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693278240361699662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d6f3878a15f7e4ab2fc684fc96f3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masks: []
+  slots: []
+--- !u!114 &5907793377165529396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693278240361699662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8845b852505cb2458cb28666dd784d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 3
+  unlocked: 0
+  mySprite: {fileID: 21300000, guid: 90a546d28b39fdb4e960b7800d673d91, type: 3}
+  dashDistance: 0
+  dashSpeed: 0
+--- !u!114 &8823998080851169695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693278240361699662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5033af20f17c8844aa3a242addb2ba4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 2
+  unlocked: 0
+  mySprite: {fileID: 21300000, guid: 5fc29a1e1e6963749acefcc92ba932f6, type: 3}
+  grappleDistance: 0
+--- !u!114 &8575453612511988869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693278240361699662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712ed463b01b2411292c4cfadb77aff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 5
+  unlocked: 0
+  mySprite: {fileID: 21300000, guid: 05e7354846f28734dadb4dceb491f612, type: 3}
 --- !u!1 &2759555100148615468
 GameObject:
   m_ObjectHideFlags: 0
@@ -10357,8 +10384,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9019346412007078025}
-  m_LocalRotation: {x: 0.119420744, y: 0.000000014901756, z: -0.0000000017924057, w: 0.99284375}
-  m_LocalPosition: {x: 0, y: 4.9, z: -4}
+  m_LocalRotation: {x: -0.2518485, y: -0.000000008325882, z: -0.000000002166701, w: 0.9677667}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

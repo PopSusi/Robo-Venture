@@ -32,7 +32,7 @@ public class DashAbility : Ability
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (canAbility)
+        if (canAbility && unlocked)
         {
             Debug.Log("Dashing");
             GetComponent<Animator>().SetBool("Dash", true);
@@ -41,6 +41,7 @@ public class DashAbility : Ability
             this.transform.rotation = Quaternion.LookRotation(new Vector3(dashDir.x, 0, dashDir.y), Vector3.up);
             distanceTraveled = 0;
             isDashing = true;
+            CooldownManager.CDMInstance.CooldownMaskStart(mySprite);
         }
 
     }

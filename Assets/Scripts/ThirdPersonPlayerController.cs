@@ -66,7 +66,6 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         cam = Camera.main;
         myGM = GameObject.FindWithTag("LevelGM").GetComponent<RoboLevels>();
-        UIman = myGM.GetComponent<UIManager>();
 
         //Move Inputs
         moveAction = input.actions["Move"];
@@ -92,9 +91,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
             //NEED TO FUNCTIONALITY TO READ SAVE FILE AND SEE WHATS ACTIVE
         }
         //Enable one by one
-        GetComponent<DashAbility>().enabled = dash;
-        GetComponent<GrappleAbility>().enabled = grapple;
-        GetComponent<WallAbility>().enabled = wall;
+        GetComponent<DashAbility>().unlocked = dash;
+        GetComponent<GrappleAbility>().unlocked = grapple;
+        GetComponent<WallAbility>().unlocked = wall;
     }
 
     private void SetAbility(string ability) //dash, grapple, wall
@@ -102,13 +101,13 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         switch(ability)
         {
             case "dash":
-                GetComponent<DashAbility>().enabled = true;
+                GetComponent<DashAbility>().unlocked = true;
                 break;
             case "grapple":
-                GetComponent<GrappleAbility>().enabled = true;
+                GetComponent<GrappleAbility>().unlocked = true;
                 break;
             case "wall":
-                GetComponent<WallAbility>().enabled = true;
+                GetComponent<WallAbility>().unlocked = true;
                 break;
             default:
                 break;

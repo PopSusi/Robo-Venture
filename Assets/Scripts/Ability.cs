@@ -14,6 +14,8 @@ public class Ability : MonoBehaviour
     protected AudioSource myAudio;
     public float cooldown;
     protected bool canAbility = true; //random comment
+    public bool unlocked;
+    public Sprite mySprite;
     // Start is called before the first frame update
 
     protected void Initialize(){
