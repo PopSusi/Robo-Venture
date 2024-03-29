@@ -26,7 +26,7 @@ public class CooldownManager : MonoBehaviour
         slots[slotsActive].transform.parent.gameObject.SetActive(true);
         currMask = masks[slotsActive];
         StartCoroutine("CooldownMask");
-        //slotsActive++;
+        slotsActive++;
     }
 
     public IEnumerator CooldownMask()

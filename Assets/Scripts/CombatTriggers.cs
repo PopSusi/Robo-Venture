@@ -16,7 +16,7 @@ public class CombatTriggers : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player = other.gameObject;
-            player.GetComponent<MusicManager>().StartCoroutine("TransitionToCombat");
+            MusicManager.instance.StartCoroutine("TransitionToCombat");
             for (int i = 0; i < Enemies.Count - 1; i++)
             {
                 Enemies[i].GetComponent<Enemy>().StartCombat();
@@ -27,7 +27,7 @@ public class CombatTriggers : MonoBehaviour
         if(other.gameObject.CompareTag("Player")){
             if (Enemies.Count == 0)
             {
-                player.GetComponent<MusicManager>().StartCoroutine("TransitionToMain");
+                MusicManager.instance.StartCoroutine("TransitionToMain");
             }
         }
     }
@@ -50,7 +50,7 @@ public class CombatTriggers : MonoBehaviour
         {
             Enemies[i].GetComponent<Enemy>().EndCombat();
         }
-        player.GetComponent<MusicManager>().StartCoroutine("TransitionToMain");
+        MusicManager.instance.StartCoroutine("TransitionToMain");
     }
     private IEnumerator LoadPause(){
         yield return new WaitForSeconds(.5f);

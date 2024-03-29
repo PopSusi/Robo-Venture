@@ -6,9 +6,11 @@ public class MusicManager : MonoBehaviour
 {
     public AudioSource combatSource, mainLevelSource;
     public AudioClip myMain, combatMusic;
+    public static MusicManager instance;
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         GameObject currLevel = GameObject.FindWithTag("LevelGM");
         myMain = currLevel.GetComponent<RoboLevels>().BGM;
         mainLevelSource.clip = myMain;
@@ -21,8 +23,8 @@ public class MusicManager : MonoBehaviour
         float timeElapsed = 0;
         combatSource.Play();
         while(timeElapsed < timeToFade){
-            combatSource.volume = Mathf.Lerp(0,1, timeElapsed / timeToFade);
-            mainLevelSource.volume = Mathf.Lerp(1,0, timeElapsed / timeToFade);
+            combatSource.volume = Mathf.Lerp(0,.4f, timeElapsed / timeToFade);
+            mainLevelSource.volume = Mathf.Lerp(.15f,0, timeElapsed / timeToFade);
             timeElapsed += Time.deltaTime;
         }
         mainLevelSource.Stop();
@@ -35,8 +37,8 @@ public class MusicManager : MonoBehaviour
         float timeElapsed = 0;
         mainLevelSource.Play();
         while(timeElapsed < timeToFade){
-            combatSource.volume = Mathf.Lerp(1,0, timeElapsed / timeToFade);
-            mainLevelSource.volume = Mathf.Lerp(0,1, timeElapsed / timeToFade);
+            combatSource.volume = Mathf.Lerp(.4f,0, timeElapsed / timeToFade);
+            mainLevelSource.volume = Mathf.Lerp(0,.15f, timeElapsed / timeToFade);
             timeElapsed += Time.deltaTime;
         }
         combatSource.Stop();

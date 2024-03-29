@@ -10,7 +10,7 @@ interface Damageable
 
     public abstract void TakeDamage(float damage);
 
-    IEnumerator DamageDelay()
+    protected IEnumerator DamageDelay()
     {
         WaitForSeconds wait = new WaitForSeconds(damageDelay);
         yield return wait;
