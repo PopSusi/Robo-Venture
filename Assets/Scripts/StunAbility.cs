@@ -38,6 +38,7 @@ public class StunAbility : Ability
 	}
 	private void StunRelease(InputAction.CallbackContext context){
 		if(canAbility){
+			GetComponent<CooldownManager>().CooldownMaskStart(0, cooldown);
 			active = false;
 			Instantiate(projectile, player.transform.position, Quaternion.identity);
 			Debug.Log("thrown");

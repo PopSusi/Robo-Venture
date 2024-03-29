@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : LevelData
 {
     //Menu Components
     public GameObject pauseMenu, optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
     List<GameObject> MenuList = new List<GameObject>();
-
     //GameplayComponents
     private GameObject playerCurr;
     private PlayerInput input;
@@ -77,4 +78,5 @@ public class UIManager : LevelData
         MenuList.Add(KeyboardMenu);
         MenuList.Add(ControllerMenu);
     }
+    
 }
