@@ -34,6 +34,7 @@ public class DashAbility : Ability
     {
         if (canAbility)
         {
+            Debug.Log("Dashing");
             GetComponent<Animator>().SetBool("Dash", true);
             print(playerController.moveDir);
             dashDir = playerController.moveDir;

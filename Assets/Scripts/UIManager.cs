@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
-public class UIManager : MonoBehaviour
+public class UIManager : LevelData
 {
     //Menu Components
     public GameObject pauseMenu, optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
@@ -46,6 +47,12 @@ public class UIManager : MonoBehaviour
 	}
     private void OnPause(InputAction.CallbackContext context){
         PauseGame();
+    }
+
+    public void LoadGame(string level) //yay
+    {
+	    string tempString = level + "Level";
+	    SceneManager.LoadScene(tempString);
     }
 	public void PauseGame(){
 		if(!paused){ //not currently paused
