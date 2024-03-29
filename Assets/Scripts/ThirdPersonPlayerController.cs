@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -9,6 +10,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 {
     //Damageable Variables
     public float HP { get; set; } = 6f;
+    private float maxHP;
+    public Image HPBarMask;
+    private float HPBarMaskSize;
     public float damageDelay { get; set; } = 1.5f;
     public bool vulnerable { get; set; } = true;
     //Controller Components
@@ -71,6 +75,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 
         //Other Inputs
         input.actions["Jump"].performed+=OnJump;
+
+        //Variables
+        HPBarMaskSize = HPBarMask.rectTransform.rect.width;
+        maxHP = HP;
     }
 
     public void OptionsInitialize()
@@ -175,14 +183,35 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     {
         if (vulnerable && !invincible)
         {
+            StopCoroutine("RegenDelay");
             HP -= damage;
             if(!(HP <= 0)){//Not at zero
                 vulnerable = false;
                 GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
+                StartCoroutine("BeginRegenDelay");
+                HPBarMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (1 - HP / maxHP) * HPBarMaskSize);
             } else {
                 Die();
             }
+        }
+    }
+    private IEnumerator BeginRegenDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        TakeDamage(-1f);
+        if(HP != maxHP)
+        {
+            StartCoroutine("RegenDelay");
+        }
+    }
+    private IEnumerator RegenDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        TakeDamage(-1f);
+        if (HP != maxHP)
+        {
+            StartCoroutine("RegenDelay");
         }
     }
 }

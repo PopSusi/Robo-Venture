@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CooldownManager : MonoBehaviour
 {
-    public Image HPBarMask, GrenadeMask, DashMask, GrappleMask, ChargeMask;
+    public Image GrenadeMask, DashMask, GrappleMask, ChargeMask;
     Image currMask;
     private int index;
     private float time;
