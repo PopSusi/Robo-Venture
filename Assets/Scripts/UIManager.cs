@@ -30,7 +30,7 @@ public class UIManager : LevelData
     // Start is called before the first frame update
     void Start()
     {
-        playerCurr = gameObject.GetComponent<RoboLevels>().playerCurr;
+        playerCurr = GameObject.FindWithTag("Player");
         playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
         input = playerCurr.GetComponent<PlayerInput>();
         

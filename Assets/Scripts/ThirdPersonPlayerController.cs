@@ -8,9 +8,9 @@ using UnityEngine.InputSystem;
 public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 {
     //Damageable Variables
-    public float HP{ get; set; }  
-    public float damageDelay{ get; set; }
-    public bool vulnerable{ get; set; }
+    public float HP { get; set; } = 6f;
+    public float damageDelay { get; set; } = 1.5f;
+    public bool vulnerable { get; set; } = true;
     //Controller Components
     CharacterController controller;
     PlayerInput input;
