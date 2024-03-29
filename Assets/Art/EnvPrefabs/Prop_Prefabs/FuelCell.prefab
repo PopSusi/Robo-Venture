@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2272934644162423679}
   - component: {fileID: 2502326793901175388}
   m_Layer: 0
-  m_Name: FuelCell_Test
+  m_Name: FuelCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
