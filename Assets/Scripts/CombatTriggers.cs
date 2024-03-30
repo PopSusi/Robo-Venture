@@ -11,15 +11,24 @@ public class CombatTriggers : MonoBehaviour
     private void Awake(){
         StartCoroutine("LoadPause");
     }
-    private void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player")){
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
             player = other.gameObject;
-            player.GetComponent<MusicManager>().StartCoroutine("TransitionToCombat");
+            MusicManager.instance.StartCoroutine("TransitionToCombat");
+            for (int i = 0; i < Enemies.Count - 1; i++)
+            {
+                Enemies[i].GetComponent<Enemy>().StartCombat();
+            }
         }
     }
     private void OnTriggerExit(Collider other){
         if(other.gameObject.CompareTag("Player")){
-            player.GetComponent<MusicManager>().StartCoroutine("TransitionToMain");
+            if (Enemies.Count == 0)
+            {
+                MusicManager.instance.StartCoroutine("TransitionToMain");
+            }
         }
     }
     public bool CheckEnemies(GameObject deadEnemy){
@@ -37,7 +46,11 @@ public class CombatTriggers : MonoBehaviour
     }
     private IEnumerator CombatOver(){
         yield return new WaitForSeconds(3f);
-        player.GetComponent<MusicManager>().StartCoroutine("TransitionToMain");
+        for (int i = 0; i < Enemies.Count - 1; i++)
+        {
+            Enemies[i].GetComponent<Enemy>().EndCombat();
+        }
+        MusicManager.instance.StartCoroutine("TransitionToMain");
     }
     private IEnumerator LoadPause(){
         yield return new WaitForSeconds(.5f);

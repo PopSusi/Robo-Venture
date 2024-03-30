@@ -2,15 +2,19 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 {
     //Damageable Variables
-    public float HP{ get; set; }  
-    public float damageDelay{ get; set; }
-    public bool vulnerable{ get; set; }
+    public float HP { get; set; } = 6f;
+    private float maxHP;
+    public Image HPBarMask;
+    private float HPBarMaskSize;
+    public float damageDelay { get; set; } = 1.5f;
+    public bool vulnerable { get; set; } = true;
     //Controller Components
     CharacterController controller;
     PlayerInput input;
@@ -43,7 +47,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     private AudioSource footSource, sptnsSource;
 
     [SerializeField]
-    private AudioClip hitSFX, hitVariantSFX, deathSFX, footStepsSFX;
+    private AudioClip hit, hitVariant, footSteps;
     //Options
     public static bool dash, wall, grapple;
     bool invincible;
@@ -62,7 +66,6 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         cam = Camera.main;
         myGM = GameObject.FindWithTag("LevelGM").GetComponent<RoboLevels>();
-        UIman = myGM.GetComponent<UIManager>();
 
         //Move Inputs
         moveAction = input.actions["Move"];
@@ -70,7 +73,12 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //playerMovement = new PlayerMovementState(moveAction, controller, this.transform,accel,airAccel,gravity);
 
         //Other Inputs
-        input.actions["Jump"].performed+=OnJump;
+        input.actions["Jump"].performed += OnJump;
+        input.actions["DebugDamage"].performed += DebugDamage;
+
+        //Variables
+        HPBarMaskSize = HPBarMask.rectTransform.rect.width;
+        maxHP = HP;
     }
 
     public void OptionsInitialize()
@@ -84,9 +92,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
             //NEED TO FUNCTIONALITY TO READ SAVE FILE AND SEE WHATS ACTIVE
         }
         //Enable one by one
-        GetComponent<DashAbility>().enabled = dash;
-        GetComponent<GrappleAbility>().enabled = grapple;
-        GetComponent<WallAbility>().enabled = wall;
+        GetComponent<DashAbility>().unlocked = dash;
+        GetComponent<GrappleAbility>().unlocked = grapple;
+        GetComponent<WallAbility>().unlocked = wall;
     }
 
     private void SetAbility(string ability) //dash, grapple, wall
@@ -94,13 +102,13 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         switch(ability)
         {
             case "dash":
-                GetComponent<DashAbility>().enabled = true;
+                GetComponent<DashAbility>().unlocked = true;
                 break;
             case "grapple":
-                GetComponent<GrappleAbility>().enabled = true;
+                GetComponent<GrappleAbility>().unlocked = true;
                 break;
             case "wall":
-                GetComponent<WallAbility>().enabled = true;
+                GetComponent<WallAbility>().unlocked = true;
                 break;
             default:
                 break;
@@ -149,9 +157,12 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         }
 
     }
+    void DebugDamage(InputAction.CallbackContext context)
+    {
+        TakeDamage(1f);
+    }
     void OnMove(InputAction.CallbackContext context)
     {
-
     }
     void OnJump(InputAction.CallbackContext context)
     {
@@ -168,44 +179,48 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     {
        controller.Move(force * Time.fixedDeltaTime);
     }
-    public void Die()
-    {
-        sptnsSource.clip = deathSFX;
-        sptnsSource.Play();
-        controller.enabled = false;
-        StartCoroutine("Death Audio Delay");
+    public void Die(){
+        Destroy(this.gameObject);
     }
     public void TakeDamage(float damage)
     {
         if (vulnerable && !invincible)
         {
+            StopCoroutine("RegenDelay");
             HP -= damage;
             if(!(HP <= 0)){//Not at zero
                 vulnerable = false;
+                GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
-                HitNoise();
-            }
-            else
-            {
+                StartCoroutine("BeginRegenDelay");
+                HPBarMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (HP / maxHP) * HPBarMaskSize);
+            } else {
                 Die();
             }
         }
     }
-
-    public void HitNoise()
+    private IEnumerator BeginRegenDelay()
     {
-        sptnsSource.clip = Random.Range(0, 2) == 0 ? hitSFX : hitVariantSFX;
-        sptnsSource.Play();
+        yield return new WaitForSeconds(5f);
+        TakeDamage(-1f);
+        if(HP != maxHP)
+        {
+            StartCoroutine("RegenDelay");
+        }
     }
-
-    public void FootStep()
+    private IEnumerator RegenDelay()
     {
-        footSource.Play();
+        yield return new WaitForSeconds(2f);
+        TakeDamage(-1f);
+        if (HP != maxHP)
+        {
+            StartCoroutine("RegenDelay");
+        }
     }
-    public IEnumerator DeathAudioDelay()
+    IEnumerator DamageDelay()
     {
-        WaitForSeconds wait = new WaitForSeconds(deathSFX.length + 1f);
+        WaitForSeconds wait = new WaitForSeconds(damageDelay);
         yield return wait;
-        Destroy(gameObject);
+        vulnerable = true;
     }
 }

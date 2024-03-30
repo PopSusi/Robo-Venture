@@ -21,7 +21,6 @@ public class PunchAbility : Ability
     }
     void OnPunch(InputAction.CallbackContext context)
     {
-        Debug.Log("Punch#: " + punchIndex);
         if(canAbility)
         {
             StopCoroutine("PunchResetDelay");

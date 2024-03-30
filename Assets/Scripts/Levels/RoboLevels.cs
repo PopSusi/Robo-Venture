@@ -2,18 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoboLevels : MonoBehaviour
+public class RoboLevels : LevelData
 {
-    public enum Levels
-    {
-        HubInitial = 0,
-		HubShip,
-        Dash,
-        Grapple,
-        Wall
-    };
+    
 	//LEVEL
-    public static Levels currLevel = Levels.HubInitial;
+    public static Levels currLevel = Levels.Hub;
     public GameObject playerPrefab;
     public GameObject playerCurr;
 	

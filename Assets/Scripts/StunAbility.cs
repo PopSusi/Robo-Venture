@@ -11,6 +11,7 @@ public class StunAbility : Ability
     // Start is called before the first frame update
     void Start()
     {
+		unlocked = true;
         player = this.gameObject;
         input = player.GetComponent<PlayerInput>();
         characterController = player.GetComponent<CharacterController>();
@@ -27,20 +28,21 @@ public class StunAbility : Ability
     {
         if(active){
 			//DRAW THE VISUALIZATION LINE
-			Debug.Log("held");
+			//Debug.Log("held");
 		}
     }
 	private void StunStarted(InputAction.CallbackContext context){
 		if(canAbility){
 			active = true;
-			Debug.Log("clicked");
+			//Debug.Log("clicked");
 		}
 	}
 	private void StunRelease(InputAction.CallbackContext context){
 		if(canAbility){
+			CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
 			active = false;
 			Instantiate(projectile, player.transform.position, Quaternion.identity);
-			Debug.Log("thrown");
+			//Debug.Log("thrown");
 			canAbility = false;
 			StartCooldown();
 		}
