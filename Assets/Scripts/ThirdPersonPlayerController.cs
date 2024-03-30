@@ -51,8 +51,11 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     //Options
     public static bool dash, wall, grapple;
     bool invincible;
+    public static ThirdPersonPlayerController instance;
+
     private void Awake()
     {
+        instance = this;
         Initialize();
         OptionsInitialize();
     }
@@ -65,7 +68,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         controller = GetComponent<CharacterController>();
         //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         cam = Camera.main;
-        myGM = GameObject.FindWithTag("LevelGM").GetComponent<RoboLevels>();
+        myGM = RoboLevels.instance;
 
         //Move Inputs
         moveAction = input.actions["Move"];

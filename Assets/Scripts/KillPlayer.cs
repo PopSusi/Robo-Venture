@@ -6,7 +6,7 @@ public class KillPlayer : MonoBehaviour
 {
     public RoboLevels GM;
     private void Start(){
-        GM = GameObject.FindWithTag("LevelGM").GetComponent<RoboLevels>();
+        GM = RoboLevels.instance;
     }
     private void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){

@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour, Damageable
     [SerializeField] private LayerMask layermask;
     private NavMeshAgent agent;
     private bool combat = false;
+    [SerializeField] private float stopDistance;
     public void Start(){
         mainAudio = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
@@ -51,7 +52,7 @@ public class Enemy : MonoBehaviour, Damageable
         }
     }
     public void Die(){
-        Debug.Log(myTrigger.CheckEnemies(gameObject));
+        Debug.Log("Dying");
         Destroy(gameObject);
     }
     private IEnumerator DeathAudioDelay(){
@@ -63,7 +64,7 @@ public class Enemy : MonoBehaviour, Damageable
     }
     private void FixedUpdate()
     {
-        if(Vector3.Distance(transform.position, currTarget) < .3 && !combat)
+        if(Vector3.Distance(transform.position, currTarget) < stopDistance && !combat)
         {
             //Debug.Log("Close Enough");
             CalculateDestinationRandom();
@@ -76,7 +77,7 @@ public class Enemy : MonoBehaviour, Damageable
     private void CalculateDestinationRandom()
     {
         Vector2 tempRand = Random.insideUnitSphere;
-        currTarget = new Vector3(tempRand.x * Random.Range(.5f, triggSize * .66f), transform.position.y, tempRand.y * Random.Range(.5f, triggSize * .66f)) + triggPos;
+        currTarget = new Vector3(tempRand.x * Random.Range(.5f, triggSize * .66f), 0, tempRand.y * Random.Range(.5f, triggSize * .66f)) + triggPos;
         agent.destination = currTarget;
         //Debug.Log($"Calculated {currTarget} at {Time.timeSinceLevelLoad}");
     }

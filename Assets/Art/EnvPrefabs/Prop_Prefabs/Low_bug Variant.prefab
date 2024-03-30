@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: cadcbd211c54c3c44b30aa8a1a17f070, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cadcbd211c54c3c44b30aa8a1a17f070, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.877942
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cadcbd211c54c3c44b30aa8a1a17f070, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cadcbd211c54c3c44b30aa8a1a17f070, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.1636715
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cadcbd211c54c3c44b30aa8a1a17f070, type: 3}
       propertyPath: m_LocalRotation.w
@@ -67,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cadcbd211c54c3c44b30aa8a1a17f070, type: 3}
       propertyPath: m_Name
       value: Low_bug Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cadcbd211c54c3c44b30aa8a1a17f070, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

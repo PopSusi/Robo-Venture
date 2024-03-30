@@ -11,8 +11,8 @@ public class MusicManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        GameObject currLevel = GameObject.FindWithTag("LevelGM");
-        myMain = currLevel.GetComponent<RoboLevels>().BGM;
+        RoboLevels GM = RoboLevels.instance;
+        myMain = GM.BGM;
         mainLevelSource.clip = myMain;
         mainLevelSource.Play();
     }

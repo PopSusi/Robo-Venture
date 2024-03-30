@@ -31,7 +31,7 @@ public class UIManager : LevelData
     // Start is called before the first frame update
     void Start()
     {
-        playerCurr = GameObject.FindWithTag("Player");
+        playerCurr = ThirdPersonPlayerController.instance.gameObject;
         playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
         input = playerCurr.GetComponent<PlayerInput>();
         

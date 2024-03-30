@@ -7,6 +7,7 @@ public class RoboLevels : LevelData
     
 	//LEVEL
     public static Levels currLevel = Levels.Hub;
+	public static RoboLevels instance;
     public GameObject playerPrefab;
     public GameObject playerCurr;
 	
@@ -24,8 +25,11 @@ public class RoboLevels : LevelData
 
 	//AUDIO
 	public AudioClip BGM;
-	
-	public virtual void RespawnPlayer(){
+    protected void Start()
+    {
+		instance = this;
+    }
+    public virtual void RespawnPlayer(){
 		if (!overrideSpawn)
 		{
 			playerCurr = Instantiate(playerPrefab,
@@ -41,7 +45,7 @@ public class RoboLevels : LevelData
 	}
     protected void FindPlayer()
     {
-        playerCurr = GameObject.Find("player");
+        playerCurr = ThirdPersonPlayerController.instance.gameObject;
     }
 
 }

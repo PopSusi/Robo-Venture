@@ -223,8 +223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatSource: {fileID: 3345890538304498150}
   mainLevelSource: {fileID: 4025218956205433484}
-  myMain: {fileID: 0}
-  combatMusic: {fileID: 0}
+  myMain: {fileID: 8300000, guid: cc050cc2b2cabbf42b14978f8fe7dd55, type: 3}
+  combatMusic: {fileID: 8300000, guid: a2a82a0ed1b7f28468115c89fc429a80, type: 3}
 --- !u!82 &4025218956205433484
 AudioSource:
   m_ObjectHideFlags: 0
@@ -237,7 +237,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
