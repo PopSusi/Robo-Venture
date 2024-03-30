@@ -9,43 +9,40 @@ public class CooldownManager : MonoBehaviour
     public static CooldownManager CDMInstance;
     public Image[] masks;
     public Image[] slots;
-    public enum ability {Dash, Grapple, Charge, Nulled};
     Image currMask;
-    private int index;
-    private float time;
-    Dictionary<ability, int> abilityIndex = new Dictionary<ability, int>();
     private int slotsActive = 0;
     public void Start()
     {
         CDMInstance = this;
     }
-    public void CooldownMaskStart(Sprite theSprite)
+    public void CooldownMaskStart(Sprite theSprite, float secs)
     {
-        Debug.Log(slots.Length);
         slots[slotsActive].sprite = theSprite;
         slots[slotsActive].transform.parent.gameObject.SetActive(true);
         currMask = masks[slotsActive];
-        StartCoroutine("CooldownMask");
+        StartCoroutine(CooldownMask(secs));
         slotsActive++;
     }
 
-    public IEnumerator CooldownMask()
+    public IEnumerator CooldownMask(float time)
     {
         if (currMask != null)
         {
             bool operating = true;
             float timeActive = 0f;
+            float timeTotal = time;
             float originalSize = currMask.rectTransform.rect.width;
             while (operating)
             {
+                Debug.Log("Tickin down");
                 timeActive += Time.deltaTime;
-                currMask.gameObject.SetActive(true);
-                currMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (1 - timeActive / time) * originalSize);
+                currMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (1 - timeActive / timeTotal) * originalSize);
                 yield return new WaitForEndOfFrame();
-                if (timeActive >= time)
+                if (timeActive >= timeTotal)
                 {
+                    Debug.Log("It's done");
                     currMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize);
-                    currMask.gameObject.SetActive(false);
+                    currMask.transform.parent.gameObject.SetActive(false);
                     operating = false;
                     slotsActive--;
                 }

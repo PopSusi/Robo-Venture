@@ -73,7 +73,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //playerMovement = new PlayerMovementState(moveAction, controller, this.transform,accel,airAccel,gravity);
 
         //Other Inputs
-        input.actions["Jump"].performed+=OnJump;
+        input.actions["Jump"].performed += OnJump;
+        input.actions["DebugDamage"].performed += DebugDamage;
 
         //Variables
         HPBarMaskSize = HPBarMask.rectTransform.rect.width;
@@ -156,9 +157,12 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         }
 
     }
+    void DebugDamage(InputAction.CallbackContext context)
+    {
+        TakeDamage(1f);
+    }
     void OnMove(InputAction.CallbackContext context)
     {
-
     }
     void OnJump(InputAction.CallbackContext context)
     {
@@ -189,7 +193,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
                 GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
                 StartCoroutine("BeginRegenDelay");
-                HPBarMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (1 - HP / maxHP) * HPBarMaskSize);
+                HPBarMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (HP / maxHP) * HPBarMaskSize);
             } else {
                 Die();
             }
@@ -212,5 +216,11 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         {
             StartCoroutine("RegenDelay");
         }
+    }
+    IEnumerator DamageDelay()
+    {
+        WaitForSeconds wait = new WaitForSeconds(damageDelay);
+        yield return wait;
+        vulnerable = true;
     }
 }

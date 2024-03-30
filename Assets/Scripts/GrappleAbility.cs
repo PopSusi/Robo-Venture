@@ -69,7 +69,7 @@ public class GrappleAbility : Ability
             isGrappling = true;
             anim.SetBool("Grapple", true);
             StartCooldown();
-            CooldownManager.CDMInstance.CooldownMaskStart(mySprite);
+            CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
         }
     }
 }

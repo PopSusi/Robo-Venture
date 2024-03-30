@@ -89,5 +89,11 @@ public class Enemy : MonoBehaviour, Damageable
         combat= false;
         CalculateDestinationRandom();
     }
+    IEnumerator DamageDelay()
+    {
+        WaitForSeconds wait = new WaitForSeconds(damageDelay);
+        yield return wait;
+        vulnerable = true;
+    }
 
 }
