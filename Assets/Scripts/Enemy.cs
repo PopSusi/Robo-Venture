@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
+using static UnityEditor.PlayerSettings;
 
 public class Enemy : MonoBehaviour, Damageable
 {
@@ -15,21 +17,30 @@ public class Enemy : MonoBehaviour, Damageable
     [SerializeField]
     private AudioSource scndryAudio;
     public CombatTriggers myTrigger;
-    private Vector3 triggPos, currTarget;
+    private Vector3 triggPos;
     private float triggSize;
     [SerializeField] private AudioClip hitSFX, hitVariantSFX, deathSFX;
     [SerializeField] private LayerMask layermask;
     private NavMeshAgent agent;
-    private bool combat = false;
+    [SerializeField] private bool combat = false;
     [SerializeField] private float stopDistance;
-    public void Start(){
+    [SerializeField] private GameObject playerObj;
+    private Vector3 currTarget;
+    [SerializeField] private bool canPunch;
+    [SerializeField] private float cooldownPunch;
+    [SerializeField] private GameObject hitBox;
+    [SerializeField] private LayerMask terrainLayer;
+    [SerializeField] private float outVar;
+    [SerializeField] private float dirMod = 5f;
+    public void Awake(){
         mainAudio = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         Collider[] tempHold = Physics.OverlapBox(transform.position, transform.localScale/2, Quaternion.identity, layermask);
         myTrigger = tempHold[0].gameObject.GetComponent<CombatTriggers>();
         triggPos = myTrigger.transform.position;
-        CalculateDestinationRandom();
+        currTarget = CalculateDestinationRandom();
         triggSize = myTrigger.transform.localScale.x;
+        hitBox = transform.GetChild(0).gameObject;
     }
     public void TakeDamage(float damage)
     {
@@ -64,37 +75,84 @@ public class Enemy : MonoBehaviour, Damageable
     }
     private void FixedUpdate()
     {
-        if(Vector3.Distance(transform.position, currTarget) < stopDistance && !combat)
+        if (combat)
+        {
+            OverShoot();
+        }
+        agent.destination = currTarget;
+        if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(currTarget.x, currTarget.z)) < stopDistance && !combat)
         {
             //Debug.Log("Close Enough");
-            CalculateDestinationRandom();
-        } else if(Vector3.Distance(transform.position, triggPos) > triggSize)
+            currTarget = CalculateDestinationRandom();
+        } /*else if(Vector3.Distance(transform.position, triggPos) > triggSize)
         {
             Debug.Log("Too far");
-            CalculateDestinationRandom();
-        }
+            currTarget.position = triggPos;
+        }*/
+        outVar = Vector3.Distance(transform.position, currTarget);
     }
-    private void CalculateDestinationRandom()
+    private Vector3 CalculateDestinationRandom()
     {
+        RaycastHit hit;
         Vector2 tempRand = Random.insideUnitSphere;
-        currTarget = new Vector3(tempRand.x * Random.Range(.5f, triggSize * .66f), 0, tempRand.y * Random.Range(.5f, triggSize * .66f)) + triggPos;
-        agent.destination = currTarget;
+        Vector3 tempTarget = new Vector3(tempRand.x * Random.Range(.5f, triggSize * .66f), 0, tempRand.y * Random.Range(.5f, triggSize * .66f)) + triggPos;
+        if (Physics.Raycast(tempTarget, transform.TransformDirection(Vector3.up), out hit, Mathf.Infinity, terrainLayer))
+        {
+            tempTarget.y = hit.point.y;
+        } else if (Physics.Raycast(tempTarget, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, terrainLayer))
+        {
+            tempTarget.y = hit.point.y;
+        }
+        return tempTarget;
         //Debug.Log($"Calculated {currTarget} at {Time.timeSinceLevelLoad}");
     }
-    public void StartCombat()
+    public void StartCombat(GameObject player)
     {
         combat= true;
+        Debug.Log("Starting Combat");
+        StopAllCoroutines();
+        playerObj = player;
+        currTarget = player.transform.position;
     }
     public void EndCombat()
     {
         combat= false;
-        CalculateDestinationRandom();
+        currTarget = CalculateDestinationRandom();
     }
     IEnumerator DamageDelay()
     {
         WaitForSeconds wait = new WaitForSeconds(damageDelay);
         yield return wait;
         vulnerable = true;
+    }
+    void OnPunch(InputAction.CallbackContext context)
+    {
+        if (canPunch)
+        {
+            canPunch = false;
+            hitBox.SetActive(true);
+            StartCoroutine("PunchDelay");
+        }
+    }
+    IEnumerator PunchDuration()
+    {
+        yield return new WaitForSeconds(.2f);
+        hitBox.SetActive(false);
+    }
+    IEnumerator PunchDelay()
+    {
+        yield return new WaitForSeconds(cooldownPunch);
+        canPunch = true;
+    }
+    private void OverShoot()
+    {
+        Vector3 direction = (playerObj.transform.position - transform.TransformPoint(Vector3.zero)).normalized;
+        //direction.x = direction.x * Random.Range(1, 1.5f);
+        //direction.z = direction.z * Random.Range(1, 1.5f);
+        Debug.DrawLine(transform.position, transform.position + direction * 5, Color.red, Mathf.Infinity);
+        currTarget = transform.position + direction * dirMod;
+        /*Vector3 direction = (playerObj.transform.position - transform.position).normalized;
+        currTarget = (direction * Random.Range(1, 2)) + currTarget;*/
     }
 
 }

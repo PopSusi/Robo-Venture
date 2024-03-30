@@ -16,6 +16,7 @@ public class UIManager : LevelData
     private PlayerInput input;
     private ThirdPersonPlayerController playerRef;
     bool paused;
+    public static UIManager instance;
 
     //Options
     public bool allModChips;
@@ -29,6 +30,10 @@ public class UIManager : LevelData
     public bool infiniteHealth;
     public bool hardMode;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         playerCurr = ThirdPersonPlayerController.instance.gameObject;

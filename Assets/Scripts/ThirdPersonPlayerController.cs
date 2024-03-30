@@ -69,6 +69,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         cam = Camera.main;
         myGM = RoboLevels.instance;
+        UIman = UIManager.instance;
 
         //Move Inputs
         moveAction = input.actions["Move"];

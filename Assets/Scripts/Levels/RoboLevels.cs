@@ -25,7 +25,7 @@ public class RoboLevels : LevelData
 
 	//AUDIO
 	public AudioClip BGM;
-    protected void Start()
+    protected void Awake()
     {
 		instance = this;
     }
