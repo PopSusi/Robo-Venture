@@ -50,9 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e26bd1e8c41242cb85b71d797140014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scndryAudio: {fileID: 0}
+  scndryAudio: {fileID: 3325839934614219843}
   myTrigger: {fileID: 0}
-  hitSFX: {fileID: 0}
+  hitSFX: {fileID: 8300000, guid: 98128b99967804299a7b494ae6bd145e, type: 3}
   hitVariantSFX: {fileID: 0}
   deathSFX: {fileID: 0}
   layermask:
@@ -68,6 +68,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   outVar: 0
+  dirMod: 5
 --- !u!54 &8300200212559997214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115,8 +116,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.5648079
-  MaxDistance: 500
+  MinDistance: 0.2
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -151,7 +152,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -356,8 +357,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Low_bug Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 760086972239189503, guid: e136ae6026a94d14a93e11ea9f6f87be, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

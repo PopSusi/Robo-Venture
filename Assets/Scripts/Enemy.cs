@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour, Damageable
             Debug.Log("Calculating");
             HP -= damage;
             if(HP > 0){ //Not at zero
-                Debug.Log("Damaged");
+                Debug.Log("Damaged " + HP);
                 vulnerable = false;
                 scndryAudio.clip = hitSFX;
                 scndryAudio.Play();

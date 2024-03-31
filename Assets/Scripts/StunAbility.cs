@@ -39,7 +39,7 @@ public class StunAbility : Ability
 	private void StunStarted(InputAction.CallbackContext context){
 		if(canAbility){
 			active = true;
-			Debug.Log("clicked");
+			//Debug.Log("clicked");
            
             //projectilRb.isKinematic = true;
         }
@@ -52,7 +52,7 @@ public class StunAbility : Ability
             projectilRb = projectile.GetComponent<Rigidbody>();
             projectilRb.isKinematic = false;
 			projectilRb.AddForce(throwForce * Camera.main.transform.forward, ForceMode.Impulse);
-            Debug.Log("thrown");
+            //Debug.Log("thrown");
 			canAbility = false;
 			StartCooldown();
 		}
