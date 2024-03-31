@@ -5,11 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
+using TMPro;
 
 public class UIManager : LevelData
 {
 	[Header("Menu Components")] public GameObject pauseMenu;
 	public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
+    public TextMeshProUGUI warningUI, objUI;
     public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
     //GameplayComponents
@@ -90,5 +92,9 @@ public class UIManager : LevelData
     public void HealthbarUpdate(float HPCurr){
 	    HPBarMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (HPCurr / 6) * HPBarMaskSize);
     }
-    
+    public void UpdateKillTimer(int time)
+    {
+        warningUI.gameObject.SetActive(true);
+        warningUI.text = time.ToString();
+    }
 }
