@@ -24,7 +24,7 @@ public class PunchAbility : Ability
             canAbility = false;
             GameObject tempbox = Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
             tempbox.GetComponent<Testboxes>().duration = timing[punchIndex];
-            anim.Play("Punch");
+            anim.SetTrigger("Punch");
             StartCoroutine("PunchDelay");
             StartCoroutine("PunchResetDelay");
             punchIndex += 1; //Cycle Through Punch 1/2

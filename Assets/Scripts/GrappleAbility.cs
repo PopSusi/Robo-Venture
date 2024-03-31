@@ -11,6 +11,9 @@ public class GrappleAbility : Ability
     [SerializeField] float grappleDistance;
     Transform grappleTarget;
     [SerializeField] bool isGrappling;
+    [SerializeField] float grappleSpeed;
+    [SerializeField] LayerMask grappleLayers;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +34,7 @@ public class GrappleAbility : Ability
             return;
         }
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, grappleDistance))
+        if (Physics.SphereCast(cam.transform.position,1, cam.transform.forward, out hit, grappleDistance, grappleLayers))
         {
             if (hit.collider.CompareTag("GrapplePoint"))
             {
@@ -54,13 +57,20 @@ public class GrappleAbility : Ability
         {
             return;
         }
-        this.transform.position = Vector3.MoveTowards(this.transform.position, grappleTarget.position, 5 * Time.fixedDeltaTime);
+      
+        this.transform.position = Vector3.MoveTowards(this.transform.position, grappleTarget.position, grappleSpeed * Time.fixedDeltaTime);
+       
         if (Vector3.Distance(grappleTarget.position, this.transform.position) <= 0.1)
         {
             GetComponent<Animator>().SetBool("Grapple", false);
             isGrappling = false;
         }
+        else
+        {
+            this.transform.rotation = Quaternion.LookRotation(new Vector3((grappleTarget.position - this.transform.position).x, 0, (grappleTarget.position - this.transform.position).z), Vector3.up);
+        }
     }
+        
 
     void OnGrapple(InputAction.CallbackContext context)
     {
