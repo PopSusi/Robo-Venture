@@ -228,4 +228,19 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         vulnerable = true;
     }
 
+    public void EnableDash()
+    {
+        dash = true;
+        gameObject.GetComponent<DashAbility>().unlocked = true;
+    }
+    public void EnableGrapple()
+    {
+        dash = true;
+        gameObject.GetComponent<GrappleAbility>().unlocked = true;
+    }
+    public void EnableWall()
+    {
+        dash = true;
+        gameObject.GetComponent<WallAbility>().unlocked = true;
+    }
 }
