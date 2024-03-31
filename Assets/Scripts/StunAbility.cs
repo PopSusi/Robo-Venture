@@ -7,7 +7,14 @@ using UnityEngine.InputSystem;
 public class StunAbility : Ability
 {
 	private bool active;
-	public GameObject projectile;
+	[SerializeField]
+	Transform throwPoint;
+	[SerializeField]
+	GameObject projectilePrefab;
+	GameObject projectile;
+	Rigidbody projectilRb;
+	[SerializeField]
+	float throwForce;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,13 +41,18 @@ public class StunAbility : Ability
 		if(canAbility){
 			active = true;
 			Debug.Log("clicked");
-		}
+           
+            //projectilRb.isKinematic = true;
+        }
 	}
 	private void StunRelease(InputAction.CallbackContext context){
 		if(canAbility){
 			active = false;
-			Instantiate(projectile, player.transform.position, Quaternion.identity);
-			Debug.Log("thrown");
+            projectile = Instantiate(projectilePrefab, throwPoint);
+            projectilRb = projectile.GetComponent<Rigidbody>();
+            projectilRb.isKinematic = false;
+			projectilRb.AddForce(throwForce * Camera.main.transform.forward, ForceMode.Impulse);
+            Debug.Log("thrown");
 			canAbility = false;
 			StartCooldown();
 		}
