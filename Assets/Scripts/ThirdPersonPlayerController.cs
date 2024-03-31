@@ -2,32 +2,35 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 {
-    //Damageable Variables
-    public float HP{ get; set; }  
-    public float damageDelay{ get; set; }
-    public bool vulnerable{ get; set; }
+    [field: Header("Damageable Variables")] //Damageable Variables
+    public float HP { get; set; } = 6f;
+	private float maxHP;
+    public float damageDelay { get; set; } = 1.5f;
+    public bool vulnerable { get; set; } = true;
     //Controller Components
     CharacterController controller;
     PlayerInput input;
-    public InputAction moveAction { get;private set; }
+    private InputAction moveAction;
     Camera cam;
     PlayerMovementState playerMovement;
     Animator anim;
     RoboLevels myGM;
-    public UIManager UIman;
+    private UIManager UIman;
 
     //Move vars
-                //Vector2 targetVelocity;
+    //Vector2 targetVelocity;
     Vector2 moveVelocity;
     [SerializeField]
     CinemachineFreeLook cinemachineFreeLook;
+	[field: Header("Movement Variables")] [SerializeField] float speed;
     [SerializeField]
-    float speed, accel, airAccel,jumpForce;
+    float accel, airAccel,jumpForce;
     public float Speed { get { return speed; } }
     public float Accel { get { return accel; } }
     public float AirAccel { get { return airAccel; } }
@@ -38,17 +41,23 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     const float gravity=-20f;
     public Vector2 moveDir { get; private set; }
 
-    //Audio
+    [field: Header("Audio Related")]//Audio
     [SerializeField]
     private AudioSource footSource, sptnsSource;
-
     [SerializeField]
     private AudioClip hit, hitVariant, footSteps;
-    //Options
+    [field: Header("Options Related")]//Options
     public static bool dash, wall, grapple;
     bool invincible;
-    private void Awake()
+    public static ThirdPersonPlayerController instance;
+	
+	private void Awake(){
+		instance = this;	
+		maxHP = HP;
+	}
+    private void Start()
     {
+        
         Initialize();
         OptionsInitialize();
     }
@@ -61,8 +70,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         controller = GetComponent<CharacterController>();
         //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         cam = Camera.main;
-        myGM = GameObject.FindWithTag("LevelGM").GetComponent<RoboLevels>();
-        UIman = myGM.GetComponent<UIManager>();
+        myGM = RoboLevels.instance;
+        UIman = UIManager.instance;
 
         //Move Inputs
         moveAction = input.actions["Move"];
@@ -70,7 +79,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //playerMovement = new PlayerMovementState(moveAction, controller, this.transform,accel,airAccel,gravity);
 
         //Other Inputs
-        input.actions["Jump"].performed+=OnJump;
+        input.actions["Jump"].performed += OnJump;
+        input.actions["DebugDamage"].performed += DebugDamage;
     }
 
     public void OptionsInitialize()
@@ -84,9 +94,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
             //NEED TO FUNCTIONALITY TO READ SAVE FILE AND SEE WHATS ACTIVE
         }
         //Enable one by one
-        GetComponent<DashAbility>().enabled = dash;
-        GetComponent<GrappleAbility>().enabled = grapple;
-        GetComponent<WallAbility>().enabled = wall;
+        GetComponent<DashAbility>().unlocked = dash;
+        GetComponent<GrappleAbility>().unlocked = grapple;
+        GetComponent<WallAbility>().unlocked = wall;
     }
 
     private void SetAbility(string ability) //dash, grapple, wall
@@ -94,13 +104,13 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         switch(ability)
         {
             case "dash":
-                GetComponent<DashAbility>().enabled = true;
+                GetComponent<DashAbility>().unlocked = true;
                 break;
             case "grapple":
-                GetComponent<GrappleAbility>().enabled = true;
+                GetComponent<GrappleAbility>().unlocked = true;
                 break;
             case "wall":
-                GetComponent<WallAbility>().enabled = true;
+                GetComponent<WallAbility>().unlocked = true;
                 break;
             default:
                 break;
@@ -108,7 +118,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     }
     private void OnEnable()
     {
-        cinemachineFreeLook.GetComponent<CinemachineInputProvider>().PlayerIndex = input.playerIndex;
+        //cinemachineFreeLook.GetComponent<CinemachineInputProvider>().PlayerIndex = input.playerIndex;
     }
 
     private void FixedUpdate()
@@ -149,9 +159,12 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         }
 
     }
+    void DebugDamage(InputAction.CallbackContext context)
+    {
+        TakeDamage(1f);
+    }
     void OnMove(InputAction.CallbackContext context)
     {
-
     }
     void OnJump(InputAction.CallbackContext context)
     {
@@ -175,14 +188,42 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     {
         if (vulnerable && !invincible)
         {
+            StopCoroutine("RegenDelay");
             HP -= damage;
             if(!(HP <= 0)){//Not at zero
                 vulnerable = false;
                 GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
+                StartCoroutine("BeginRegenDelay");
+                UIman.HealthbarUpdate(HP);
             } else {
                 Die();
             }
         }
     }
+    private IEnumerator BeginRegenDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        TakeDamage(-1f);
+        if(HP != maxHP)
+        {
+            StartCoroutine("RegenDelay");
+        }
+    }
+    private IEnumerator RegenDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        TakeDamage(-1f);
+        if (HP != maxHP)
+        {
+            StartCoroutine("RegenDelay");
+        }
+    }
+    IEnumerator DamageDelay()
+    {
+        WaitForSeconds wait = new WaitForSeconds(damageDelay);
+        yield return wait;
+        vulnerable = true;
+    }
+
 }

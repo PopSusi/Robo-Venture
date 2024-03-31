@@ -6,24 +6,34 @@ public class CombatTriggers : MonoBehaviour
 {
     public List<GameObject> Enemies = new List<GameObject>();
     [SerializeField] private LayerMask layermask;
-    private GameObject player;
+    [SerializeField] private GameObject player;
 
     private void Awake(){
         StartCoroutine("LoadPause");
     }
-    private void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player")){
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.tag);
+        if (other.gameObject.CompareTag("Player"))
+        {
             player = other.gameObject;
-            player.GetComponent<MusicManager>().StartCoroutine("TransitionToCombat");
+            MusicManager.instance.StartCoroutine("TransitionToCombat");
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                Enemies[i].GetComponent<Enemy>().StartCombat(player);
+            }
         }
     }
     private void OnTriggerExit(Collider other){
         if(other.gameObject.CompareTag("Player")){
-            player.GetComponent<MusicManager>().StartCoroutine("TransitionToMain");
+            if (Enemies.Count == 0)
+            {
+                MusicManager.instance.StartCoroutine("TransitionToMain");
+            }
         }
     }
     public bool CheckEnemies(GameObject deadEnemy){
-        for (int i = 0; i < Enemies.Count - 1; i++) 
+        for (int i = 0; i < Enemies.Count; i++) 
         {
             if(GameObject.ReferenceEquals(deadEnemy, Enemies[i])){
                 Enemies.RemoveAt(i);
@@ -37,7 +47,11 @@ public class CombatTriggers : MonoBehaviour
     }
     private IEnumerator CombatOver(){
         yield return new WaitForSeconds(3f);
-        player.GetComponent<MusicManager>().StartCoroutine("TransitionToMain");
+        for (int i = 0; i < Enemies.Count; i++)
+        {
+            Enemies[i].GetComponent<Enemy>().EndCombat();
+        }
+        MusicManager.instance.StartCoroutine("TransitionToMain");
     }
     private IEnumerator LoadPause(){
         yield return new WaitForSeconds(.5f);

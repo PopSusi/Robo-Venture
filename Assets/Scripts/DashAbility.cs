@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 public class DashAbility : Ability
 {
-    [SerializeField]
-    float dashDistance,dashTimeToComplete;
+	[field: Header("Ability Sub-Class")]
+    [SerializeField] float dashDistance;
+	[SerializeField] float dashTimeToComplete;
     float distanceTraveled;
     bool isDashing;
     Vector2 dashDir;
@@ -25,9 +26,8 @@ public class DashAbility : Ability
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (canAbility)
+        if (canAbility && unlocked)
         {
-           
             print(playerController.moveDir);
             dashDir = playerController.moveDir;
             if (dashDir.magnitude > 0)
@@ -38,7 +38,6 @@ public class DashAbility : Ability
           
             StartCoroutine(Dashing());
             //characterController.Move(this.transform.forward * dashDistance* (Time.fixedDeltaTime));
-           
         }
 
     }

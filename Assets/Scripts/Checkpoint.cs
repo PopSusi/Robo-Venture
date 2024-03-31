@@ -15,7 +15,7 @@ public class Checkpoint : MonoBehaviour
     }
     // Start is called before the first frame update
     private void Awake(){
-        GM = GameObject.FindWithTag("LevelGM").GetComponent<RoboLevels>();
+        GM = RoboLevels.instance;
     }
 
     // Update is called once per frame

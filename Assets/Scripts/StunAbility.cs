@@ -7,17 +7,16 @@ using UnityEngine.InputSystem;
 public class StunAbility : Ability
 {
 	private bool active;
-	[SerializeField]
-	Transform throwPoint;
-	[SerializeField]
-	GameObject projectilePrefab;
+  [field: Header("Ability Sub-Class")]
+	[SerializeField] Transform throwPoint;
+	[SerializeField] GameObject projectilePrefab;
 	GameObject projectile;
 	Rigidbody projectilRb;
-	[SerializeField]
-	float throwForce;
+	[SerializeField] float throwForce;
     // Start is called before the first frame update
     void Start()
     {
+		unlocked = true;
         player = this.gameObject;
         input = player.GetComponent<PlayerInput>();
         characterController = player.GetComponent<CharacterController>();
@@ -34,7 +33,7 @@ public class StunAbility : Ability
     {
         if(active){
 			//DRAW THE VISUALIZATION LINE
-			Debug.Log("held");
+			//Debug.Log("held");
 		}
     }
 	private void StunStarted(InputAction.CallbackContext context){
@@ -47,6 +46,7 @@ public class StunAbility : Ability
 	}
 	private void StunRelease(InputAction.CallbackContext context){
 		if(canAbility){
+			CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
 			active = false;
             projectile = Instantiate(projectilePrefab, throwPoint);
             projectilRb = projectile.GetComponent<Rigidbody>();

@@ -5,15 +5,15 @@ using UnityEngine.InputSystem;
 
 public class GrappleAbility : Ability
 {
+
     Camera cam;
-    [SerializeField]
-    float grappleDistance;
+	[field: Header("Ability Sub-Class")]
+    [SerializeField] float grappleDistance;
     Transform grappleTarget;
-    bool isGrappling;
-    [SerializeField]
-    float grappleSpeed;
-    [SerializeField]
-    LayerMask grappleLayers;
+    [SerializeField] bool isGrappling;
+    [SerializeField] float grappleSpeed;
+    [SerializeField] LayerMask grappleLayers;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -75,9 +75,12 @@ public class GrappleAbility : Ability
     void OnGrapple(InputAction.CallbackContext context)
     {
         if (grappleTarget == null) { return; }
-        
-        isGrappling = true;
-        anim.SetBool("Grapple",true);
-
+        if (unlocked)
+        {
+            isGrappling = true;
+            anim.SetBool("Grapple", true);
+            StartCooldown();
+            CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
+        }
     }
 }

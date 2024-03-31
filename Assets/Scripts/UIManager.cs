@@ -1,19 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : LevelData
 {
-    //Menu Components
-    public GameObject pauseMenu, optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
+	[Header("Menu Components")] public GameObject pauseMenu;
+	public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
+    public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
-
     //GameplayComponents
     private GameObject playerCurr;
     private PlayerInput input;
     private ThirdPersonPlayerController playerRef;
     bool paused;
+    public static UIManager instance;
+    
+    private float HPBarMaskSize;
 
     //Options
     public bool allModChips;
@@ -27,9 +33,14 @@ public class UIManager : MonoBehaviour
     public bool infiniteHealth;
     public bool hardMode;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        instance = this;
+        HPBarMaskSize = HPBarMask.rectTransform.rect.width;
+    }
     void Start()
     {
-        playerCurr = gameObject.GetComponent<RoboLevels>().playerCurr;
+        playerCurr = ThirdPersonPlayerController.instance.gameObject;
         playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
         input = playerCurr.GetComponent<PlayerInput>();
         
@@ -46,6 +57,12 @@ public class UIManager : MonoBehaviour
 	}
     private void OnPause(InputAction.CallbackContext context){
         PauseGame();
+    }
+
+    public void LoadGame(string level) //yay
+    {
+	    string tempString = level + "Level";
+	    SceneManager.LoadScene(tempString);
     }
 	public void PauseGame(){
 		if(!paused){ //not currently paused
@@ -70,4 +87,8 @@ public class UIManager : MonoBehaviour
         MenuList.Add(KeyboardMenu);
         MenuList.Add(ControllerMenu);
     }
+    public void HealthbarUpdate(float HPCurr){
+	    HPBarMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (HPCurr / 6) * HPBarMaskSize);
+    }
+    
 }

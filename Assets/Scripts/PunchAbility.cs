@@ -5,14 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PunchAbility : Ability
 {
-    [SerializeField]
-    private int punchIndex = 0;
-    [SerializeField]
-    private GameObject[] hitboxes;
-    [SerializeField]
-    private Vector3[] offset;
-    [SerializeField]
-    private float[] timing;
+    [field: Header("Ability Sub-Class")]
+    [SerializeField] private int punchIndex = 0;
+    [SerializeField] private GameObject[] hitboxes;
+    [SerializeField] private Vector3[] offset;
+    [SerializeField] private float[] timing;
 
     private void Awake()
     {
@@ -21,7 +18,6 @@ public class PunchAbility : Ability
     }
     void OnPunch(InputAction.CallbackContext context)
     {
-        Debug.Log("Punch#: " + punchIndex);
         if(canAbility)
         {
             StopCoroutine("PunchResetDelay");
