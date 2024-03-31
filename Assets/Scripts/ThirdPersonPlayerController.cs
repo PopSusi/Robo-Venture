@@ -183,8 +183,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
        controller.Move(force * Time.fixedDeltaTime);
     }
     public void Die(){
-        Destroy(this.gameObject);
-        myGM.RespawnPlayer();
+        gameObject.GetComponent<CharacterController>().enabled = false;
+        UIman.Death();
+        Debug.Log("Death");
     }
     public void TakeDamage(float damage)
     {

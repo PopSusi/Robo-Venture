@@ -97,4 +97,16 @@ public class UIManager : LevelData
         warningUI.gameObject.SetActive(true);
         warningUI.text = time.ToString();
     }
+    public void Death()
+    {
+        Time.timeScale = 0f;
+        warningUI.gameObject.SetActive(true);
+        warningUI.text = "Better luck next time!";
+        verifyMenu.gameObject.SetActive(true);
+    }
+    public void Retry()
+    {
+        gameObject.GetComponent<RoboLevels>().RespawnPlayer();
+        Time.timeScale = 1f;
+    }
 }
