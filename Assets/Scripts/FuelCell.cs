@@ -9,8 +9,7 @@ public class FuelCell : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<CharacterController>().enabled = false;
-            UIManager.instance.objUI.text = "You've gotten the fuel cell and won!";
-            Time.timeScale = 0f;
+            UIManager.instance.Win();
         }
     }
 }

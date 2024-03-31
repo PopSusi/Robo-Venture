@@ -101,7 +101,14 @@ public class UIManager : LevelData
     {
         Time.timeScale = 0f;
         warningUI.gameObject.SetActive(true);
-        warningUI.text = "Better luck next time!";
+        warningUI.text = "Try Again?";
+        verifyMenu.gameObject.SetActive(true);
+    }
+    public void Win()
+    {
+        Time.timeScale = 0f;
+        warningUI.gameObject.SetActive(true);
+        warningUI.text = "You've gotten the Fuel Cell! Wanna play again?";
         verifyMenu.gameObject.SetActive(true);
     }
     public void Retry()
