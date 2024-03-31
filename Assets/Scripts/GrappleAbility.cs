@@ -5,11 +5,12 @@ using UnityEngine.InputSystem;
 
 public class GrappleAbility : Ability
 {
+
     Camera cam;
-    [SerializeField]
-    float grappleDistance;
+	[field: Header("Ability Sub-Class")]
+    [SerializeField] float grappleDistance;
     Transform grappleTarget;
-    bool isGrappling;
+    [SerializeField] bool isGrappling;
     // Start is called before the first frame update
     void Start()
     {

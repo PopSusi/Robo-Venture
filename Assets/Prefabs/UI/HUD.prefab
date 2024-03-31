@@ -488,7 +488,7 @@ RectTransform:
   - {fileID: 7850794487322110587}
   - {fileID: 6557911899878197451}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -576,6 +576,7 @@ MonoBehaviour:
   howToMenu: {fileID: 6904191174237484934}
   KeyboardMenu: {fileID: 345004925417408913}
   ControllerMenu: {fileID: 6016372002237198402}
+  HPBarMask: {fileID: 6614623499855366426}
   allModChips: 0
   infiniteHealth: 0
   hardMode: 0

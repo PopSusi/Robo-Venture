@@ -8,30 +8,29 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 {
-    //Damageable Variables
+    [field: Header("Damageable Variables")] //Damageable Variables
     public float HP { get; set; } = 6f;
-    private float maxHP;
-    public Image HPBarMask;
-    private float HPBarMaskSize;
+	private float maxHP;
     public float damageDelay { get; set; } = 1.5f;
     public bool vulnerable { get; set; } = true;
     //Controller Components
     CharacterController controller;
     PlayerInput input;
-    public InputAction moveAction { get;private set; }
+    private InputAction moveAction;
     Camera cam;
     PlayerMovementState playerMovement;
     Animator anim;
     RoboLevels myGM;
-    public UIManager UIman;
+    private UIManager UIman;
 
     //Move vars
-                //Vector2 targetVelocity;
+    //Vector2 targetVelocity;
     Vector2 moveVelocity;
     [SerializeField]
     CinemachineFreeLook cinemachineFreeLook;
+	[field: Header("Movement Variables")] [SerializeField] float speed;
     [SerializeField]
-    float speed, accel, airAccel,jumpForce;
+    float accel, airAccel,jumpForce;
     public float Speed { get { return speed; } }
     public float Accel { get { return accel; } }
     public float AirAccel { get { return airAccel; } }
@@ -42,20 +41,23 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     const float gravity=-20f;
     public Vector2 moveDir { get; private set; }
 
-    //Audio
+    [field: Header("Audio Related")]//Audio
     [SerializeField]
     private AudioSource footSource, sptnsSource;
-
     [SerializeField]
     private AudioClip hit, hitVariant, footSteps;
-    //Options
+    [field: Header("Options Related")]//Options
     public static bool dash, wall, grapple;
     bool invincible;
     public static ThirdPersonPlayerController instance;
-
-    private void Awake()
+	
+	private void Awake(){
+		instance = this;	
+		maxHP = HP;
+	}
+    private void Start()
     {
-        instance = this;
+        
         Initialize();
         OptionsInitialize();
     }
@@ -79,10 +81,6 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //Other Inputs
         input.actions["Jump"].performed += OnJump;
         input.actions["DebugDamage"].performed += DebugDamage;
-
-        //Variables
-        HPBarMaskSize = HPBarMask.rectTransform.rect.width;
-        maxHP = HP;
     }
 
     public void OptionsInitialize()
@@ -120,7 +118,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     }
     private void OnEnable()
     {
-        cinemachineFreeLook.GetComponent<CinemachineInputProvider>().PlayerIndex = input.playerIndex;
+        //cinemachineFreeLook.GetComponent<CinemachineInputProvider>().PlayerIndex = input.playerIndex;
     }
 
     private void FixedUpdate()
@@ -197,7 +195,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
                 GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
                 StartCoroutine("BeginRegenDelay");
-                HPBarMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (HP / maxHP) * HPBarMaskSize);
+                UIman.HealthbarUpdate(HP);
             } else {
                 Die();
             }
@@ -227,4 +225,5 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         yield return wait;
         vulnerable = true;
     }
+
 }

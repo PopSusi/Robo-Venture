@@ -8,8 +8,9 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : LevelData
 {
-    //Menu Components
-    public GameObject pauseMenu, optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
+	[Header("Menu Components")] public GameObject pauseMenu;
+	public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
+    public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
     //GameplayComponents
     private GameObject playerCurr;
@@ -17,6 +18,8 @@ public class UIManager : LevelData
     private ThirdPersonPlayerController playerRef;
     bool paused;
     public static UIManager instance;
+    
+    private float HPBarMaskSize;
 
     //Options
     public bool allModChips;
@@ -33,6 +36,7 @@ public class UIManager : LevelData
     private void Awake()
     {
         instance = this;
+        HPBarMaskSize = HPBarMask.rectTransform.rect.width;
     }
     void Start()
     {
@@ -82,6 +86,9 @@ public class UIManager : LevelData
         MenuList.Add(howToMenu);
         MenuList.Add(KeyboardMenu);
         MenuList.Add(ControllerMenu);
+    }
+    public void HealthbarUpdate(float HPCurr){
+	    HPBarMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (HPCurr / 6) * HPBarMaskSize);
     }
     
 }

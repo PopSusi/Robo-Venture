@@ -5,25 +5,25 @@ using UnityEngine;
 public class RoboLevels : LevelData
 {
     
-	//LEVEL
+	[field: Header("Level Setup")]//LEVEL
     public static Levels currLevel = Levels.Hub;
 	public static RoboLevels instance;
     public GameObject playerPrefab;
     public GameObject playerCurr;
 	
 
-	//UI
+    [field: Header("Objective UI")]//UI
     public GameObject GOobjUI;
     public string[] objectiveText; //List of Objective for a level
     public int objectiveIndex = 0; //ObjectiveIndex for String[]
 
-	//CHECKPOINTS
+    [field: Header("Checkpoints")]//CHECKPOINTS
 	public GameObject[] checkPoints; //List of Checkpoints
 	public int chkpntIndexLevels; //Current Checkpoint
 	public bool overrideSpawn; //Set true if you want to go to certain checkpoint
 	public int overrideSpawnIndex; //Override Checkpoint
 
-	//AUDIO
+	[field: Header("Audio")]//AUDIO
 	public AudioClip BGM;
     protected void Awake()
     {

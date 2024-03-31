@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class StunAbility : Ability
 {
 	private bool active;
+	[field: Header("Ability Sub-Class")]
 	public GameObject projectile;
     // Start is called before the first frame update
     void Start()
