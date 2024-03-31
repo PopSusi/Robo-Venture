@@ -136,8 +136,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         {
            Movement(targetVelocity);
         }
-
-
+        anim.SetFloat("Speed", controller.velocity.magnitude);
     }
     
     void Movement(Vector2 targetVelocity)
