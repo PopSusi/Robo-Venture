@@ -34,7 +34,7 @@ Transform:
   - {fileID: 3713193867541152014}
   - {fileID: 5047876662541627443}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &449754776881194698
 PrefabInstance:
@@ -227,6 +227,14 @@ PrefabInstance:
     - target: {fileID: 5282748943849973172, guid: d2b87cdb60fe34c81b8cbef2e079011c, type: 3}
       propertyPath: m_ObstacleAvoidanceType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451968770248266529, guid: d2b87cdb60fe34c81b8cbef2e079011c, type: 3}
+      propertyPath: m_Range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451968770248266529, guid: d2b87cdb60fe34c81b8cbef2e079011c, type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7815877678581261391, guid: d2b87cdb60fe34c81b8cbef2e079011c, type: 3}
       propertyPath: m_Name
