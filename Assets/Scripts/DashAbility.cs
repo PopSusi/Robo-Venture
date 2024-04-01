@@ -28,6 +28,7 @@ public class DashAbility : Ability
     {
         if (canAbility && unlocked)
         {
+            Debug.Log("should dash");
             gameObject.GetComponent<ThirdPersonPlayerController>().PlaySound(abilitySFX);
             print(playerController.moveDir);
             dashDir = playerController.moveDir;
