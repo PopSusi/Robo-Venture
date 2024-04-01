@@ -45,7 +45,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     [SerializeField]
     private AudioSource footSource, sptnsSource;
     [SerializeField]
-    private AudioClip hit, hitVariant, footSteps;
+    private AudioClip hit, hitVariant, footSteps, lose;
+    bool footPaused = true;
     [field: Header("Options Related")]//Options
     public static bool dash, wall, grapple;
     bool invincible;
@@ -124,6 +125,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 
     private void FixedUpdate()
     {
+        footSource.Pause();
+        footPaused = true;
 
         Quaternion rot = Quaternion.AngleAxis(cinemachineFreeLook.m_XAxis.Value, Vector3.forward);
         moveDir = Quaternion.Inverse(rot) * moveAction.ReadValue<Vector2>();
@@ -136,8 +139,17 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         {
            Movement(targetVelocity);
         }
-
-
+        anim.SetFloat("Speed", controller.velocity.magnitude);
+        if(controller.velocity.magnitude < 1)
+        {
+            footSource.Pause();
+            footPaused = true;
+        }
+        if(footPaused && controller.velocity.magnitude > 1)
+        {
+            footSource.Play();
+            footPaused = false;
+        }
     }
     
     void Movement(Vector2 targetVelocity)
@@ -183,8 +195,11 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
        controller.Move(force * Time.fixedDeltaTime);
     }
     public void Die(){
-        Destroy(this.gameObject);
-        myGM.RespawnPlayer();
+        gameObject.GetComponent<CharacterController>().enabled = false;
+        UIman.Death();
+        Debug.Log("Death");
+        sptnsSource.clip = lose;
+        sptnsSource.Play();
     }
     public void TakeDamage(float damage)
     {
@@ -242,5 +257,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     {
         dash = true;
         gameObject.GetComponent<WallAbility>().unlocked = true;
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        sptnsSource.clip = clip;
+        sptnsSource.Play();
     }
 }

@@ -34,7 +34,7 @@ public class CooldownManager : MonoBehaviour
             float originalSize = currMask.rectTransform.rect.width;
             while (operating)
             {
-                Debug.Log("Tickin down");
+                //Debug.Log("Tickin down");
                 timeActive += Time.deltaTime;
                 currMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (1 - timeActive / timeTotal) * originalSize);
                 yield return new WaitForEndOfFrame();
