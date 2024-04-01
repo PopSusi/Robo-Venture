@@ -8,6 +8,7 @@ TagManager:
   - GrapplePoint
   - LevelGM
   - FuellCell
+  - Terrain
   layers:
   - Default
   - TransparentFX

@@ -44,4 +44,5 @@ public class MusicManager : MonoBehaviour
         combatSource.Stop();
         Debug.Log("Out of Combat");
     }
+    
 }

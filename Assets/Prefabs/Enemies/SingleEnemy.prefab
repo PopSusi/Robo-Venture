@@ -64,7 +64,7 @@ MonoBehaviour:
   playerObj: {fileID: 0}
   canPunch: 1
   cooldownPunch: 1
-  hitBox: {fileID: 0}
+  hitBox: {fileID: 8628666326630368158}
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1024

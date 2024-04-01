@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour, Damageable
         triggSize = myTrigger.transform.localScale.x;
         hitBox = transform.GetChild(0).gameObject;
     }
+
     public void TakeDamage(float damage)
     {
         Debug.Log("Recieved");
@@ -84,11 +85,12 @@ public class Enemy : MonoBehaviour, Damageable
         {
             //Debug.Log("Close Enough");
             currTarget = CalculateDestinationRandom();
-        } /*else if(Vector3.Distance(transform.position, triggPos) > triggSize)
+        } else if(Vector3.Distance(transform.position, triggPos) > triggSize)
         {
             Debug.Log("Too far");
-            currTarget.position = triggPos;
-        }*/
+            currTarget = triggPos;
+        }
+        hitBox.SetActive(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(playerObj.transform.position.x, playerObj.transform.position.z)) < .2);
         outVar = Vector3.Distance(transform.position, currTarget);
     }
     private Vector3 CalculateDestinationRandom()

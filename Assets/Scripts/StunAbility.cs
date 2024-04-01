@@ -48,10 +48,9 @@ public class StunAbility : Ability
 		if(canAbility){
 			CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
 			active = false;
-            projectile = Instantiate(projectilePrefab, throwPoint);
+            projectile = Instantiate(projectilePrefab, gameObject.transform.position, Quaternion.identity);
             projectilRb = projectile.GetComponent<Rigidbody>();
-            projectilRb.isKinematic = false;
-			projectilRb.AddForce(throwForce * Camera.main.transform.forward, ForceMode.Impulse);
+			projectilRb.AddForce(throwForce * gameObject.transform.forward, ForceMode.Impulse);
             //Debug.Log("thrown");
 			canAbility = false;
 			StartCooldown();

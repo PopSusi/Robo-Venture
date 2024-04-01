@@ -116,4 +116,15 @@ public class UIManager : LevelData
         gameObject.GetComponent<RoboLevels>().RespawnPlayer();
         Time.timeScale = 1f;
     }
+    public void CoinAlert()
+    {
+        warningUI.gameObject.SetActive(true);
+        warningUI.text = "BIG COIN!!";
+        StartCoroutine("WarningDelay");
+    }
+    private IEnumerator WarningDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        warningUI.gameObject.SetActive(false);
+    }
 }
