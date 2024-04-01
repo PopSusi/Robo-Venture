@@ -64,7 +64,7 @@ public class UIManager : LevelData
     public void LoadGame(string level) //yay
     {
 	    string tempString = level + "Level";
-	    SceneManager.LoadScene(tempString);
+	    SceneManager.LoadScene(tempString, LoadSceneMode.Single);
     }
 	public void PauseGame(){
 		if(!paused){ //not currently paused
