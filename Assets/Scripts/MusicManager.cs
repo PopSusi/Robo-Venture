@@ -17,7 +17,7 @@ public class MusicManager : MonoBehaviour
         mainLevelSource.Play();
     }
     public IEnumerator TransitionToCombat(){
-        Debug.Log("Starting Transition to Combat");
+        //Debug.Log("Starting Transition to Combat");
         yield return new WaitForSeconds(3f);
         float timeToFade = .25f;
         float timeElapsed = 0;
@@ -28,7 +28,7 @@ public class MusicManager : MonoBehaviour
             timeElapsed += Time.deltaTime;
         }
         mainLevelSource.Stop();
-        Debug.Log("Out of Main");
+        //Debug.Log("Out of Main");
     }
     public IEnumerator TransitionToMain(){
         Debug.Log("Starting Transition to Main");
@@ -44,4 +44,5 @@ public class MusicManager : MonoBehaviour
         combatSource.Stop();
         Debug.Log("Out of Combat");
     }
+    
 }

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using static UnityEditor.PlayerSettings;
 
 public class Enemy : MonoBehaviour, Damageable
 {
     //Damageable Variables
-    public float HP { get; set; } = 6f;
+    public float HP { get; set; } = 3f;
     public float damageDelay { get; set; } = 1.5f;
     public bool vulnerable { get; set; } = true;
     
@@ -42,34 +41,35 @@ public class Enemy : MonoBehaviour, Damageable
         triggSize = myTrigger.transform.localScale.x;
         hitBox = transform.GetChild(0).gameObject;
     }
+
     public void TakeDamage(float damage)
     {
-        Debug.Log("Recieved");
+        //Debug.Log("Recieved");
         if (vulnerable)
         {
-            Debug.Log("Calculating");
+            //Debug.Log("Calculating");
             HP -= damage;
             if(HP > 0){ //Not at zero
-                Debug.Log("Damaged");
+                //Debug.Log("Damaged " + HP);
                 vulnerable = false;
                 scndryAudio.clip = hitSFX;
                 scndryAudio.Play();
                 StartCoroutine("DamageDelay");
             } else {
                 GetComponent<Collider>().enabled = false;
-                Debug.Log("Dead");
+                //Debug.Log("Dead");
                 StartCoroutine("DeathAudioDelay");
             }
         }
     }
     public void Die(){
-        Debug.Log("Dying");
+        //Debug.Log("Dying");
         Destroy(gameObject);
     }
     private IEnumerator DeathAudioDelay(){
         scndryAudio.clip = deathSFX;
         scndryAudio.Play();
-        WaitForSeconds wait = new WaitForSeconds(deathSFX.length);
+        WaitForSeconds wait = new WaitForSeconds(1f);
         yield return wait;
         Die();
     }
@@ -84,11 +84,12 @@ public class Enemy : MonoBehaviour, Damageable
         {
             //Debug.Log("Close Enough");
             currTarget = CalculateDestinationRandom();
-        } /*else if(Vector3.Distance(transform.position, triggPos) > triggSize)
+        } else if(Vector3.Distance(transform.position, triggPos) > triggSize)
         {
             Debug.Log("Too far");
-            currTarget.position = triggPos;
-        }*/
+            currTarget = triggPos;
+        }
+        hitBox.SetActive(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(playerObj.transform.position.x, playerObj.transform.position.z)) < .2);
         outVar = Vector3.Distance(transform.position, currTarget);
     }
     private Vector3 CalculateDestinationRandom()
