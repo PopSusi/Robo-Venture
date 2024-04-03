@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour
     // Start is called before the first frame update
     private void Start(){
         GM = RoboLevels.instance;
-        GM.checkPoints.Add(this.gameObject);
+        GM.checkPoints[myIndex] = this.gameObject;
     }
 
     // Update is called once per frame

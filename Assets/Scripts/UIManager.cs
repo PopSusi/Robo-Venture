@@ -97,4 +97,34 @@ public class UIManager : LevelData
         warningUI.gameObject.SetActive(true);
         warningUI.text = time.ToString();
     }
+    public void Death()
+    {
+        Time.timeScale = 0f;
+        warningUI.gameObject.SetActive(true);
+        warningUI.text = "Try Again?";
+        verifyMenu.gameObject.SetActive(true);
+    }
+    public void Win()
+    {
+        Time.timeScale = 0f;
+        warningUI.gameObject.SetActive(true);
+        warningUI.text = "You've gotten the Fuel Cell! Wanna play again?";
+        verifyMenu.gameObject.SetActive(true);
+    }
+    public void Retry()
+    {
+        gameObject.GetComponent<RoboLevels>().RespawnPlayer();
+        Time.timeScale = 1f;
+    }
+    public void CoinAlert()
+    {
+        warningUI.gameObject.SetActive(true);
+        warningUI.text = "BIG COIN!!";
+        StartCoroutine("WarningDelay");
+    }
+    private IEnumerator WarningDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        warningUI.gameObject.SetActive(false);
+    }
 }

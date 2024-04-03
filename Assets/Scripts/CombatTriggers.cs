@@ -13,7 +13,7 @@ public class CombatTriggers : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
+        //Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Player"))
         {
             player = other.gameObject;

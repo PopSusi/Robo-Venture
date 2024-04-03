@@ -17,8 +17,8 @@ public class RoboLevels : LevelData
     public string[] objectiveText; //List of Objective for a level
     public int objectiveIndex = 0; //ObjectiveIndex for String[]
 
-    [field: Header("Checkpoints")]//CHECKPOINTS
-	public List<GameObject> checkPoints = new List<GameObject>(); //List of Checkpoints
+	[field: Header("Checkpoints")]//CHECKPOINTS
+	public GameObject[] checkPoints; //List of Checkpoints
 	public int chkpntIndexLevels; //Current Checkpoint
 	public bool overrideSpawn; //Set true if you want to go to certain checkpoint
 	public int overrideSpawnIndex; //Override Checkpoint
