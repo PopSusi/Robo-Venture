@@ -25,9 +25,17 @@ public class RoboLevels : LevelData
 
 	[field: Header("Audio")]//AUDIO
 	public AudioClip BGM;
-    protected void Awake()
+    protected virtual void Awake()
     {
-		instance = this;
+		if (instance == null)
+		{
+            instance = this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+		
     }
     public virtual void RespawnPlayer(){
 		if (!overrideSpawn)
