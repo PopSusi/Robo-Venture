@@ -11,7 +11,6 @@ public class KillPlayer : MonoBehaviour
     private void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){
             other.gameObject.GetComponent<ThirdPersonPlayerController>().Die();
-            GM.RespawnPlayer();
         }
         if(other.gameObject.CompareTag("Enemy")){
             other.gameObject.GetComponent<Enemy>().Die();

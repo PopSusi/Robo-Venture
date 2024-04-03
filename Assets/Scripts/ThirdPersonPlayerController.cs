@@ -60,6 +60,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         
         Initialize();
         OptionsInitialize();
+        UIman.warningUI.gameObject.SetActive(false);
     }
 
     private void Initialize() //Variables and Components
@@ -183,6 +184,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     }
     public void Die(){
         Destroy(this.gameObject);
+        myGM.RespawnPlayer();
     }
     public void TakeDamage(float damage)
     {
@@ -226,4 +228,19 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         vulnerable = true;
     }
 
+    public void EnableDash()
+    {
+        dash = true;
+        gameObject.GetComponent<DashAbility>().unlocked = true;
+    }
+    public void EnableGrapple()
+    {
+        dash = true;
+        gameObject.GetComponent<GrappleAbility>().unlocked = true;
+    }
+    public void EnableWall()
+    {
+        dash = true;
+        gameObject.GetComponent<WallAbility>().unlocked = true;
+    }
 }
