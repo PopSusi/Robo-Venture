@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2152092de2942c4989d8c25186316a1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.051
+      value: 0.0514337
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2152092de2942c4989d8c25186316a1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.051
+      value: 0.0514337
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2152092de2942c4989d8c25186316a1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.051
+      value: 0.0514337
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2152092de2942c4989d8c25186316a1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f2152092de2942c4989d8c25186316a1, type: 3}
       propertyPath: m_Name
-      value: Maze_Floor Variant
+      value: Maze_Floor
       objectReference: {fileID: 0}
     - target: {fileID: 1087292587430887630, guid: f2152092de2942c4989d8c25186316a1, type: 3}
       propertyPath: m_Materials.Array.data[0]
