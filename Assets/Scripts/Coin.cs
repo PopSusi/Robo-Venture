@@ -15,6 +15,7 @@ public class Coin : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             UIManager.instance.CoinAlert();
+            //ADD TO COIN INVENTORY
             Destroy(gameObject);
         }
     }

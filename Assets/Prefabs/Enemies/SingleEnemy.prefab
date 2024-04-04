@@ -55,7 +55,7 @@ MonoBehaviour:
   myTrigger: {fileID: 0}
   hitSFX: {fileID: 8300000, guid: 98128b99967804299a7b494ae6bd145e, type: 3}
   hitVariantSFX: {fileID: 0}
-  deathSFX: {fileID: 0}
+  deathSFX: {fileID: 8300000, guid: c8c0aeec4fd0d43aa8ad6fbdbc7a61c9, type: 3}
   layermask:
     serializedVersion: 2
     m_Bits: 4096

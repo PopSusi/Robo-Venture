@@ -18,9 +18,7 @@ public class FuelCell : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<CharacterController>().enabled = false;
-            UIManager.instance.Win();
-            MusicManager.instance.mainLevelSource.Stop();
+            //ADD TO FUEL CELL INVENTORY
             myAudio.loop = false;
             myAudio.clip = winSFX;
             myAudio.Play();

@@ -29,6 +29,7 @@ public class PunchAbility : Ability
             StartCoroutine("PunchResetDelay");
             punchIndex += 1; //Cycle Through Punch 1/2
             punchIndex %= 3; //Cycle Through Punch 2/2 
+            gameObject.GetComponent<Animator>.SetInteger("PunchIndex", punchIndex);
             gameObject.GetComponent<ThirdPersonPlayerController>().PlaySound(abilitySFX);
         }
     }
