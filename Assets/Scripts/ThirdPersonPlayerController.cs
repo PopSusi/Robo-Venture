@@ -164,10 +164,11 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         if (!controller.isGrounded)
         {
             ySpeed += gravity * Time.fixedDeltaTime;
-
+            anim.SetBool("isFalling", true);
         }
         else
         {
+            anim.SetBool("isFalling", false);
             ySpeed = -0.1f;
         }
 
