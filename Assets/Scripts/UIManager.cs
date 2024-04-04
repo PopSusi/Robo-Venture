@@ -53,19 +53,20 @@ public class UIManager : LevelData
     }
     void Start()
     {
+        playerCurr = ThirdPersonPlayerController.instance.gameObject;
         if (playerCurr == null)
         {
             return;
         }
-        playerCurr = ThirdPersonPlayerController.instance.gameObject;
+       
         playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
         input = playerCurr.GetComponent<PlayerInput>();
-        
+        print(input);
         //Need to switch and switch back to set Pause for UI and Player maps
         input.actions["Pause"].performed+=OnPause;
-        input.SwitchCurrentActionMap("UI");
-        input.actions["Pause"].performed+=OnPause;
-        input.SwitchCurrentActionMap("Player");
+        //input.SwitchCurrentActionMap("UI");
+        //input.actions["Pause"].performed+=OnPause;
+        //input.SwitchCurrentActionMap("Player");
         FillList();
     }
 
@@ -73,6 +74,7 @@ public class UIManager : LevelData
 		Application.Quit();
 	}
     private void OnPause(InputAction.CallbackContext context){
+        print("should pause");
         PauseGame();
     }
 
@@ -85,12 +87,12 @@ public class UIManager : LevelData
 		if(!paused){ //not currently paused
 			paused = true;
 			Time.timeScale = 0;
-			input.SwitchCurrentActionMap("UI"); //Go to UI Controls for controller
+			//input.SwitchCurrentActionMap("UI"); //Go to UI Controls for controller
 			MenuList[0].SetActive(true);
 		} else { //currently paused
 			paused = false;
 			Time.timeScale = 1;
-			input.SwitchCurrentActionMap("Player"); //Go to Gameplay Controls
+			//input.SwitchCurrentActionMap("Player"); //Go to Gameplay Controls
 			foreach(GameObject menuObj in MenuList){ //Cycle through all GameObjects and disable them
                 menuObj.SetActive(false);
             }
