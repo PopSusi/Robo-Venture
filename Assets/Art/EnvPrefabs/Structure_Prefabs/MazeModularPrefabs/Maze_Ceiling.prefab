@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cae5016f062b8448b212ca0c75887ae, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.051
+      value: 0.0514337
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cae5016f062b8448b212ca0c75887ae, type: 3}
       propertyPath: m_LocalScale.y
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cae5016f062b8448b212ca0c75887ae, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.051
+      value: 0.0514337
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cae5016f062b8448b212ca0c75887ae, type: 3}
       propertyPath: m_LocalPosition.x
@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b58219e472ec1294d819aa39a522d62f, type: 2}
     - target: {fileID: 919132149155446097, guid: 2cae5016f062b8448b212ca0c75887ae, type: 3}
       propertyPath: m_Name
-      value: Maze_Ceiling Variant
+      value: Maze_Ceiling
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -80,7 +80,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1700364816938437251}
   m_SourcePrefab: {fileID: 100100000, guid: 2cae5016f062b8448b212ca0c75887ae, type: 3}
---- !u!1 &1970748265489840082 stripped
+--- !u!1 &8703916431599689866 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2cae5016f062b8448b212ca0c75887ae, type: 3}
   m_PrefabInstance: {fileID: 8362036828074827227}
@@ -91,7 +91,7 @@ MeshCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970748265489840082}
+  m_GameObject: {fileID: 8703916431599689866}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
