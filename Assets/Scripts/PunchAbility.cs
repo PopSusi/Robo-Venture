@@ -21,15 +21,15 @@ public class PunchAbility : Ability
         if(canAbility)
         {
             StopCoroutine("PunchResetDelay");
-            canAbility = false;
-            GameObject tempbox = Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
-            tempbox.GetComponent<Testboxes>().duration = timing[punchIndex];
+            //canAbility = false;
+            //GameObject tempbox = Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
+            //tempbox.GetComponent<Testboxes>().duration = timing[punchIndex];
             anim.SetTrigger("Punch");
-            StartCoroutine("PunchDelay");
+            //StartCoroutine("PunchDelay");
             StartCoroutine("PunchResetDelay");
+            gameObject.GetComponent<Animator>().SetInteger("PunchIndex", punchIndex);
             punchIndex += 1; //Cycle Through Punch 1/2
             punchIndex %= 3; //Cycle Through Punch 2/2 
-            gameObject.GetComponent<Animator>.SetInteger("PunchIndex", punchIndex);
             gameObject.GetComponent<ThirdPersonPlayerController>().PlaySound(abilitySFX);
         }
     }
