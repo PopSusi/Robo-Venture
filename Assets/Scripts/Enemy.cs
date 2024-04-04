@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+//using static UnityEditor.PlayerSettings;
 
 public class Enemy : MonoBehaviour, Damageable
 {
@@ -89,7 +90,11 @@ public class Enemy : MonoBehaviour, Damageable
             Debug.Log("Too far");
             currTarget = triggPos;
         }
-        hitBox.SetActive(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(playerObj.transform.position.x, playerObj.transform.position.z)) < .2);
+        if (playerObj != null)
+        {
+            hitBox.SetActive(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(playerObj.transform.position.x, playerObj.transform.position.z)) < .2);
+        }
+       
         outVar = Vector3.Distance(transform.position, currTarget);
     }
     private Vector3 CalculateDestinationRandom()

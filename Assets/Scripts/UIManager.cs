@@ -37,11 +37,26 @@ public class UIManager : LevelData
     // Start is called before the first frame update
     private void Awake()
     {
-        instance = this;
-        HPBarMaskSize = HPBarMask.rectTransform.rect.width;
+        if (instance == null)
+        {
+            instance = this;
+
+        }else
+        {
+            Destroy(this);
+        }
+        if (HPBarMask!=null) 
+        {
+            HPBarMaskSize = HPBarMask.rectTransform.rect.width;
+        }
+        
     }
     void Start()
     {
+        if (playerCurr == null)
+        {
+            return;
+        }
         playerCurr = ThirdPersonPlayerController.instance.gameObject;
         playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
         input = playerCurr.GetComponent<PlayerInput>();
