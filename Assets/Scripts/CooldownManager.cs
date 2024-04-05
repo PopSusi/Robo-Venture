@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class CooldownManager : MonoBehaviour
 {
     public static CooldownManager CDMInstance;
-    public Image[] masks;
+    [Tooltip("Each slot from HUD.")]
     public Image[] slots;
+    [Tooltip("Each slot mask from HUD.")]
+    public Image[] masks;
     Image currMask;
     private int slotsActive = 0;
     public void Start()

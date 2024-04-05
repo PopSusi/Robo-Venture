@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StunDetect : MonoBehaviour
 {
+    [Tooltip("Prefab used to apply damage - spawned on contact with Terrain.")] 
     public GameObject AOE;
     // Start is called before the first frame update
     void Awake()

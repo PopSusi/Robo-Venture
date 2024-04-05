@@ -8,7 +8,7 @@ public class StunAbility : Ability
 {
 	private bool active;
   [field: Header("Ability Sub-Class")]
-	[SerializeField] Transform throwPoint;
+    [Tooltip("Where the grenade it thrown from.")][SerializeField] Transform throwPoint;
 	[SerializeField] GameObject projectilePrefab;
 	GameObject projectile;
 	Rigidbody projectilRb;
