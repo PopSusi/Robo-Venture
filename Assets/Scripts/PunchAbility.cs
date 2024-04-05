@@ -5,14 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PunchAbility : Ability
 {
-    [SerializeField]
-    private int punchIndex = 0;
-    [SerializeField]
-    private GameObject[] hitboxes;
-    [SerializeField]
-    private Vector3[] offset;
-    [SerializeField]
-    private float[] timing;
+    [field: Header("Ability Sub-Class")]
+    [SerializeField] private int punchIndex = 0;
+    [SerializeField] private GameObject[] hitboxes;
+    [SerializeField] private Vector3[] offset;
+    [SerializeField] private float[] timing;
 
     private void Awake()
     {
@@ -21,17 +18,19 @@ public class PunchAbility : Ability
     }
     void OnPunch(InputAction.CallbackContext context)
     {
-        if(canAbility)
+        if (context.interaction is UnityEngine.InputSystem.Interactions.TapInteraction)
         {
             StopCoroutine("PunchResetDelay");
-            canAbility = false;
-            GameObject tempbox = Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
-            tempbox.GetComponent<Testboxes>().duration = timing[punchIndex];
-            anim.Play("Punch");
-            StartCoroutine("PunchDelay");
+            //canAbility = false;
+            //GameObject tempbox = Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
+            //tempbox.GetComponent<Testboxes>().duration = timing[punchIndex];
+            anim.SetTrigger("Punch");
+            //StartCoroutine("PunchDelay");
             StartCoroutine("PunchResetDelay");
+            gameObject.GetComponent<Animator>().SetInteger("PunchIndex", punchIndex);
             punchIndex += 1; //Cycle Through Punch 1/2
             punchIndex %= 3; //Cycle Through Punch 2/2 
+            gameObject.GetComponent<ThirdPersonPlayerController>().PlaySound(abilitySFX);
         }
     }
     IEnumerator PunchDelay(){

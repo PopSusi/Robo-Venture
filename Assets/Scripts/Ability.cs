@@ -11,9 +11,10 @@ public class Ability : MonoBehaviour
     protected InputAction moveAction;
     protected Animator anim;
     protected GameObject player;
-    protected AudioSource myAudio;
-    public float cooldown;
     protected bool canAbility = true; //random comment
+    [field: Header("Ability Base Class")]
+    public AudioClip abilitySFX;
+    public float cooldown;
     public bool unlocked;
     public Sprite mySprite;
     // Start is called before the first frame update
@@ -23,7 +24,6 @@ public class Ability : MonoBehaviour
         playerController = GetComponent<ThirdPersonPlayerController>();
         characterController = GetComponent<CharacterController>();
         input = GetComponent<PlayerInput>();
-        myAudio = GetComponent<AudioSource>();
     }
     protected void StartCooldown()
     {

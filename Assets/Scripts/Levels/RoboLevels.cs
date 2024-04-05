@@ -5,29 +5,43 @@ using UnityEngine;
 public class RoboLevels : LevelData
 {
     
-	//LEVEL
+	[field: Header("Level Setup")]//LEVEL
     public static Levels currLevel = Levels.Hub;
 	public static RoboLevels instance;
+    [Tooltip("Player prefab to spawn.")]
     public GameObject playerPrefab;
+	[Tooltip("Set at runtime/respawn, holds player object.")]
     public GameObject playerCurr;
 	
 
-	//UI
+    [field: Header("Objective UI")]//UI
+    [Tooltip("UI Element to add tutorial text to.")]
     public GameObject GOobjUI;
-    public string[] objectiveText; //List of Objective for a level
-    public int objectiveIndex = 0; //ObjectiveIndex for String[]
 
-	//CHECKPOINTS
-	public GameObject[] checkPoints; //List of Checkpoints
-	public int chkpntIndexLevels; //Current Checkpoint
-	public bool overrideSpawn; //Set true if you want to go to certain checkpoint
-	public int overrideSpawnIndex; //Override Checkpoint
+	[field: Header("Checkpoints")]//CHECKPOINTS
+    [Tooltip("Set at Runtime - List of checkpoints.")]
+    public GameObject[] checkPoints; //List of Checkpoints
+    [Tooltip("Set when interacting with checkpoint - Chooses which checkpoint to spawn at.")]
+    public int chkpntIndexLevels; //Current Checkpoint
+    [Tooltip("Debug bool to start at certain checkpoints.")]
+    public bool overrideSpawn; //Set true if you want to go to certain checkpoint
+    [Tooltip("Which checkpoint you want to spawn at - Based on index of said checkpoint.")]
+    public int overrideSpawnIndex; //Override Checkpoint
 
-	//AUDIO
-	public AudioClip BGM;
-    protected void Start()
+	[field: Header("Audio")]//AUDIO
+    [Tooltip("Level's background music.")]
+    public AudioClip BGM;
+    protected virtual void Awake()
     {
-		instance = this;
+		if (instance == null)
+		{
+            instance = this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+		
     }
     public virtual void RespawnPlayer(){
 		if (!overrideSpawn)

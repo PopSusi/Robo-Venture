@@ -6,6 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
     private GameObject player;
     private RoboLevels GM;
+    [Tooltip("Starting from 0-n, this tells the Game Manager which checkpoint to spawn from.")]
     public int myIndex;
     private void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){
@@ -14,8 +15,9 @@ public class Checkpoint : MonoBehaviour
         }
     }
     // Start is called before the first frame update
-    private void Awake(){
+    private void Start(){
         GM = RoboLevels.instance;
+        GM.checkPoints[myIndex] = this.gameObject;
     }
 
     // Update is called once per frame

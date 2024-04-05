@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class StunDetect : MonoBehaviour
 {
+    [Tooltip("Prefab used to apply damage - spawned on contact with Terrain.")] 
     public GameObject AOE;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
     }
@@ -17,8 +18,9 @@ public class StunDetect : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
+        Debug.Log("Hit: " + other.gameObject.tag);
         //IMPLEMENT TARGET = FIND GROUND POINT
         //FOR NOW TARGET == WHERE IT LANDS
         Instantiate(AOE, transform.position, Quaternion.identity);

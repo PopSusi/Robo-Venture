@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 public class DashAbility : Ability
 {
-    [SerializeField]
-    float dashDistance,dashSpeed;
+	[field: Header("Ability Sub-Class")]
+    [SerializeField] float dashDistance;
+	[SerializeField] float dashTimeToComplete;
     float distanceTraveled;
     bool isDashing;
     Vector2 dashDir;
@@ -20,31 +21,43 @@ public class DashAbility : Ability
     {
         if (isDashing)
         {
-            //Vector3 pos=characterController.transform.position;
-            characterController.Move(this.transform.forward * dashDistance*dashSpeed * (Time.fixedDeltaTime));
-            distanceTraveled += dashDistance * dashSpeed * (Time.fixedDeltaTime);
-            if (distanceTraveled >= dashDistance)
-            {
-                isDashing = false;
-                GetComponent<Animator>().SetBool("Dash", false);
-            }
+           
         }
     }
     public void OnDash(InputAction.CallbackContext context)
     {
         if (canAbility && unlocked)
         {
-            canAbility = false;
-            StartCooldown();
-            Debug.Log("Dashing");
-            GetComponent<Animator>().SetBool("Dash", true);
+            Debug.Log("should dash");
+            gameObject.GetComponent<ThirdPersonPlayerController>().PlaySound(abilitySFX);
             print(playerController.moveDir);
             dashDir = playerController.moveDir;
-            this.transform.rotation = Quaternion.LookRotation(new Vector3(dashDir.x, 0, dashDir.y), Vector3.up);
-            distanceTraveled = 0;
-            isDashing = true;
-            CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
+            if (dashDir.magnitude > 0)
+            {
+                this.transform.rotation = Quaternion.LookRotation(new Vector3(dashDir.x, 0, dashDir.y), Vector3.up);
+
+            }
+          
+            StartCoroutine(Dashing());
+            //characterController.Move(this.transform.forward * dashDistance* (Time.fixedDeltaTime));
         }
 
+    }
+
+    IEnumerator Dashing()
+    {
+        GetComponent<Animator>().SetBool("Dash", true);
+        distanceTraveled = 0;
+        while (distanceTraveled < dashDistance)
+        {
+            //Vector3 pos=characterController.transform.position;
+            characterController.Move(this.transform.forward * (dashDistance / dashTimeToComplete) * (Time.fixedDeltaTime));
+            distanceTraveled += (dashDistance / dashTimeToComplete) * (Time.fixedDeltaTime);
+            yield return new WaitForFixedUpdate();
+        }
+        isDashing = false;
+        GetComponent<Animator>().SetBool("Dash", false);
+        canAbility = false;
+        StartCooldown();
     }
 }

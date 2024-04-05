@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class TurnOffMesh : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         MeshRenderer mr = GetComponent<MeshRenderer>();
         mr.enabled = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -10,4 +10,7 @@ public class ParticleFXStart : MonoBehaviour
     {
         FX.Play();
     }
+    private void OnTriggerExit(Collider other) { 
+        FX.Stop(); 
+    }
 }

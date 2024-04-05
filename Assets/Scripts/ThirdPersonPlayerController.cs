@@ -8,30 +8,32 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 {
-    //Damageable Variables
+    [field: Header("Damageable Variables")] //Damageable Variables
     public float HP { get; set; } = 6f;
-    private float maxHP;
-    public Image HPBarMask;
-    private float HPBarMaskSize;
+	private float maxHP;
+    [Tooltip("Time before being able to be damaged again.")]
     public float damageDelay { get; set; } = 1.5f;
+    [Tooltip("If player can take damage.")]
     public bool vulnerable { get; set; } = true;
     //Controller Components
     CharacterController controller;
     PlayerInput input;
-    public InputAction moveAction { get;private set; }
+    private InputAction moveAction;
     Camera cam;
     PlayerMovementState playerMovement;
     Animator anim;
     RoboLevels myGM;
-    public UIManager UIman;
+    private UIManager UIman;
 
     //Move vars
-                //Vector2 targetVelocity;
+    //Vector2 targetVelocity;
     Vector2 moveVelocity;
+    [Tooltip("Camera.")]
     [SerializeField]
     CinemachineFreeLook cinemachineFreeLook;
+	[field: Header("Movement Variables")] [SerializeField] float speed;
     [SerializeField]
-    float speed, accel, airAccel,jumpForce;
+    float accel, airAccel,jumpForce;
     public float Speed { get { return speed; } }
     public float Accel { get { return accel; } }
     public float AirAccel { get { return airAccel; } }
@@ -42,22 +44,32 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     const float gravity=-20f;
     public Vector2 moveDir { get; private set; }
 
-    //Audio
+    [field: Header("Audio Related")]//Audio
     [SerializeField]
-    private AudioSource footSource, sptnsSource;
-
+    [Tooltip("Source for footsteps.")]
+    private AudioSource footSource;
+    [Tooltip("Source for other SFX.")]
     [SerializeField]
-    private AudioClip hit, hitVariant, footSteps;
-    //Options
+    private AudioSource sptnsSource;
+    [SerializeField]
+    private AudioClip hit, hitVariant, footSteps, lose;
+    bool footPaused = true;
+    [field: Header("Options Related")]//Options
+    [Tooltip("Enable abilities on startup.")]
     public static bool dash, wall, grapple;
     bool invincible;
     public static ThirdPersonPlayerController instance;
-
-    private void Awake()
+	
+	private void Awake(){
+		instance = this;	
+		maxHP = HP;
+	}
+    private void Start()
     {
-        instance = this;
+        
         Initialize();
         OptionsInitialize();
+        UIman.warningUI.gameObject.SetActive(false);
     }
 
     private void Initialize() //Variables and Components
@@ -69,6 +81,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         cam = Camera.main;
         myGM = RoboLevels.instance;
+        UIman = UIManager.instance;
 
         //Move Inputs
         moveAction = input.actions["Move"];
@@ -78,10 +91,6 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //Other Inputs
         input.actions["Jump"].performed += OnJump;
         input.actions["DebugDamage"].performed += DebugDamage;
-
-        //Variables
-        HPBarMaskSize = HPBarMask.rectTransform.rect.width;
-        maxHP = HP;
     }
 
     public void OptionsInitialize()
@@ -119,11 +128,13 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     }
     private void OnEnable()
     {
-        cinemachineFreeLook.GetComponent<CinemachineInputProvider>().PlayerIndex = input.playerIndex;
+        //cinemachineFreeLook.GetComponent<CinemachineInputProvider>().PlayerIndex = input.playerIndex;
     }
 
     private void FixedUpdate()
     {
+        footSource.Pause();
+        footPaused = true;
 
         Quaternion rot = Quaternion.AngleAxis(cinemachineFreeLook.m_XAxis.Value, Vector3.forward);
         moveDir = Quaternion.Inverse(rot) * moveAction.ReadValue<Vector2>();
@@ -136,8 +147,17 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         {
            Movement(targetVelocity);
         }
-
-
+        anim.SetFloat("Speed", controller.velocity.magnitude);
+        if(controller.velocity.magnitude < 1)
+        {
+            footSource.Pause();
+            footPaused = true;
+        }
+        if(footPaused && controller.velocity.magnitude > 1)
+        {
+            footSource.Play();
+            footPaused = false;
+        }
     }
     
     void Movement(Vector2 targetVelocity)
@@ -152,10 +172,11 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         if (!controller.isGrounded)
         {
             ySpeed += gravity * Time.fixedDeltaTime;
-
+            anim.SetBool("isFalling", true);
         }
         else
         {
+            anim.SetBool("isFalling", false);
             ySpeed = -0.1f;
         }
 
@@ -183,7 +204,11 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
        controller.Move(force * Time.fixedDeltaTime);
     }
     public void Die(){
-        Destroy(this.gameObject);
+        gameObject.GetComponent<CharacterController>().enabled = false;
+        UIman.Death();
+        Debug.Log("Death");
+        sptnsSource.clip = lose;
+        sptnsSource.Play();
     }
     public void TakeDamage(float damage)
     {
@@ -196,7 +221,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
                 GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
                 StartCoroutine("BeginRegenDelay");
-                HPBarMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (HP / maxHP) * HPBarMaskSize);
+                UIman.HealthbarUpdate(HP);
             } else {
                 Die();
             }
@@ -225,5 +250,26 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         WaitForSeconds wait = new WaitForSeconds(damageDelay);
         yield return wait;
         vulnerable = true;
+    }
+
+    public void EnableDash()
+    {
+        dash = true;
+        gameObject.GetComponent<DashAbility>().unlocked = true;
+    }
+    public void EnableGrapple()
+    {
+        dash = true;
+        gameObject.GetComponent<GrappleAbility>().unlocked = true;
+    }
+    public void EnableWall()
+    {
+        dash = true;
+        gameObject.GetComponent<WallAbility>().unlocked = true;
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        sptnsSource.clip = clip;
+        sptnsSource.Play();
     }
 }

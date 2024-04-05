@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class CooldownManager : MonoBehaviour
 {
     public static CooldownManager CDMInstance;
-    public Image[] masks;
+    [Tooltip("Each slot from HUD.")]
     public Image[] slots;
+    [Tooltip("Each slot mask from HUD.")]
+    public Image[] masks;
     Image currMask;
     private int slotsActive = 0;
     public void Start()
@@ -34,7 +36,7 @@ public class CooldownManager : MonoBehaviour
             float originalSize = currMask.rectTransform.rect.width;
             while (operating)
             {
-                Debug.Log("Tickin down");
+                //Debug.Log("Tickin down");
                 timeActive += Time.deltaTime;
                 currMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, (1 - timeActive / timeTotal) * originalSize);
                 yield return new WaitForEndOfFrame();

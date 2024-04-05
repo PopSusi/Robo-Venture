@@ -3046,7 +3046,7 @@ Transform:
   - {fileID: 8955812293856477049}
   - {fileID: 3466692638173019034}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &5498610598082435525
 CharacterController:
@@ -3116,8 +3116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949c3461a42096547ad2ad01dda67c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPBarMask: {fileID: 0}
-  UIman: {fileID: 0}
   cinemachineFreeLook: {fileID: 1843754320846179104}
   speed: 10
   accel: 2
@@ -3125,9 +3123,10 @@ MonoBehaviour:
   jumpForce: 2
   footSource: {fileID: 4576245077246659079}
   sptnsSource: {fileID: 3866106026000346914}
-  hit: {fileID: 0}
+  hit: {fileID: 8300000, guid: 52dcf34581644cf44bdf325cf7872b4c, type: 3}
   hitVariant: {fileID: 0}
   footSteps: {fileID: 0}
+  lose: {fileID: 0}
 --- !u!114 &3147830462542876348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3140,10 +3139,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350d1e5e689fa4b4299566d2777bbcea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilitySFX: {fileID: 0}
   cooldown: 8
   unlocked: 1
   mySprite: {fileID: 21300000, guid: 294492e4cfe5fa04bbebc35c8e4f58a9, type: 3}
-  projectile: {fileID: 1377258407512642044, guid: bdeb7a4d89ed443d08e2b74d371443fe, type: 3}
+  throwPoint: {fileID: 0}
+  projectilePrefab: {fileID: 1377258407512642044, guid: bdeb7a4d89ed443d08e2b74d371443fe, type: 3}
+  throwForce: 10
 --- !u!95 &3910353399707910504
 Animator:
   serializedVersion: 5
@@ -3177,6 +3179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c52494ac766b44a9bb637ff8dc7b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilitySFX: {fileID: 8300000, guid: ab5c02cc584f40b4d933cb7bd80b4509, type: 3}
   cooldown: 0.15
   unlocked: 0
   mySprite: {fileID: 0}
@@ -3203,7 +3206,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 210176c021712da4b878bb2d89f3ac36, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -3301,11 +3304,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8845b852505cb2458cb28666dd784d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilitySFX: {fileID: 8300000, guid: 21f374b4f1161224a80b811c77eeb50e, type: 3}
   cooldown: 3
   unlocked: 0
   mySprite: {fileID: 21300000, guid: 90a546d28b39fdb4e960b7800d673d91, type: 3}
-  dashDistance: 0
-  dashSpeed: 0
+  dashDistance: 5
+  dashTimeToComplete: 0.2
 --- !u!114 &8823998080851169695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3318,10 +3322,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5033af20f17c8844aa3a242addb2ba4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilitySFX: {fileID: 0}
   cooldown: 2
   unlocked: 0
   mySprite: {fileID: 21300000, guid: 5fc29a1e1e6963749acefcc92ba932f6, type: 3}
   grappleDistance: 0
+  isGrappling: 0
+  grappleSpeed: 0
+  grappleLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8575453612511988869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3334,6 +3344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712ed463b01b2411292c4cfadb77aff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilitySFX: {fileID: 0}
   cooldown: 5
   unlocked: 0
   mySprite: {fileID: 21300000, guid: 05e7354846f28734dadb4dceb491f612, type: 3}
@@ -4264,7 +4275,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3815628948615878942}
-  m_LocalRotation: {x: -0.29204315, y: 0.000000028503095, z: 0.000000008703564, w: 0.9564052}
+  m_LocalRotation: {x: -0.29204312, y: -3e-45, z: -1e-45, w: 0.95640516}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4609,7 +4620,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3945654755516066876}
-  m_LocalRotation: {x: -0.1343119, y: -0.0000000147661465, z: -0.0000000020014035, w: 0.9909392}
+  m_LocalRotation: {x: -0.13431188, y: -0.000000008525237, z: -0.0000000011555106, w: 0.9909392}
   m_LocalPosition: {x: 0, y: 0.1, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7818,7 +7829,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6703088859057768608}
-  m_LocalRotation: {x: -0.13431187, y: -0, z: -0, w: 0.99093914}
+  m_LocalRotation: {x: -0.13431185, y: -0.000000008525236, z: -0.0000000011555101, w: 0.99093914}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10369,7 +10380,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9019346412007078025}
-  m_LocalRotation: {x: -0.2518485, y: -0.000000008325882, z: -0.000000002166701, w: 0.9677667}
+  m_LocalRotation: {x: -0.25184846, y: 0.000000018617236, z: 0.00000000484489, w: 0.9677667}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
