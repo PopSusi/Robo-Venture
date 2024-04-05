@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour, Damageable
             currTarget = CalculateDestinationRandom();
         } else if(Vector3.Distance(transform.position, triggPos) > triggSize)
         {
-            Debug.Log("Too far");
+            //Debug.Log("Too far");
             currTarget = triggPos;
         }
         if (playerObj != null)
@@ -123,7 +123,7 @@ public class Enemy : MonoBehaviour, Damageable
     public void StartCombat(GameObject player)
     {
         combat= true;
-        Debug.Log("Starting Combat");
+        //Debug.Log("Starting Combat");
         StopAllCoroutines();
         playerObj = player;
         currTarget = player.transform.position;
