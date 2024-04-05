@@ -193,7 +193,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         anim.SetTrigger("Jump");
         if (controller.isGrounded)
         {
-            print("should jump");
+            //print("should jump");
             ySpeed = Mathf.Sqrt(jumpForce * -3.0f * gravity);
             //isGrounded = false;
         }

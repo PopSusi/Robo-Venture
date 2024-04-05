@@ -20,7 +20,7 @@ public class StunDetect : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Hit: " + other.gameObject.tag);
+        //Debug.Log("Hit: " + other.gameObject.tag);
         //IMPLEMENT TARGET = FIND GROUND POINT
         //FOR NOW TARGET == WHERE IT LANDS
         Instantiate(AOE, transform.position, Quaternion.identity);
