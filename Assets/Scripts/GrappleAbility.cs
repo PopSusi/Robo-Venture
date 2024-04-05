@@ -46,13 +46,20 @@ public class GrappleAbility : Ability
                 detectedPoint = colliders[0].transform;
                 distanceToGrapple = Vector3.Distance(detectedPoint.position, this.transform.position);
                 float mod = ClampSize(distanceToGrapple);
-                Debug.Log(mod);
+                if(!detectedPoint.gameObject.GetComponent<GrapplePoint>().active) {
+                    detectedPoint.gameObject.GetComponent<GrapplePoint>().Activate();
+                }
                 detectedPoint.gameObject.GetComponent<GrapplePoint>().UpdateAnchors(mod);
             }
-        }
-        else
-        {
-            detectedPoint = null;
+            else
+            {
+                if (detectedPoint != null)
+                {
+                    detectedPoint.gameObject.GetComponent<GrapplePoint>().Deactivate();
+                    detectedPoint = null;
+                    return;
+                }
+            }
         }
         print(detectedPoint.gameObject.tag);
     }
@@ -81,6 +88,7 @@ public class GrappleAbility : Ability
     {
         if (detectedPoint == null) { return; }
         grappleTarget = detectedPoint;
+        detectedPoint.gameObject.GetComponent<GrapplePoint>().Deactivate();
         if (unlocked)
         {
             isGrappling = true;
