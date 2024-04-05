@@ -20,7 +20,6 @@ public class PunchAbility : Ability
     {
         if (context.interaction is UnityEngine.InputSystem.Interactions.TapInteraction)
         {
-<<<<<<< Updated upstream
             StopCoroutine("PunchResetDelay");
             //canAbility = false;
             //GameObject tempbox = Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
@@ -32,21 +31,6 @@ public class PunchAbility : Ability
             punchIndex += 1; //Cycle Through Punch 1/2
             punchIndex %= 3; //Cycle Through Punch 2/2 
             gameObject.GetComponent<ThirdPersonPlayerController>().PlaySound(abilitySFX);
-=======
-            if (canAbility)
-            {
-                StopCoroutine("PunchResetDelay");
-                canAbility = false;
-                GameObject tempbox = Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
-                tempbox.GetComponent<Testboxes>().duration = timing[punchIndex];
-                anim.SetTrigger("Punch");
-                StartCoroutine("PunchDelay");
-                StartCoroutine("PunchResetDelay");
-                punchIndex += 1; //Cycle Through Punch 1/2
-                punchIndex %= 3; //Cycle Through Punch 2/2 
-                gameObject.GetComponent<ThirdPersonPlayerController>().PlaySound(abilitySFX);
-            }
->>>>>>> Stashed changes
         }
     }
     IEnumerator PunchDelay(){
