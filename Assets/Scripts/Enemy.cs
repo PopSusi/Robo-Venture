@@ -14,23 +14,33 @@ public class Enemy : MonoBehaviour, Damageable
     
     //Components
     private AudioSource mainAudio;
+    [Tooltip("AudioSource for damage.")]
     [SerializeField]
     private AudioSource scndryAudio;
-    public CombatTriggers myTrigger;
+    [Tooltip("Filled on Spawn - Controlling area Trigger.")] public CombatTriggers myTrigger;
     private Vector3 triggPos;
     private float triggSize;
-    [SerializeField] private AudioClip hitSFX, hitVariantSFX, deathSFX;
+    [SerializeField] 
+    private AudioClip hitSFX, hitVariantSFX, deathSFX;
+    [Tooltip("Which layer to search for Trigger - 'Triggers'")]
     [SerializeField] private LayerMask layermask;
     private NavMeshAgent agent;
+    [Tooltip("If bug is in combat - Serialized for debugging.")]
     [SerializeField] private bool combat = false;
+    [Tooltip("Radius to declare that enemy is close enough to target.")]
     [SerializeField] private float stopDistance;
+    [Tooltip("Current Object.")]
     [SerializeField] private GameObject playerObj;
     private Vector3 currTarget;
+    [Tooltip("Serialized for debugging.")]
     [SerializeField] private bool canPunch;
+    [Tooltip("Cooldown before punching.")]
     [SerializeField] private float cooldownPunch;
+    [Tooltip("Prefab for damage area.")]
     [SerializeField] private GameObject hitBox;
+    [Tooltip("Layer for finding Y-Level of Terrain - Default is 'Terrain'.")]
     [SerializeField] private LayerMask terrainLayer;
-    [SerializeField] private float outVar;
+    [Tooltip("How far to overshoot actual target.")]
     [SerializeField] private float dirMod = 5f;
     public void Awake(){
         mainAudio = GetComponent<AudioSource>();
@@ -87,15 +97,13 @@ public class Enemy : MonoBehaviour, Damageable
             currTarget = CalculateDestinationRandom();
         } else if(Vector3.Distance(transform.position, triggPos) > triggSize)
         {
-            Debug.Log("Too far");
+            //Debug.Log("Too far");
             currTarget = triggPos;
         }
         if (playerObj != null)
         {
             hitBox.SetActive(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(playerObj.transform.position.x, playerObj.transform.position.z)) < .2);
         }
-       
-        outVar = Vector3.Distance(transform.position, currTarget);
     }
     private Vector3 CalculateDestinationRandom()
     {
@@ -115,7 +123,7 @@ public class Enemy : MonoBehaviour, Damageable
     public void StartCombat(GameObject player)
     {
         combat= true;
-        Debug.Log("Starting Combat");
+        //Debug.Log("Starting Combat");
         StopAllCoroutines();
         playerObj = player;
         currTarget = player.transform.position;

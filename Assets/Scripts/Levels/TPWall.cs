@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TPWall : LevelData
 {
-    public Levels tpLevel;
+    public Levels destination;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +21,7 @@ public class TPWall : LevelData
     }
     private void LoadLevel()
     {
-        string tempString = tpLevel.ToString() + "Level";
+        string tempString = destination.ToString() + "Level";
         SceneManager.LoadScene(tempString);
     }
 }

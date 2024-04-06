@@ -18,7 +18,7 @@ public class PunchAbility : Ability
     }
     void OnPunch(InputAction.CallbackContext context)
     {
-        if(canAbility)
+        if (context.interaction is UnityEngine.InputSystem.Interactions.TapInteraction)
         {
             StopCoroutine("PunchResetDelay");
             //canAbility = false;
