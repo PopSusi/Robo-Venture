@@ -33,7 +33,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     CinemachineFreeLook cinemachineFreeLook;
 	[field: Header("Movement Variables")] [SerializeField] float speed;
     [SerializeField]
-    float accel, airAccel,jumpForce;
+    float accel, airAccel,jumpForce,turnSpeed;
     public float Speed { get { return speed; } }
     public float Accel { get { return accel; } }
     public float AirAccel { get { return airAccel; } }
@@ -167,7 +167,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         controller.Move(new Vector3(moveVelocity.x, ySpeed, moveVelocity.y) * Time.fixedDeltaTime);
         if (moveAction.IsPressed())
         {
-            this.transform.rotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, turnSpeed*Time.fixedDeltaTime);
         }
         if (!controller.isGrounded)
         {
