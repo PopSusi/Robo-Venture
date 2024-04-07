@@ -17,7 +17,17 @@ public class GrappleAbility : Ability
     [SerializeField] [Tooltip("Minimum Size of UI. Default is 205.")] float minSize = 205;
     [SerializeField] [Tooltip("Maximum Size of UI. Default is 305.")] float maxSize = 350;
     private float distanceToGrapple;
-
+    [SerializeField]
+    GameObject grappleUIPrefab;
+    GameObject grappleUI;
+    Canvas canvas;
+    private void Awake()
+    {
+        canvas= (Canvas)Canvas.FindFirstObjectByType(typeof(Canvas));
+        
+        grappleUI = Instantiate(grappleUIPrefab, canvas.transform);
+        grappleUI.SetActive(false);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +45,7 @@ public class GrappleAbility : Ability
     {
         if (isGrappling)
         {
+            grappleUI.SetActive(false);
             return;
         }
         //RaycastHit hit;
@@ -47,12 +58,23 @@ public class GrappleAbility : Ability
                 distanceToGrapple = Vector3.Distance(detectedPoint.position, this.transform.position);
                 float mod = ClampSize(distanceToGrapple);
                 Debug.Log(mod);
-                detectedPoint.gameObject.GetComponent<GrapplePoint>().UpdateAnchors(mod);
+                //detectedPoint.gameObject.GetComponent<GrapplePoint>().UpdateAnchors(mod);
+                if (!grappleUI.activeSelf)
+                {
+                    grappleUI.SetActive(true);
+                }
+                grappleUI.transform.position = cam.WorldToScreenPoint(detectedPoint.position);
+
+            }
+            else
+            {
+                grappleUI.SetActive(false);
             }
         }
         else
         {
             detectedPoint = null;
+            grappleUI.SetActive(false);
         }
         print(detectedPoint.gameObject.tag);
     }

@@ -81,12 +81,6 @@ public class UIManager : LevelData
     public void EndGame(){
 		Application.Quit();
 	}
-    private void OnPause(InputAction.CallbackContext context){
-
-    public void EndGame()
-    {
-        Application.Quit();
-    }
     private void OnPause(InputAction.CallbackContext context)
     {
 
@@ -99,19 +93,6 @@ public class UIManager : LevelData
         string tempString = level + "Level";
         SceneManager.LoadScene(tempString, LoadSceneMode.Single);
     }
-
-	public void PauseGame(){
-		if(!paused){ //not currently paused
-			paused = true;
-			Time.timeScale = 0;
-			//input.SwitchCurrentActionMap("UI"); //Go to UI Controls for controller
-			MenuList[0].SetActive(true);
-		} else { //currently paused
-			paused = false;
-			Time.timeScale = 1;
-			//input.SwitchCurrentActionMap("Player"); //Go to Gameplay Controls
-			foreach(GameObject menuObj in MenuList){ //Cycle through all GameObjects and disable them
-                menuObj.SetActive(false);
 
     public void PauseGame()
     {
