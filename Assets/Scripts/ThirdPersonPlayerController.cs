@@ -33,7 +33,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     CinemachineFreeLook cinemachineFreeLook;
 	[field: Header("Movement Variables")] [SerializeField] float speed;
     [SerializeField]
-    float accel, airAccel,jumpForce,turnSpeed;
+    float accel, airAccel,jumpForce,turnSpeed,coyoteTimeMax;
+    float coyoteTime;
+    bool hasJumped;
     public float Speed { get { return speed; } }
     public float Accel { get { return accel; } }
     public float AirAccel { get { return airAccel; } }
@@ -59,6 +61,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public static bool dash, wall, grapple;
     bool invincible;
     public static ThirdPersonPlayerController instance;
+    
 	
 	private void Awake(){
 		instance = this;	
@@ -135,7 +138,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     {
         footSource.Pause();
         footPaused = true;
-
+        
         Quaternion rot = Quaternion.AngleAxis(cinemachineFreeLook.m_XAxis.Value, Vector3.forward);
         moveDir = Quaternion.Inverse(rot) * moveAction.ReadValue<Vector2>();
         Vector2 targetVelocity = moveDir * speed;
@@ -172,13 +175,16 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         }
         if (!controller.isGrounded)
         {
+            coyoteTime += Time.fixedDeltaTime;
             ySpeed += gravity * Time.fixedDeltaTime;
             anim.SetBool("isFalling", true);
         }
         else
         {
+            coyoteTime = 0;
             anim.SetBool("isFalling", false);
             ySpeed = -0.1f;
+            hasJumped = false;
         }
 
     }
@@ -192,11 +198,13 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     void OnJump(InputAction.CallbackContext context)
     {
         anim.SetTrigger("Jump");
-        if (controller.isGrounded)
+        if (controller.isGrounded||(coyoteTime< coyoteTimeMax&&!hasJumped))
         {
             //print("should jump");
+            //coyoteTime = 0;
             ySpeed = Mathf.Sqrt(jumpForce * -3.0f * gravity);
             //isGrounded = false;
+            hasJumped = true;
         }
     }
     

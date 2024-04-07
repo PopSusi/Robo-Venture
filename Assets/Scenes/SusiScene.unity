@@ -397,19 +397,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2735079812057974912, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017506512
+      value: -0.000000017506512
       objectReference: {fileID: 0}
     - target: {fileID: 2735079812057974912, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000001350852
+      value: 0.000000001350852
       objectReference: {fileID: 0}
     - target: {fileID: 4148038093991792142, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017063925
+      value: 0.00000001706393
       objectReference: {fileID: 0}
     - target: {fileID: 4148038093991792142, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000000220951
+      value: -0.0000000022095106
       objectReference: {fileID: 0}
     - target: {fileID: 5040955930816073603, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
       propertyPath: m_RootOrder
@@ -458,6 +458,14 @@ PrefabInstance:
     - target: {fileID: 5596782781790131269, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
       propertyPath: m_Name
       value: NewPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145606326307705800, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
+      propertyPath: turnSpeed
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145606326307705800, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
+      propertyPath: coyoteTimeMax
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6388828511138808796, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
       propertyPath: grappleSpeed

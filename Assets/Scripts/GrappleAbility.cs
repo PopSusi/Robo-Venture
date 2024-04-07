@@ -70,13 +70,14 @@ public class GrappleAbility : Ability
             {
                 grappleUI.SetActive(false);
             }
+            print(detectedPoint.gameObject.tag);
         }
         else
         {
             detectedPoint = null;
             grappleUI.SetActive(false);
         }
-        print(detectedPoint.gameObject.tag);
+        
     }
     private void FixedUpdate()
     {
