@@ -1936,7 +1936,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784580621206924581}
-  m_LocalRotation: {x: 0.0769341, y: 0.00000004375595, z: -0.000000003376331, w: 0.9970362}
+  m_LocalRotation: {x: 0.076934114, y: -0.000000016981158, z: 0.0000000013103139, w: 0.9970362}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7122,7 +7122,7 @@ Transform:
   - {fileID: 1117173858022285973}
   - {fileID: 7833463626970158733}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &5941673044060609350
 CharacterController:
@@ -7197,6 +7197,8 @@ MonoBehaviour:
   accel: 2
   airAccel: 0.2
   jumpForce: 2
+  turnSpeed: 360
+  coyoteTimeMax: 0.2
   footSource: {fileID: 6075748616679825677}
   sptnsSource: {fileID: 242113602828965693}
   hit: {fileID: 0}
@@ -7384,15 +7386,16 @@ MonoBehaviour:
   cooldown: 0
   unlocked: 0
   mySprite: {fileID: 0}
-  grappleDistance: 25
-  detectDistance: 30
+  grappleDistance: 5
+  detectDistance: 10
   isGrappling: 0
-  grappleSpeed: 5
+  grappleSpeed: 25
   grappleLayers:
     serializedVersion: 2
     m_Bits: 16384
   minSize: 205
   maxSize: 350
+  grappleUIPrefab: {fileID: 3931944218425374376, guid: 12b52a164a897744f966e273ea9adf7c, type: 3}
 --- !u!114 &5633869488459457666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9027,7 +9030,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6883946371899614465}
-  m_LocalRotation: {x: 0.12841225, y: 0.000000017030283, z: -0.0000000022051534, w: 0.9917209}
+  m_LocalRotation: {x: 0.12841225, y: -0.000000017063925, z: 0.00000000220951, w: 0.9917209}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
