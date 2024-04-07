@@ -31,7 +31,7 @@ public class StunDamage : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        Debug.Log("Hitting");
+        //Debug.Log("Hitting");
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Sending");

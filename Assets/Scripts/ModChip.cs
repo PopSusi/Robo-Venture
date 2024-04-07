@@ -5,7 +5,7 @@ using UnityEngine;
 public class ModChip : MonoBehaviour
 {
     public enum Type { Dash, Grapple, Wall};
-    public Type type;
+    [Tooltip("Specifying which ability to unlock.")] public Type type;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

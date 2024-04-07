@@ -11,7 +11,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     [field: Header("Damageable Variables")] //Damageable Variables
     public float HP { get; set; } = 6f;
 	private float maxHP;
+    [Tooltip("Time before being able to be damaged again.")]
     public float damageDelay { get; set; } = 1.5f;
+    [Tooltip("If player can take damage.")]
     public bool vulnerable { get; set; } = true;
     //Controller Components
     CharacterController controller;
@@ -26,6 +28,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     //Move vars
     //Vector2 targetVelocity;
     Vector2 moveVelocity;
+    [Tooltip("Camera.")]
     [SerializeField]
     CinemachineFreeLook cinemachineFreeLook;
 	[field: Header("Movement Variables")] [SerializeField] float speed;
@@ -43,11 +46,16 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 
     [field: Header("Audio Related")]//Audio
     [SerializeField]
-    private AudioSource footSource, sptnsSource;
+    [Tooltip("Source for footsteps.")]
+    private AudioSource footSource;
+    [Tooltip("Source for other SFX.")]
+    [SerializeField]
+    private AudioSource sptnsSource;
     [SerializeField]
     private AudioClip hit, hitVariant, footSteps, lose;
     bool footPaused = true;
     [field: Header("Options Related")]//Options
+    [Tooltip("Enable abilities on startup.")]
     public static bool dash, wall, grapple;
     bool invincible;
     public static ThirdPersonPlayerController instance;
@@ -185,7 +193,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         anim.SetTrigger("Jump");
         if (controller.isGrounded)
         {
-            print("should jump");
+            //print("should jump");
             ySpeed = Mathf.Sqrt(jumpForce * -3.0f * gravity);
             //isGrounded = false;
         }

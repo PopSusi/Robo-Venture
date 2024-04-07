@@ -1,19 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GrappleAbility : Ability
 {
 
     Camera cam;
 	[field: Header("Ability Sub-Class")]
-    [SerializeField] float grappleDistance;
+    [SerializeField] [Tooltip("Distance to begin grappling.")] float grappleDistance;
+    [SerializeField] [Tooltip("Radius for distance check.")] float detectDistance;
+    Transform detectedPoint;
     Transform grappleTarget;
-    [SerializeField] bool isGrappling;
-    [SerializeField] float grappleSpeed;
-    [SerializeField] LayerMask grappleLayers;
-    
+    [SerializeField] [Tooltip("Debug bool - Is character moving towards grapplepoint.")] bool isGrappling;
+    [SerializeField] [Tooltip("Speed to move at.")] float grappleSpeed;
+    [SerializeField] [Tooltip("Layer to search for points. Default is 'Grapple'.")] LayerMask grappleLayers;
+    [SerializeField] [Tooltip("Minimum Size of UI. Default is 205.")] float minSize = 205;
+    [SerializeField] [Tooltip("Maximum Size of UI. Default is 305.")] float maxSize = 350;
+    private float distanceToGrapple;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,23 +37,24 @@ public class GrappleAbility : Ability
         {
             return;
         }
-        RaycastHit hit;
-        if (Physics.SphereCast(cam.transform.position,1, cam.transform.forward, out hit, grappleDistance, grappleLayers))
+        //RaycastHit hit;
+        if (unlocked)
         {
-            if (hit.collider.CompareTag("GrapplePoint"))
+            Collider[] colliders = Physics.OverlapSphere(transform.position, detectDistance, grappleLayers);
+            if (colliders.Length > 0)
             {
-                grappleTarget = hit.collider.transform;
-            }
-            else
-            {
-                grappleTarget = null;
+                detectedPoint = colliders[0].transform;
+                distanceToGrapple = Vector3.Distance(detectedPoint.position, this.transform.position);
+                float mod = ClampSize(distanceToGrapple);
+                Debug.Log(mod);
+                detectedPoint.gameObject.GetComponent<GrapplePoint>().UpdateAnchors(mod);
             }
         }
         else
         {
-            grappleTarget = null;
+            detectedPoint = null;
         }
-        //print(grappleTarget);
+        print(detectedPoint.gameObject.tag);
     }
     private void FixedUpdate()
     {
@@ -57,7 +62,7 @@ public class GrappleAbility : Ability
         {
             return;
         }
-      
+        distanceToGrapple = Vector3.Distance(detectedPoint.position, this.transform.position);
         this.transform.position = Vector3.MoveTowards(this.transform.position, grappleTarget.position, grappleSpeed * Time.fixedDeltaTime);
        
         if (Vector3.Distance(grappleTarget.position, this.transform.position) <= 0.1)
@@ -74,7 +79,8 @@ public class GrappleAbility : Ability
 
     void OnGrapple(InputAction.CallbackContext context)
     {
-        if (grappleTarget == null) { return; }
+        if (detectedPoint == null) { return; }
+        grappleTarget = detectedPoint;
         if (unlocked)
         {
             isGrappling = true;
@@ -83,4 +89,17 @@ public class GrappleAbility : Ability
             CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
         }
     }
-}
+    float ClampSize(float distance)
+    {
+        
+        float clamped = distanceToGrapple / detectDistance;
+        clamped *= maxSize;
+        return Mathf.Clamp(clamped, minSize, maxSize);
+    }
+    void OnDrawGizmos()
+    {
+        //VISUALLY SEE DETECTED
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawSphere(transform.position, detectDistance);
+    }
+}   
