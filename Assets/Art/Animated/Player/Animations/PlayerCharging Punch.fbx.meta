@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 99efa3e7420b9db4f980e99678d961e0
+guid: 3f9283996f2068341a8bbfa1fb1834f8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,9 +33,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Fall
-      takeName: Fall
-      internalID: 5917537482288442099
+      name: Charging Punch
+      takeName: Charging Punch
+      internalID: 6122542992926058135
       firstFrame: 1
       lastFrame: 24
       wrapMode: 0

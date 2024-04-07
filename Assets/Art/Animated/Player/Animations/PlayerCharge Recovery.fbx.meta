@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 99efa3e7420b9db4f980e99678d961e0
+guid: ed9f55bbf9cfba846bac8a06fbfdbc26
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,9 +33,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Fall
-      takeName: Fall
-      internalID: 5917537482288442099
+      name: Charge Recovery
+      takeName: Charge Recovery
+      internalID: 7568304796644558435
       firstFrame: 1
       lastFrame: 24
       wrapMode: 0
