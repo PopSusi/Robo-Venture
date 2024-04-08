@@ -36,8 +36,8 @@ public class StunAbility : Ability
 		
         input.actions["StunThrow"].performed+=StunStarted;
 		input.actions["StunThrow"].canceled+= StunRelease;
+        lineRenderer.enabled = false;
 
-		
     }
 
     // Update is called once per frame
@@ -48,6 +48,10 @@ public class StunAbility : Ability
             //Debug.Log("held");
             //this.transform.rotation = Quaternion.LookRotation(new Vector3(cam.transform.forward.x, 0, cam.transform.forward.y), Vector3.up);
             TrajectoryLine();
+        }
+        else
+        {
+            
         }
     }
 
@@ -71,6 +75,7 @@ public class StunAbility : Ability
             Debug.Log("clicked");
             anim.SetBool("GrenadeHold", true);
             //projectilRb.isKinematic = true;
+            lineRenderer.enabled = true;
         }
 	}
 	private void StunRelease(InputAction.CallbackContext context){
@@ -84,6 +89,7 @@ public class StunAbility : Ability
             //Debug.Log("thrown");
 			canAbility = false;
 			StartCooldown();
-		}
+            lineRenderer.enabled = false;
+        }
 	}
 }
