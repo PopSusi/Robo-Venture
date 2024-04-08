@@ -19,10 +19,19 @@ public class GrappleAbility : Ability
     [SerializeField] [Tooltip("Layer to search for points. Default is 'Grapple'.")] LayerMask grappleLayers;
     [SerializeField] [Tooltip("Minimum Size of UI. Default is 205.")] float minSize = 205;
     [SerializeField] [Tooltip("Maximum Size of UI. Default is 305.")] float maxSize = 350;
+    [Tooltip("Distance from Target before stopping. Default is .2.")] float tolerance;
     private float distanceToGrapple;
     [SerializeField]
-    [Tooltip("Distance from Target before stopping. Default is .2.")] float tolerance;
-
+    GameObject grappleUIPrefab;
+    GameObject grappleUI;
+    Canvas canvas;
+    private void Awake()
+    {
+        canvas= (Canvas)Canvas.FindFirstObjectByType(typeof(Canvas));
+        
+        grappleUI = Instantiate(grappleUIPrefab, canvas.transform);
+        grappleUI.SetActive(false);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +49,7 @@ public class GrappleAbility : Ability
     {
         if (isGrappling)
         {
+            grappleUI.SetActive(false);
             return;
         }
         //RaycastHit hit;
@@ -51,20 +61,24 @@ public class GrappleAbility : Ability
                 detectedPoint = colliders[0].gameObject;
                 distanceToGrapple = Vector3.Distance(detectedPoint.transform.position, this.transform.position);
                 float mod = ClampSize(distanceToGrapple);
-                if(!detectedPoint.GetComponent<GrapplePoint>().active) {
-                    detectedPoint.GetComponent<GrapplePoint>().Activate();
+                Debug.Log(mod);
+                //detectedPoint.gameObject.GetComponent<GrapplePoint>().UpdateAnchors(mod);
+                if (!grappleUI.activeSelf)
+                {
+                    grappleUI.SetActive(true);
                 }
-                detectedPoint.GetComponent<GrapplePoint>().UpdateAnchors(mod);
+                grappleUI.transform.position = cam.WorldToScreenPoint(detectedPoint.position);
+
             }
             else
             {
-                if (detectedPoint != null)
-                {
-                    detectedPoint.GetComponent<GrapplePoint>().Deactivate();
-                    detectedPoint = null;
-                    return;
-                }
+                grappleUI.SetActive(false);
             }
+        }
+        else
+        {
+            detectedPoint = null;
+            grappleUI.SetActive(false);
         }
         print(detectedPoint.gameObject.tag);
     }

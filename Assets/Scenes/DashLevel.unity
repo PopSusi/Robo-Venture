@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1023032536}
-  m_IndirectSpecularColor: {r: 0.016214343, g: 0.08491228, b: 0.23120886, a: 1}
+  m_IndirectSpecularColor: {r: 0.016217798, g: 0.084929, b: 0.23125175, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492e8d016dce41847ab340bf8054f108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tpLevel: 0
+  destination: 0
 --- !u!1001 &330604032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4150,6 +4150,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4027424415742964878, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46c893bdf91f8454dbcfea81e2b9f37f, type: 2}
     - target: {fileID: 5478168609530237259, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
       propertyPath: m_Name
       value: ModChip_Grapple
@@ -4545,8 +4549,6 @@ MonoBehaviour:
   playerPrefab: {fileID: 5596782781790131269, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
   playerCurr: {fileID: 0}
   GOobjUI: {fileID: 0}
-  objectiveText: []
-  objectiveIndex: 0
   checkPoints:
   - {fileID: 2099482185}
   - {fileID: 583354823}
@@ -15884,16 +15886,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d6f3878a15f7e4ab2fc684fc96f3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masks:
-  - {fileID: 4712427820435370160}
-  - {fileID: 2109858640874533040}
-  - {fileID: 8287064321445232664}
-  - {fileID: 8927307867294497684}
   slots:
   - {fileID: 9033104968888882092}
   - {fileID: 2413463756498178988}
   - {fileID: 5708435851055817476}
   - {fileID: 5178517292277078152}
+  masks:
+  - {fileID: 4712427820435370160}
+  - {fileID: 2109858640874533040}
+  - {fileID: 8287064321445232664}
+  - {fileID: 8927307867294497684}
 --- !u!1 &2858261800855144463
 GameObject:
   m_ObjectHideFlags: 0

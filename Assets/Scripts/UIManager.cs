@@ -64,24 +64,26 @@ public class UIManager : LevelData
         {
             return;
         }
-
         playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
         input = playerCurr.GetComponent<PlayerInput>();
         print(input);
         //Need to switch and switch back to set Pause for UI and Player maps
-        input.actions["Pause"].performed += OnPause;
+
+        input.actions["Pause"].performed+=OnPause;
+
         //input.SwitchCurrentActionMap("UI");
         //input.actions["Pause"].performed+=OnPause;
         //input.SwitchCurrentActionMap("Player");
         FillList();
     }
 
-    public void EndGame()
-    {
-        Application.Quit();
-    }
+
+    public void EndGame(){
+		Application.Quit();
+	}
     private void OnPause(InputAction.CallbackContext context)
     {
+
         print("should pause");
         PauseGame();
     }
@@ -91,6 +93,7 @@ public class UIManager : LevelData
         string tempString = level + "Level";
         SceneManager.LoadScene(tempString, LoadSceneMode.Single);
     }
+
     public void PauseGame()
     {
         if (!paused)
