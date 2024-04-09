@@ -6,6 +6,7 @@ public class ModChip : MonoBehaviour
 {
     public enum Type { Dash, Grapple, Wall};
     [Tooltip("Specifying which ability to unlock.")] public Type type;
+    [Tooltip("Tutorialbox to set active when grabbing ModChip.")] public GameObject TutorialBox;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -24,7 +25,8 @@ public class ModChip : MonoBehaviour
                 default:
                     break;
             }
+            Destroy(this.gameObject);
+            TutorialBox.SetActive(true);
         }
-        Destroy(this.gameObject);
     }
 }
