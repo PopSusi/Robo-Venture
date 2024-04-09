@@ -61,12 +61,23 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public static bool dash, wall, grapple;
     bool invincible;
     public static ThirdPersonPlayerController instance;
-    
+    public int fuelCellsInserted;
+    public int fuelCellsTotal;
 	
+    //Establish Singleton
 	private void Awake(){
-		instance = this;	
-		maxHP = HP;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        maxHP = HP;
 	}
+    //Grab other Singletons, set up character variables based on selected cheats, and disable death UI
     private void Start()
     {
         
@@ -112,6 +123,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         GetComponent<WallAbility>().unlocked = wall;
     }
 
+    //Reenable activated abilities
     private void SetAbility(string ability) //dash, grapple, wall
     {
         switch(ability)
@@ -134,6 +146,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //cinemachineFreeLook.GetComponent<CinemachineInputProvider>().PlayerIndex = input.playerIndex;
     }
 
+    //Play footsteps, animations, and set Angles
     private void FixedUpdate()
     {
         footSource.Pause();
@@ -212,6 +225,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     {
        controller.Move(force * Time.fixedDeltaTime);
     }
+    
     public void Die(){
         gameObject.GetComponent<CharacterController>().enabled = false;
         UIman.Death();
