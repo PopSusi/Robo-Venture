@@ -146,7 +146,7 @@ public class GrappleAbility : Ability
         int chosen = 0;
         foreach (Collider c in possiblePoints)
         {
-            Vector3 targetDirection = (possiblePoints[i].transform.position - transform.position).normalized;
+            Vector3 targetDirection = (possiblePoints[i].transform.position - cam.transform.position).normalized;
             if(dotMax < Vector3.Dot(cam.transform.forward, targetDirection))
             {
                 dotMax = Vector3.Dot(cam.transform.forward.normalized, targetDirection);
@@ -154,7 +154,7 @@ public class GrappleAbility : Ability
             }
             i++;
         }
-        Debug.Log($"{i} {dotMax} {possiblePoints[chosen].tag}");
+        Debug.Log($"{i} {dotMax} {possiblePoints[chosen].name}");
         return possiblePoints[chosen].gameObject;
     }
 }   
