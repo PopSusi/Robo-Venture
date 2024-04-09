@@ -58,7 +58,7 @@ public class GrappleAbility : Ability
             Collider[] colliders = Physics.OverlapSphere(transform.position, detectDistance, grappleLayers);
             if (colliders.Length > 0)
             {
-                detectedPoint = colliders[0].gameObject;
+                detectedPoint = CheckForSelected(colliders);
                 distanceToGrapple = Vector3.Distance(detectedPoint.transform.position, this.transform.position);
                 float mod = ClampSize(distanceToGrapple);
                 Debug.Log(mod);
@@ -80,7 +80,6 @@ public class GrappleAbility : Ability
             detectedPoint = null;
             grappleUI.SetActive(false);
         }
-        print(detectedPoint.gameObject.tag);
     }
     private void FixedUpdate()
     {
@@ -139,5 +138,23 @@ public class GrappleAbility : Ability
         //VISUALLY SEE DETECTED
         //Gizmos.color = Color.yellow;
         //Gizmos.DrawSphere(transform.position, detectDistance);
+    }
+    private GameObject CheckForSelected(Collider[] possiblePoints)
+    {
+        int i = 0;
+        float dotMax = 0f;
+        int chosen = 0;
+        foreach (Collider c in possiblePoints)
+        {
+            Vector3 targetDirection = (possiblePoints[i].transform.position - cam.transform.position).normalized;
+            if(dotMax < Vector3.Dot(cam.transform.forward, targetDirection))
+            {
+                dotMax = Vector3.Dot(cam.transform.forward.normalized, targetDirection);
+                chosen = i;
+            }
+            i++;
+        }
+        Debug.Log($"{i} {dotMax} {possiblePoints[chosen].name}");
+        return possiblePoints[chosen].gameObject;
     }
 }   
