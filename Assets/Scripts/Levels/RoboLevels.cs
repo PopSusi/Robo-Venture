@@ -31,6 +31,8 @@ public class RoboLevels : LevelData
 	[field: Header("Audio")]//AUDIO
     [Tooltip("Level's background music.")]
     public AudioClip BGM;
+
+    //Establish singleton
     protected virtual void Awake()
     {
 		if (instance == null)
@@ -43,6 +45,9 @@ public class RoboLevels : LevelData
 		}
 		
     }
+    /// <summary>
+    /// Respawn Player at previously set checkpoint
+    /// </summary>
     public virtual void RespawnPlayer(){
 		if (!overrideSpawn)
 		{
