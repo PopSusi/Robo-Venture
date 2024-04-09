@@ -13,10 +13,24 @@ public class CooldownManager : MonoBehaviour
     public Image[] masks;
     Image currMask;
     private int slotsActive = 0;
+
+    //Establish Singleton
     public void Start()
     {
-        CDMInstance = this;
+        if (CDMInstance == null)
+        {
+            CDMInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+    /// <summary>
+    /// Begin Cooldown UI Animation.
+    /// </summary>
+    /// <param name="theSprite">Sprite related to ability.</param>
+    /// <param name="secs">Duration of Cooldown per ability</param>
     public void CooldownMaskStart(Sprite theSprite, float secs)
     {
         slots[slotsActive].sprite = theSprite;
@@ -26,7 +40,8 @@ public class CooldownManager : MonoBehaviour
         slotsActive++;
     }
 
-    public IEnumerator CooldownMask(float time)
+    //Updates Mask, draining from right to left, until it's at 0.
+    IEnumerator CooldownMask(float time)
     {
         if (currMask != null)
         {
