@@ -74,6 +74,7 @@ public class GrappleAbility : Ability
             {
                 grappleUI.SetActive(false);
             }
+            print(detectedPoint.gameObject.tag);
         }
         else
         {
