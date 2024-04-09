@@ -59,6 +59,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public static bool dash, wall, grapple;
     bool invincible;
     public static ThirdPersonPlayerController instance;
+    public int fuelCellsInserted;
+    public int fuelCellsTotal;
+
 	
     //Establish Singleton
 	private void Awake(){
