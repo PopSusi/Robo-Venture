@@ -4022,10 +4022,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2931093833670922481, guid: a491c6d3be81cfb499329a0ac21a3ca5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c379053ad9ba0f340a10dbf1789a6750, type: 2}
     - target: {fileID: 5521670165908360454, guid: a491c6d3be81cfb499329a0ac21a3ca5, type: 3}
       propertyPath: m_Name
       value: Spire
       objectReference: {fileID: 0}
+    - target: {fileID: 8967647228294155464, guid: a491c6d3be81cfb499329a0ac21a3ca5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f18ed33660892ab42b4b7fdc915a00c6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
