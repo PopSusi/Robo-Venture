@@ -1331,8 +1331,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6798746298556715011}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: set_AllModChips
-        m_Mode: 6
+        m_MethodName: SetAllModChips
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1743,13 +1743,13 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6632204939477082165}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6798746298556715011}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetHardMode
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1844,8 +1844,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6798746298556715011}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: set_InfiniteHealth
-        m_Mode: 6
+        m_MethodName: SetInfiniteHealth
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2128,7 +2128,7 @@ RectTransform:
   - {fileID: 7850794487322110587}
   - {fileID: 6557911899878197451}
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

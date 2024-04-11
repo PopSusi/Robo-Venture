@@ -34,7 +34,7 @@ public class GrapplePoint : MonoBehaviour
     /// </summary>
     public void Activate()
     {
-        anchors.gameObject.SetActive(true);
+        //anchors.gameObject.SetActive(true);
         active = true;
     }
 }
