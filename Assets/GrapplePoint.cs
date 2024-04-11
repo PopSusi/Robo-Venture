@@ -26,8 +26,8 @@ public class GrapplePoint : MonoBehaviour
     public void Deactivate()
     {
         active = false;
-        anchors.gameObject.SetActive(false);
-        anchors.transform.GetChild(0).gameObject.SetActive(false);
+        //anchors.gameObject.SetActive(false);
+        //anchors.transform.GetChild(0).gameObject.SetActive(false);
     }
     /// <summary>
     /// Turn on Grapplepoint UI.

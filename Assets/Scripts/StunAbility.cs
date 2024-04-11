@@ -15,6 +15,7 @@ public class StunAbility : Ability
 	Rigidbody projectilRb;
 	[SerializeField] float throwForce;
     Camera cam;
+    [SerializeField]
     LineRenderer lineRenderer;
     [SerializeField]
     int segmentCount=50;
@@ -23,7 +24,7 @@ public class StunAbility : Ability
     // Start is called before the first frame update
     void Start()
     {
-        lineRenderer=GetComponent<LineRenderer>();
+        //lineRenderer=GetComponent<LineRenderer>();
         segments = new Vector3[segmentCount];
         lineRenderer.positionCount=segmentCount;
         anim = GetComponent<Animator>();
