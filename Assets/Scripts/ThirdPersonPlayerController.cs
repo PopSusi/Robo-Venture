@@ -293,12 +293,15 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         sptnsSource.clip = clip;
         sptnsSource.Play();
     }
-    public void InsertFuelCell()
+    public void CheckFuelCellDeposit()
     {
-        fuelCellsInserted++;
-        if (fuelCellsInserted >= 4)
+        if (fuelCellsInserted != fuelCellsTotal)
         {
-            //WIN GAME
+            fuelCellsInserted++;
+            if (fuelCellsInserted >= 4)
+            {
+                UIManager.instance.Win();
+            }
         }
     }
 }
