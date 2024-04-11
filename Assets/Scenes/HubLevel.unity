@@ -581,13 +581,10 @@ Transform:
   - {fileID: 4971780442605108991}
   - {fileID: 820876996}
   - {fileID: 1699362174}
-<<<<<<< Updated upstream
-=======
   - {fileID: 811235234}
   - {fileID: 1158818800}
   - {fileID: 1545944355}
   - {fileID: 1912388698}
->>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -751,8 +748,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 155546df91a829a43bdff127c8764af3, type: 3}
-<<<<<<< Updated upstream
-=======
 --- !u!4 &736635440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5465803657603970213, guid: 155546df91a829a43bdff127c8764af3, type: 3}
@@ -876,7 +871,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811235233}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
->>>>>>> Stashed changes
 --- !u!1001 &820876995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1731,13 +1725,9 @@ MonoBehaviour:
   ControllerMenu: {fileID: 0}
   DeathMenu: {fileID: 0}
   warningUI: {fileID: 0}
-<<<<<<< Updated upstream
-  objUI: {fileID: 0}
-=======
   ObjectiveText: {fileID: 0}
   TutorialText: {fileID: 0}
   InteractText: {fileID: 0}
->>>>>>> Stashed changes
   HPBarMask: {fileID: 0}
   allModChips: 0
   infiniteHealth: 0
