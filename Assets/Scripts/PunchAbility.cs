@@ -12,8 +12,10 @@ public class PunchAbility : Ability
     [SerializeField] private float[] timing;
     [SerializeField]float baseDamage;
     [SerializeField] LayerMask enemyLayer;
+    
     private void Awake()
     {
+        
         Initialize();
         input.actions["Punch"].performed+=OnPunch;
     }
@@ -25,6 +27,9 @@ public class PunchAbility : Ability
             //canAbility = false;
             //GameObject tempbox = Instantiate(hitboxes[punchIndex], transform.position + offset[punchIndex], Quaternion.identity);
             //tempbox.GetComponent<Testboxes>().duration = timing[punchIndex];
+
+            this.transform.rotation = Quaternion.LookRotation(new Vector3(playerController.moveDir.x, 0, playerController.moveDir.y), Vector3.up);
+          
             anim.SetTrigger("Punch");
             //StartCoroutine("PunchDelay");
             StartCoroutine("PunchResetDelay");
