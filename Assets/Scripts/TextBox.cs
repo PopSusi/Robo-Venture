@@ -39,12 +39,12 @@ public class TextBox : MonoBehaviour
     {
         if(myType == TextType.Tutorial)
         {
-            uiMan.TutorialText.enabled = active;
+            uiMan.TutorialText.transform.parent.gameObject.SetActive(active);
             uiMan.TutorialText.text = text;
         }
         else
         {
-            uiMan.ObjectiveText.enabled = active;
+            uiMan.ObjectiveText.gameObject.SetActive(active);
             uiMan.ObjectiveText.text = text;
         }
     }
