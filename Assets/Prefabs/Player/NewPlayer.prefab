@@ -7553,9 +7553,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitySFX: {fileID: 0}
-  cooldown: 0
+  cooldown: 5
   unlocked: 0
   mySprite: {fileID: 0}
+  hitbox: {fileID: 0}
+  lockoutTime: 0
+  punching: 0
 --- !u!114 &1065306777469497874
 MonoBehaviour:
   m_ObjectHideFlags: 0

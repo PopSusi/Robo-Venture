@@ -247,10 +247,10 @@ RectTransform:
   m_Father: {fileID: 3225046011351451079}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.302002, y: -20.158}
-  m_SizeDelta: {x: -1393.197, y: -878.52}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000013351, y: -0.000005722}
+  m_SizeDelta: {x: 620.8241, y: 201.47998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8591210764718091933
 CanvasRenderer:
@@ -1089,7 +1089,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Increased Damage
+  m_Text: Increased Damage Taken
 --- !u!1 &4416803632260476258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,7 +1254,7 @@ GameObject:
   - component: {fileID: 3429097788763269897}
   - component: {fileID: 5138369863787506102}
   m_Layer: 5
-  m_Name: Toggle (2)
+  m_Name: AllMods
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1279,8 +1279,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00025177002, y: -54.274044}
-  m_SizeDelta: {x: 526.8, y: 52.548}
+  m_AnchoredPosition: {x: -15.017, y: -54.274044}
+  m_SizeDelta: {x: 556.83, y: 52.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5138369863787506102
 MonoBehaviour:
@@ -1328,7 +1328,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6798746298556715011}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: set_AllModChips
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &5649319372931561945
 GameObject:
@@ -1656,7 +1668,7 @@ GameObject:
   - component: {fileID: 8504301687222707071}
   - component: {fileID: 2825152632009930562}
   m_Layer: 5
-  m_Name: Toggle (1)
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1681,8 +1693,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00025177002, y: -1.274044}
-  m_SizeDelta: {x: 526.8, y: 52.548}
+  m_AnchoredPosition: {x: -15.018, y: -1.274044}
+  m_SizeDelta: {x: 556.83, y: 52.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2825152632009930562
 MonoBehaviour:
@@ -1730,7 +1742,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6632204939477082165}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &6650114927287071127
 GameObject:
@@ -1743,7 +1767,7 @@ GameObject:
   - component: {fileID: 381471876551573178}
   - component: {fileID: 2184281973335294453}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Inf Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1768,8 +1792,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00025177002, y: 52}
-  m_SizeDelta: {x: 526.8, y: 52.548}
+  m_AnchoredPosition: {x: -15.017509, y: 52}
+  m_SizeDelta: {x: 556.8345, y: 52.548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2184281973335294453
 MonoBehaviour:
@@ -1817,7 +1841,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6798746298556715011}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: set_InfiniteHealth
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &7047658267322812325
 GameObject:
@@ -2092,7 +2128,7 @@ RectTransform:
   - {fileID: 7850794487322110587}
   - {fileID: 6557911899878197451}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2184,9 +2220,9 @@ MonoBehaviour:
   ObjectiveText: {fileID: 484745400470818965}
   TutorialText: {fileID: 5869967911464289213}
   HPBarMask: {fileID: 6614623499855366426}
-  allModChips: 0
-  infiniteHealth: 0
-  hardMode: 0
+  amToggle: {fileID: 5138369863787506102}
+  infHToggle: {fileID: 2184281973335294453}
+  hmToggle: {fileID: 2825152632009930562}
 --- !u!114 &7187465142343786462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4401,7 +4437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2206296505073343239, guid: 073120423b2448a43abb45c87e0f8f13, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3241671830046088343, guid: 073120423b2448a43abb45c87e0f8f13, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -4492,7 +4528,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4002036259857601556, guid: 073120423b2448a43abb45c87e0f8f13, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5428262766643464999, guid: 073120423b2448a43abb45c87e0f8f13, type: 3}
       insertIndex: -1
