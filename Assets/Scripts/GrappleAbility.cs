@@ -25,8 +25,14 @@ public class GrappleAbility : Ability
     GameObject grappleUIPrefab;
     GameObject grappleUI;
     Canvas canvas;
+    [SerializeField]
+    Transform grappleHand;
+    [SerializeField]LineRenderer lineRenderer;
     private void Awake()
     {
+        //lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 2;
+        lineRenderer.enabled = false;
         canvas= (Canvas)Canvas.FindFirstObjectByType(typeof(Canvas));
         
         grappleUI = Instantiate(grappleUIPrefab, canvas.transform);
@@ -68,13 +74,13 @@ public class GrappleAbility : Ability
                     grappleUI.SetActive(true);
                 }
                 grappleUI.transform.position = cam.WorldToScreenPoint(detectedPoint.transform.position);
-
+                print(detectedPoint.gameObject.tag);
             }
             else
             {
                 grappleUI.SetActive(false);
             }
-            print(detectedPoint.gameObject.tag);
+           
         }
         else
         {
@@ -88,15 +94,21 @@ public class GrappleAbility : Ability
         {
             return;
         }
-        distanceToGrapple = Vector3.Distance(grappleTarget, transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, grappleTarget, grappleSpeed * Time.fixedDeltaTime);
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("GrapplePull"))
+        {
+            distanceToGrapple = Vector3.Distance(grappleTarget, transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, grappleTarget, grappleSpeed * Time.fixedDeltaTime);
+        }
         if (Vector3.Distance(grappleTarget, transform.position) <= tolerance)
         {
             GetComponent<Animator>().SetBool("Grapple", false);
             isGrappling = false;
+            lineRenderer.enabled = false;
         }
         else
         {
+            lineRenderer.SetPosition(0, grappleHand.position);
+            lineRenderer.SetPosition(1, grappleTarget);
             transform.rotation = Quaternion.LookRotation(new Vector3((grappleTarget - transform.position).x, 0, (grappleTarget - this.transform.position).z), Vector3.up);
         }
     }
@@ -114,8 +126,10 @@ public class GrappleAbility : Ability
             StartCoroutine("Reenable");
             isGrappling = true;
             anim.SetBool("Grapple", true);
+            lineRenderer.enabled = true;
             StartCooldown();
             CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
+            
         }
     }
     IEnumerator Reenable()

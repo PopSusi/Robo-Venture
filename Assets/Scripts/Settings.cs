@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Settings : MonoBehaviour
+public static class Settings
 {
-    public static bool dash, wall, grapple;
-    public static bool allModChips;
+    public static bool dash=false, wall = false, grapple = false;
+    public static bool allModChips = false;
     public static bool AllModChips
     {
         get { return allModChips; }
@@ -17,7 +17,7 @@ public class Settings : MonoBehaviour
             grapple = value;
         }
     }
-    public static bool infiniteHealth;
+    public static bool infiniteHealth = false;
     public static bool InfiniteHealth
     {
         get { return infiniteHealth; }
@@ -26,7 +26,7 @@ public class Settings : MonoBehaviour
             infiniteHealth = value;
         }
     }
-    public static bool hardMode;
+    public static bool hardMode = false;
     public static bool HardMode
     {
         get { return hardMode; }
@@ -36,20 +36,20 @@ public class Settings : MonoBehaviour
         }
     }
 
-    public static Settings instance;
+    //public static Settings instance;
     // Start is called before the first frame update
-    void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //void Awake()
+    //{
+    //    if(instance == null)
+    //    {
+    //        instance = this;
+    //    }
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
         
-    }
+    //}
 }
