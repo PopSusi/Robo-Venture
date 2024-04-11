@@ -18,7 +18,7 @@ public class FuelCell : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //ADD TO FUEL CELL INVENTORY
+            other.gameObject.GetComponent<ThirdPersonPlayerController>().fuelCellsTotal++;
             myAudio.loop = false;
             myAudio.clip = winSFX;
             myAudio.Play();

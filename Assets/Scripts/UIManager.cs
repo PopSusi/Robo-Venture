@@ -11,7 +11,7 @@ public class UIManager : LevelData
 {
     [Header("Menu Components")][Tooltip("List of Menus that will be referenced.")] public GameObject pauseMenu;
     public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
-    public TextMeshProUGUI warningUI, ObjectiveText, TutorialText;
+    public TextMeshProUGUI warningUI, ObjectiveText, TutorialText, InteractText;
     [Tooltip("Mask to modify HPBar")] public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
     //GameplayComponents
@@ -167,6 +167,10 @@ public class UIManager : LevelData
     public void SetHardMode(bool value)
     {
         Settings.HardMode = value;
+    }
+    public void Interact(bool active)
+    {
+        InteractText.gameObject.SetActive(active);
     }
 
 }
