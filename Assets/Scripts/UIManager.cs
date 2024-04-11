@@ -20,32 +20,20 @@ public class UIManager : LevelData
     private ThirdPersonPlayerController playerRef;
     bool paused;
     public static UIManager instance;
+    [SerializeField] Toggle amToggle;
+    [SerializeField] Toggle infHToggle;
+    [SerializeField] Toggle hmToggle;
 
     private float HPBarMaskSize;
 
     //Options
-    public bool allModChips;
-    public bool AllModChips
-    {
-        get { return allModChips; }
-        set
-        {
-            allModChips = value;
-            if (playerRef != null)
-            {
-                playerRef.OptionsInitialize();
-            }
-        }
-    }
-    public bool infiniteHealth;
-    public bool hardMode;
+    
     // Start is called before the first frame update
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-
         }
         else
         {
@@ -55,11 +43,14 @@ public class UIManager : LevelData
         {
             HPBarMaskSize = HPBarMask.rectTransform.rect.width;
         }
-
+        amToggle.isOn = Settings.AllModChips;
+        infHToggle.isOn = Settings.infiniteHealth;
+        hmToggle.isOn = Settings.hardMode;
+        Debug.Log($"allModChips: {Settings.allModChips}, Infinite Health: {Settings.infiniteHealth}, Hard: {Settings.hardMode}");
     }
     void Start()
     {
-        playerCurr = ThirdPersonPlayerController.instance.gameObject;
+        playerCurr = ThirdPersonPlayerController.instance?.gameObject;
         if (playerCurr == null)
         {
             return;
@@ -165,4 +156,17 @@ public class UIManager : LevelData
         yield return new WaitForSeconds(3f);
         warningUI.gameObject.SetActive(false);
     }
+    public void SetAllModChips(bool value)
+    {
+        Settings.AllModChips = value;
+    }
+    public void SetInfiniteHealth(bool value)
+    {
+        Settings.InfiniteHealth = value;
+    }
+    public void SetHardMode(bool value)
+    {
+        Settings.HardMode = value;
+    }
+
 }

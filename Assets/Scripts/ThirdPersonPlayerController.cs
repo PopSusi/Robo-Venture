@@ -33,7 +33,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     CinemachineFreeLook cinemachineFreeLook;
 	[field: Header("Movement Variables")] [SerializeField] float speed;
     [SerializeField]
-    float accel, airAccel,jumpForce;
+    float accel, airAccel,jumpForce,turnSpeed,coyoteTimeMax;
+    float coyoteTime;
+    bool hasJumped;
     public float Speed { get { return speed; } }
     public float Accel { get { return accel; } }
     public float AirAccel { get { return airAccel; } }
@@ -56,9 +58,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     bool footPaused = true;
     [field: Header("Options Related")]//Options
     [Tooltip("Enable abilities on startup.")]
-    public static bool dash, wall, grapple;
-    bool invincible;
+    bool invincible, moreDamage;
     public static ThirdPersonPlayerController instance;
+    public int fuelCellsInserted;
+    public int fuelCellsTotal;
 	
     //Establish Singleton
 	private void Awake(){
@@ -105,18 +108,13 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 
     public void OptionsInitialize()
     {
-        invincible = UIman.infiniteHealth;
-        if(UIman.allModChips){ //First check for All
-            dash = true;
-            grapple = true;
-            wall = true;
-        } else {
-            //NEED TO FUNCTIONALITY TO READ SAVE FILE AND SEE WHATS ACTIVE
-        }
+        invincible = Settings.InfiniteHealth;
+        moreDamage = Settings.HardMode;
+
         //Enable one by one
-        GetComponent<DashAbility>().unlocked = dash;
-        GetComponent<GrappleAbility>().unlocked = grapple;
-        GetComponent<WallAbility>().unlocked = wall;
+        GetComponent<DashAbility>().unlocked = Settings.dash;
+        GetComponent<GrappleAbility>().unlocked = Settings.grapple;
+        GetComponent<WallAbility>().unlocked = Settings.wall;
     }
 
     //Reenable activated abilities
@@ -147,7 +145,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     {
         footSource.Pause();
         footPaused = true;
-
+        
         Quaternion rot = Quaternion.AngleAxis(cinemachineFreeLook.m_XAxis.Value, Vector3.forward);
         moveDir = Quaternion.Inverse(rot) * moveAction.ReadValue<Vector2>();
         Vector2 targetVelocity = moveDir * speed;
@@ -179,17 +177,21 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         controller.Move(new Vector3(moveVelocity.x, ySpeed, moveVelocity.y) * Time.fixedDeltaTime);
         if (moveAction.IsPressed())
         {
-            this.transform.rotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, turnSpeed*Time.fixedDeltaTime);
         }
         if (!controller.isGrounded)
         {
+            coyoteTime += Time.fixedDeltaTime;
             ySpeed += gravity * Time.fixedDeltaTime;
             anim.SetBool("isFalling", true);
         }
         else
         {
+            coyoteTime = 0;
             anim.SetBool("isFalling", false);
             ySpeed = -0.1f;
+            hasJumped = false;
         }
 
     }
@@ -203,11 +205,13 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     void OnJump(InputAction.CallbackContext context)
     {
         anim.SetTrigger("Jump");
-        if (controller.isGrounded)
+        if (controller.isGrounded||(coyoteTime< coyoteTimeMax&&!hasJumped))
         {
             //print("should jump");
+            //coyoteTime = 0;
             ySpeed = Mathf.Sqrt(jumpForce * -3.0f * gravity);
             //isGrounded = false;
+            hasJumped = true;
         }
     }
     
@@ -225,6 +229,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     }
     public void TakeDamage(float damage)
     {
+        if (moreDamage)
+        {
+            damage++;
+        }
         if (vulnerable && !invincible)
         {
             StopCoroutine("RegenDelay");
@@ -267,22 +275,30 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 
     public void EnableDash()
     {
-        dash = true;
+        Settings.dash = true;
         gameObject.GetComponent<DashAbility>().unlocked = true;
     }
     public void EnableGrapple()
     {
-        dash = true;
+        Settings.grapple = true;
         gameObject.GetComponent<GrappleAbility>().unlocked = true;
     }
     public void EnableWall()
     {
-        dash = true;
+        Settings.wall = true;
         gameObject.GetComponent<WallAbility>().unlocked = true;
     }
     public void PlaySound(AudioClip clip)
     {
         sptnsSource.clip = clip;
         sptnsSource.Play();
+    }
+    public void InsertFuelCell()
+    {
+        fuelCellsInserted++;
+        if (fuelCellsInserted >= 4)
+        {
+            //WIN GAME
+        }
     }
 }
