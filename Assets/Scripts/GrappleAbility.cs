@@ -74,13 +74,13 @@ public class GrappleAbility : Ability
                     grappleUI.SetActive(true);
                 }
                 grappleUI.transform.position = cam.WorldToScreenPoint(detectedPoint.transform.position);
-
+                print(detectedPoint.gameObject.tag);
             }
             else
             {
                 grappleUI.SetActive(false);
             }
-            print(detectedPoint.gameObject.tag);
+           
         }
         else
         {
