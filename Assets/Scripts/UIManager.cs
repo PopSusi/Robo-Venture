@@ -10,8 +10,13 @@ using TMPro;
 public class UIManager : LevelData
 {
     [Header("Menu Components")][Tooltip("List of Menus that will be referenced.")] public GameObject pauseMenu;
+<<<<<<< Updated upstream
     public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
     public TextMeshProUGUI warningUI, ObjectiveText, TutorialText;
+=======
+    public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu, DeathMenu;
+    public TextMeshProUGUI warningUI, ObjectiveText, TutorialText, InteractText;
+>>>>>>> Stashed changes
     [Tooltip("Mask to modify HPBar")] public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
     //GameplayComponents
@@ -82,6 +87,7 @@ public class UIManager : LevelData
     public void LoadGame(string level) //yay
     {
         string tempString = level + "Level";
+        Time.timeScale = 1f;
         SceneManager.LoadScene(tempString, LoadSceneMode.Single);
     }
 
@@ -131,14 +137,14 @@ public class UIManager : LevelData
         Time.timeScale = 0f;
         warningUI.gameObject.SetActive(true);
         warningUI.text = "Try Again?";
-        verifyMenu.gameObject.SetActive(true);
+        DeathMenu.gameObject.SetActive(true);
     }
     public void Win()
     {
         Time.timeScale = 0f;
         warningUI.gameObject.SetActive(true);
-        warningUI.text = "You've gotten the Fuel Cell! Wanna play again?";
-        verifyMenu.gameObject.SetActive(true);
+        warningUI.text = "You've gotten all the Fuel Cell! Wanna play again?";
+        DeathMenu.gameObject.SetActive(true);
     }
     public void Retry()
     {

@@ -221,7 +221,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     }
     
     public void Die(){
-        gameObject.GetComponent<CharacterController>().enabled = false;
+        //gameObject.GetComponent<CharacterController>().enabled = false;
         UIman.Death();
         Debug.Log("Death");
         sptnsSource.clip = lose;
