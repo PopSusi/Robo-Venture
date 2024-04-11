@@ -10,13 +10,8 @@ using TMPro;
 public class UIManager : LevelData
 {
     [Header("Menu Components")][Tooltip("List of Menus that will be referenced.")] public GameObject pauseMenu;
-<<<<<<< Updated upstream
-    public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
-    public TextMeshProUGUI warningUI, ObjectiveText, TutorialText;
-=======
     public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu, DeathMenu;
-    public TextMeshProUGUI warningUI, ObjectiveText, TutorialText, InteractText;
->>>>>>> Stashed changes
+    public TextMeshProUGUI warningUI, ObjectiveText, TutorialText;
     [Tooltip("Mask to modify HPBar")] public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
     //GameplayComponents
