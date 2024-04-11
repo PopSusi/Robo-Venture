@@ -50,7 +50,7 @@ public class UIManager : LevelData
     }
     void Start()
     {
-        playerCurr = ThirdPersonPlayerController.instance.gameObject;
+        playerCurr = ThirdPersonPlayerController.instance?.gameObject;
         if (playerCurr == null)
         {
             return;
