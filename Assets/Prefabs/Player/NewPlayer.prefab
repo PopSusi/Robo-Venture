@@ -7416,6 +7416,10 @@ MonoBehaviour:
   - 0.1
   - 0.2
   - 0.3
+  baseDamage: 5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!82 &6075748616679825677
 AudioSource:
   m_ObjectHideFlags: 0
