@@ -66,6 +66,8 @@ public class Enemy : MonoBehaviour, Damageable
                 scndryAudio.clip = hitSFX;
                 scndryAudio.Play();
                 StartCoroutine("DamageDelay");
+                agent.speed = 1f;
+                StartCoroutine("MovementLockout");
             } else {
                 GetComponent<Collider>().enabled = false;
                 Debug.Log("Dead");
@@ -84,7 +86,12 @@ public class Enemy : MonoBehaviour, Damageable
         yield return wait;
         Die();
     }
-    private void FixedUpdate()
+    private IEnumerator MovementLockout()
+    {
+        yield return new WaitForSeconds(.3f);
+        agent.speed = 10f;
+    }
+        private void FixedUpdate()
     {
         if (combat)
         {
