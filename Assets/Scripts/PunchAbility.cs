@@ -10,7 +10,8 @@ public class PunchAbility : Ability
     [SerializeField] private GameObject[] hitboxes;
     [SerializeField] private Vector3[] offset;
     [SerializeField] private float[] timing;
-
+    [SerializeField]float baseDamage;
+    [SerializeField] LayerMask enemyLayer;
     private void Awake()
     {
         Initialize();
@@ -32,6 +33,16 @@ public class PunchAbility : Ability
             punchIndex %= 3; //Cycle Through Punch 2/2 
             gameObject.GetComponent<ThirdPersonPlayerController>().PlaySound(abilitySFX);
         }
+    }
+    void PunchHit(float damageMulti)
+    {
+        print("is punching");
+        RaycastHit[] hits= Physics.BoxCastAll(this.transform.position+Vector3.up+this.transform.forward,Vector3.one,this.transform.forward,this.transform.rotation,1, enemyLayer);
+       foreach(RaycastHit hit in hits)
+       {
+            hit.collider.GetComponent<Damageable>()?.TakeDamage(damageMulti* baseDamage);
+            print("hit "+ hit);
+       } 
     }
     IEnumerator PunchDelay(){
         yield return new WaitForSeconds(timing[punchIndex]);
