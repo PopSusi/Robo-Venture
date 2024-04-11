@@ -9,6 +9,7 @@ TagManager:
   - LevelGM
   - FuellCell
   - Terrain
+  - DestroyableWall
   layers:
   - Default
   - TransparentFX

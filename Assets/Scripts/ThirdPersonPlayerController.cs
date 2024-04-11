@@ -58,8 +58,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     bool footPaused = true;
     [field: Header("Options Related")]//Options
     [Tooltip("Enable abilities on startup.")]
-    public static bool dash, wall, grapple;
-    bool invincible;
+    bool invincible, moreDamage;
     public static ThirdPersonPlayerController instance;
     public int fuelCellsInserted;
     public int fuelCellsTotal;
@@ -109,18 +108,13 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 
     public void OptionsInitialize()
     {
-        invincible = UIman.infiniteHealth;
-        if(UIman.allModChips){ //First check for All
-            dash = true;
-            grapple = true;
-            wall = true;
-        } else {
-            //NEED TO FUNCTIONALITY TO READ SAVE FILE AND SEE WHATS ACTIVE
-        }
+        invincible = Settings.InfiniteHealth;
+        moreDamage = Settings.HardMode;
+
         //Enable one by one
-        GetComponent<DashAbility>().unlocked = dash;
-        GetComponent<GrappleAbility>().unlocked = grapple;
-        GetComponent<WallAbility>().unlocked = wall;
+        GetComponent<DashAbility>().unlocked = Settings.dash;
+        GetComponent<GrappleAbility>().unlocked = Settings.grapple;
+        GetComponent<WallAbility>().unlocked = Settings.wall;
     }
 
     //Reenable activated abilities
@@ -235,6 +229,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     }
     public void TakeDamage(float damage)
     {
+        if (moreDamage)
+        {
+            damage++;
+        }
         if (vulnerable && !invincible)
         {
             StopCoroutine("RegenDelay");
@@ -277,22 +275,30 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 
     public void EnableDash()
     {
-        dash = true;
+        Settings.dash = true;
         gameObject.GetComponent<DashAbility>().unlocked = true;
     }
     public void EnableGrapple()
     {
-        dash = true;
+        Settings.grapple = true;
         gameObject.GetComponent<GrappleAbility>().unlocked = true;
     }
     public void EnableWall()
     {
-        dash = true;
+        Settings.wall = true;
         gameObject.GetComponent<WallAbility>().unlocked = true;
     }
     public void PlaySound(AudioClip clip)
     {
         sptnsSource.clip = clip;
         sptnsSource.Play();
+    }
+    public void InsertFuelCell()
+    {
+        fuelCellsInserted++;
+        if (fuelCellsInserted >= 4)
+        {
+            //WIN GAME
+        }
     }
 }

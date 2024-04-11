@@ -7206,6 +7206,8 @@ MonoBehaviour:
   hitVariant: {fileID: 0}
   footSteps: {fileID: 0}
   lose: {fileID: 0}
+  fuelCellsInserted: 0
+  fuelCellsTotal: 0
 --- !u!114 &3506694460168792469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7385,13 +7387,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitySFX: {fileID: 0}
-  cooldown: 0
-  unlocked: 0
+  cooldown: 2
+  unlocked: 1
   mySprite: {fileID: 0}
-  grappleDistance: 5
-  detectDistance: 10
+  grappleDistance: 8
+  detectDistance: 15
   isGrappling: 0
-  grappleSpeed: 25
+  grappleSpeed: 15
   grappleLayers:
     serializedVersion: 2
     m_Bits: 16384
@@ -7411,9 +7413,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitySFX: {fileID: 0}
-  cooldown: 0
+  cooldown: 5
   unlocked: 0
   mySprite: {fileID: 0}
+  hitbox: {fileID: 0}
+  lockoutTime: 0
+  punching: 0
 --- !u!114 &1065306777469497874
 MonoBehaviour:
   m_ObjectHideFlags: 0
