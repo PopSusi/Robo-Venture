@@ -2128,7 +2128,7 @@ RectTransform:
   - {fileID: 7850794487322110587}
   - {fileID: 6557911899878197451}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4395,7 +4395,7 @@ PrefabInstance:
     - target: {fileID: 6068712578774960845, guid: 705cabc1910c7aa4c86786a32a66f42b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 8722043663354598887}
+      objectReference: {fileID: 6904191174237484934}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4554,6 +4554,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1908287478898243995}
     m_Modifications:
+    - target: {fileID: 350970058665910384, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6016372002237198402}
+    - target: {fileID: 350970058665910384, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6904191174237484934}
     - target: {fileID: 1024668881559757897, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4638,6 +4646,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2199771992231013014, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 345004925417408913}
+    - target: {fileID: 2199771992231013014, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6904191174237484934}
     - target: {fileID: 3718496124005876260, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
       propertyPath: m_Name
       value: How To Play
@@ -4818,7 +4834,7 @@ PrefabInstance:
     - target: {fileID: 1093435756558651964, guid: d85d396efcddf7843aba6b0fec2d7728, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 8722043663354598887}
+      objectReference: {fileID: 6904191174237484934}
     - target: {fileID: 6262330757151642139, guid: d85d396efcddf7843aba6b0fec2d7728, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
