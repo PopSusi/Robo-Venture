@@ -2555,7 +2555,7 @@ RectTransform:
   - {fileID: 6557911899878197451}
   - {fileID: 2662028217535020315}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2647,7 +2647,6 @@ MonoBehaviour:
   warningUI: {fileID: 1219376933939537200}
   ObjectiveText: {fileID: 484745400470818965}
   TutorialText: {fileID: 5869967911464289213}
-  InteractText: {fileID: 0}
   HPBarMask: {fileID: 6614623499855366426}
   amToggle: {fileID: 5138369863787506102}
   infHToggle: {fileID: 2184281973335294453}
@@ -2713,6 +2712,7 @@ RectTransform:
   - {fileID: 1380109470391750096}
   - {fileID: 5699219752637880016}
   - {fileID: 1671107841920611848}
+  - {fileID: 5888554986807841028}
   m_Father: {fileID: 1908287478898243995}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2886,7 +2886,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -749, y: -472.18585}
+  m_AnchoredPosition: {x: -749, y: -473}
   m_SizeDelta: {x: 160, y: 44.5277}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5246219013098055440
@@ -5471,9 +5471,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 6904191174237484934}
+    - target: {fileID: 2300162734164219647, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1732
+      objectReference: {fileID: 0}
     - target: {fileID: 3718496124005876260, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
       propertyPath: m_Name
       value: How To Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718496124005876260, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4429739979006184261, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target

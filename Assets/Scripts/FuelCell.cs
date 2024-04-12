@@ -22,6 +22,7 @@ public class FuelCell : MonoBehaviour
             myAudio.loop = false;
             myAudio.clip = winSFX;
             myAudio.Play();
+            Destroy(this.gameObject);
         }
     }
 }

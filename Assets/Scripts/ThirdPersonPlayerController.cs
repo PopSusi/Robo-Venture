@@ -62,6 +62,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public static ThirdPersonPlayerController instance;
     public int fuelCellsInserted;
     public int fuelCellsTotal;
+    public int coinsCollected;
+    int coinsTotal = 3;
 	
     //Establish Singleton
 	private void Awake(){
