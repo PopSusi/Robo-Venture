@@ -10,7 +10,7 @@ using TMPro;
 public class UIManager : LevelData
 {
     [Header("Menu Components")][Tooltip("List of Menus that will be referenced.")] public GameObject pauseMenu;
-    public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu;
+    public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu, DeathMenu;
     public TextMeshProUGUI warningUI, ObjectiveText, TutorialText;
     [Tooltip("Mask to modify HPBar")] public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
@@ -20,32 +20,20 @@ public class UIManager : LevelData
     private ThirdPersonPlayerController playerRef;
     bool paused;
     public static UIManager instance;
+    [SerializeField] Toggle amToggle;
+    [SerializeField] Toggle infHToggle;
+    [SerializeField] Toggle hmToggle;
 
     private float HPBarMaskSize;
 
     //Options
-    public bool allModChips;
-    public bool AllModChips
-    {
-        get { return allModChips; }
-        set
-        {
-            allModChips = value;
-            if (playerRef != null)
-            {
-                playerRef.OptionsInitialize();
-            }
-        }
-    }
-    public bool infiniteHealth;
-    public bool hardMode;
+    
     // Start is called before the first frame update
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-
         }
         else
         {
@@ -55,11 +43,14 @@ public class UIManager : LevelData
         {
             HPBarMaskSize = HPBarMask.rectTransform.rect.width;
         }
-
+        amToggle.isOn = Settings.AllModChips;
+        infHToggle.isOn = Settings.infiniteHealth;
+        hmToggle.isOn = Settings.hardMode;
+        Debug.Log($"allModChips: {Settings.allModChips}, Infinite Health: {Settings.infiniteHealth}, Hard: {Settings.hardMode}");
     }
     void Start()
     {
-        playerCurr = ThirdPersonPlayerController.instance.gameObject;
+        playerCurr = ThirdPersonPlayerController.instance?.gameObject;
         if (playerCurr == null)
         {
             return;
@@ -91,6 +82,7 @@ public class UIManager : LevelData
     public void LoadGame(string level) //yay
     {
         string tempString = level + "Level";
+        Time.timeScale = 1f;
         SceneManager.LoadScene(tempString, LoadSceneMode.Single);
     }
 
@@ -140,14 +132,14 @@ public class UIManager : LevelData
         Time.timeScale = 0f;
         warningUI.gameObject.SetActive(true);
         warningUI.text = "Try Again?";
-        verifyMenu.gameObject.SetActive(true);
+        DeathMenu.gameObject.SetActive(true);
     }
     public void Win()
     {
         Time.timeScale = 0f;
         warningUI.gameObject.SetActive(true);
-        warningUI.text = "You've gotten the Fuel Cell! Wanna play again?";
-        verifyMenu.gameObject.SetActive(true);
+        warningUI.text = "You've gotten all the Fuel Cell! Wanna play again?";
+        DeathMenu.gameObject.SetActive(true);
     }
     public void Retry()
     {
@@ -165,4 +157,17 @@ public class UIManager : LevelData
         yield return new WaitForSeconds(3f);
         warningUI.gameObject.SetActive(false);
     }
+    public void SetAllModChips(bool value)
+    {
+        Settings.AllModChips = value;
+    }
+    public void SetInfiniteHealth(bool value)
+    {
+        Settings.InfiniteHealth = value;
+    }
+    public void SetHardMode(bool value)
+    {
+        Settings.HardMode = value;
+    }
+
 }
