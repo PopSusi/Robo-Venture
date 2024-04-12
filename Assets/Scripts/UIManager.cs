@@ -47,25 +47,26 @@ public class UIManager : LevelData
         infHToggle.isOn = Settings.infiniteHealth;
         hmToggle.isOn = Settings.hardMode;
         Debug.Log($"allModChips: {Settings.allModChips}, Infinite Health: {Settings.infiniteHealth}, Hard: {Settings.hardMode}");
+        StartCoroutine("PlayerSetup");
     }
-    void Start()
+    IEnumerator PlayerSetup()
     {
+        yield return new WaitForSeconds( .1f );
         playerCurr = ThirdPersonPlayerController.instance?.gameObject;
-        if (playerCurr == null)
+        if (playerCurr != null)
         {
-            return;
+            playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
+            input = playerCurr.GetComponent<PlayerInput>();
+            print(input);
+            //Need to switch and switch back to set Pause for UI and Player maps
+
+            input.actions["Pause"].performed += OnPause;
+
+            //input.SwitchCurrentActionMap("UI");
+            //input.actions["Pause"].performed+=OnPause;
+            //input.SwitchCurrentActionMap("Player");
+            FillList();
         }
-        playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
-        input = playerCurr.GetComponent<PlayerInput>();
-        print(input);
-        //Need to switch and switch back to set Pause for UI and Player maps
-
-        input.actions["Pause"].performed+=OnPause;
-
-        //input.SwitchCurrentActionMap("UI");
-        //input.actions["Pause"].performed+=OnPause;
-        //input.SwitchCurrentActionMap("Player");
-        FillList();
     }
 
 
@@ -160,14 +161,17 @@ public class UIManager : LevelData
     public void SetAllModChips(bool value)
     {
         Settings.AllModChips = value;
+        playerRef.OptionsInitialize();
     }
     public void SetInfiniteHealth(bool value)
     {
         Settings.InfiniteHealth = value;
+        playerRef.OptionsInitialize();
     }
     public void SetHardMode(bool value)
     {
         Settings.HardMode = value;
+        playerRef.OptionsInitialize();
     }
     public void UpdateCoins(int coins)
     {
