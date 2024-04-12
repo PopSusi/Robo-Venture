@@ -15,7 +15,7 @@ public class Coin : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             UIManager.instance.CoinAlert();
-            other.gameObject.GetComponent<ThirdPersonPlayerController>().coinsCollected++;
+            other.gameObject.GetComponent<ThirdPersonPlayerController>().CoinsCollected++;
             Destroy(gameObject);
         }
     }

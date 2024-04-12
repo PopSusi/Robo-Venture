@@ -3137,6 +3137,8 @@ MonoBehaviour:
   warningUI: {fileID: 1219376933939537200}
   ObjectiveText: {fileID: 484745400470818965}
   TutorialText: {fileID: 5869967911464289213}
+  CoinTracker: {fileID: 2656375117499088744}
+  FuelTracker: {fileID: 1823978171309400494}
   HPBarMask: {fileID: 6614623499855366426}
   amToggle: {fileID: 5138369863787506102}
   infHToggle: {fileID: 2184281973335294453}
