@@ -15,6 +15,7 @@ public class MusicManager : MonoBehaviour
         instance = this;
         RoboLevels GM = RoboLevels.instance;
         levelMusic = GM.BGM;
+        levelSource = GetComponent<AudioSource>();
         levelSource.clip = levelMusic;
         levelSource.Play();
     }

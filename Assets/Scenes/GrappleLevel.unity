@@ -279,7 +279,7 @@ MonoBehaviour:
   chkpntIndexLevels: 0
   overrideSpawn: 0
   overrideSpawnIndex: 0
-  BGM: {fileID: 0}
+  BGM: {fileID: 8300000, guid: a369e9594f3326948a01d453bdbf68e4, type: 3}
 --- !u!1001 &178442584
 PrefabInstance:
   m_ObjectHideFlags: 0
