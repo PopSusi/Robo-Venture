@@ -21,6 +21,7 @@ public class TPWall : LevelData
     }
     private void LoadLevel()
     {
+        Settings.PrevLevel = RoboLevels.instance.currLevel;
         string tempString = destination.ToString() + "Level";
         SceneManager.LoadScene(tempString);
     }

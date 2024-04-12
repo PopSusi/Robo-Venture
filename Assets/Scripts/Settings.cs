@@ -35,7 +35,12 @@ public static class Settings
             hardMode = value;
         }
     }
-
+    public static RoboLevels.Levels prevLevel = RoboLevels.Levels.Hub;
+    public static RoboLevels.Levels PrevLevel
+    {
+        get { return prevLevel; }
+        set { prevLevel = value; }
+    }
     //public static Settings instance;
     // Start is called before the first frame update
     //void Awake()
@@ -50,6 +55,6 @@ public static class Settings
     //// Update is called once per frame
     //void Update()
     //{
-        
+
     //}
 }

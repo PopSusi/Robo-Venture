@@ -991,11 +991,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4556753790060900202, guid: 69b95408ef0c5b44db8f75440c37c5ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.490013
+      value: 14.32
       objectReference: {fileID: 0}
     - target: {fileID: 4556753790060900202, guid: 69b95408ef0c5b44db8f75440c37c5ad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -220.8
+      value: -213.5
       objectReference: {fileID: 0}
     - target: {fileID: 4556753790060900202, guid: 69b95408ef0c5b44db8f75440c37c5ad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1027,7 +1027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6218610619097171795, guid: 69b95408ef0c5b44db8f75440c37c5ad, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4547,6 +4547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6cd4b4cee9384eaaa26030f1fdaf4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currLevel: 0
   playerPrefab: {fileID: 5596782781790131269, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
   playerCurr: {fileID: 0}
   GOobjUI: {fileID: 0}

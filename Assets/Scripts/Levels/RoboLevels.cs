@@ -6,7 +6,7 @@ public class RoboLevels : LevelData
 {
     
 	[field: Header("Level Setup")]//LEVEL
-    public static Levels currLevel = Levels.Hub;
+    public Levels currLevel;
 	public static RoboLevels instance;
     [Tooltip("Player prefab to spawn.")]
     public GameObject playerPrefab;
@@ -44,6 +44,10 @@ public class RoboLevels : LevelData
 			Destroy(gameObject);
 		}
 		
+    }
+    protected void Start()
+    {
+        RespawnPlayer();
     }
     /// <summary>
     /// Respawn Player at previously set checkpoint

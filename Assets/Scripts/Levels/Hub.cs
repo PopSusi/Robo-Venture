@@ -8,13 +8,13 @@ public class Hub : RoboLevels
     // Start is called before the first frame update
     void Start()
     {
-        int temp = (int) currLevel;
+        chkpntIndexLevels = (int) Settings.prevLevel;
         if (overrideSpawn)
         {
-	        Instantiate(playerPrefab, spawnPoints[temp].position, spawnPoints[temp].rotation);
+            chkpntIndexLevels = overrideSpawnIndex;
         }
-        FindPlayer();
-		Debug.Log("Fuck you");
+        base.Start();
+        Debug.Log("Fuck you");
     }
 
     // Update is called once per frame

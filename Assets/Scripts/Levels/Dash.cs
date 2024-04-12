@@ -7,12 +7,12 @@ public class Dash : RoboLevels
     protected override void Awake()
     {
         base.Awake();
-        RespawnPlayer();
+        
     }
     // Start is called before the first frame update
     void Start()
     {
-       
+       base.Start();
     }
 
     // Update is called once per frame
