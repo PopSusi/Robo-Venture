@@ -62,8 +62,25 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public static ThirdPersonPlayerController instance;
     public int fuelCellsInserted;
     public int fuelCellsTotal;
+    public int FuelCellsInserted
+    {
+        get { return fuelCellsInserted; }
+        set
+        {
+            fuelCellsInserted = value;
+            UIman.UpdateFuel(fuelCellsInserted);
+        }
+    }
     public int coinsCollected;
+    public int CoinsCollected
+    {
+        get { return coinsCollected; }
+        set { coinsCollected = value;
+            UIman.UpdateCoins(coinsCollected);
+        }
+    }
     int coinsTotal = 3;
+    
 	
     //Establish Singleton
 	private void Awake(){

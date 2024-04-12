@@ -11,7 +11,7 @@ public class UIManager : LevelData
 {
     [Header("Menu Components")][Tooltip("List of Menus that will be referenced.")] public GameObject pauseMenu;
     public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu, DeathMenu;
-    public TextMeshProUGUI warningUI, ObjectiveText, TutorialText;
+    public TextMeshProUGUI warningUI, ObjectiveText, TutorialText, CoinTracker, FuelTracker;
     [Tooltip("Mask to modify HPBar")] public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
     //GameplayComponents
@@ -168,6 +168,14 @@ public class UIManager : LevelData
     public void SetHardMode(bool value)
     {
         Settings.HardMode = value;
+    }
+    public void UpdateCoins(int coins)
+    {
+        CoinTracker.text = $"Big Coins: {coins} / 3";
+    }
+    public void UpdateFuel(int fuel)
+    {
+        FuelTracker.text = $"Fuel Cells: {fuel} / 4";
     }
 
 }
