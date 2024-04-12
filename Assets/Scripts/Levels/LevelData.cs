@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LevelData : MonoBehaviour
 {
-    public enum Levels
-    {
-        Hub,
-        Dash,
-        Grapple,
-        Wall
+    public enum Levels:
+    int {
+        Hub = 0,
+        Dash = 1,
+        Grapple = 2,
+        Wall = 3
     };
 }

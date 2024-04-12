@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f94b27d9eac64745abd82f4a62a6ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currLevel: 2
   playerPrefab: {fileID: 5596782781790131269, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
   playerCurr: {fileID: 0}
   GOobjUI: {fileID: 0}

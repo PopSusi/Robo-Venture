@@ -14,7 +14,8 @@ public class Hub : RoboLevels
             chkpntIndexLevels = overrideSpawnIndex;
         }
         base.Start();
-        Debug.Log("Fuck you");
+        Debug.Log(chkpntIndexLevels);
+        Debug.Log(Settings.prevLevel);
     }
 
     // Update is called once per frame

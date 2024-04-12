@@ -1564,7 +1564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5952525274504874969, guid: b576d05153a6aea428f87f581fafa9e8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6937139169445551284, guid: b576d05153a6aea428f87f581fafa9e8, type: 3}
       propertyPath: m_Type
@@ -4692,7 +4692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6cd4b4cee9384eaaa26030f1fdaf4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currLevel: 0
+  currLevel: 1
   playerPrefab: {fileID: 5596782781790131269, guid: 18f622a2f8d670e41a9eca8ea399359d, type: 3}
   playerCurr: {fileID: 0}
   GOobjUI: {fileID: 0}
