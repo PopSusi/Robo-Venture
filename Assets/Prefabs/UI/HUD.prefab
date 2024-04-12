@@ -4679,6 +4679,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: How To Play
       objectReference: {fileID: 0}
+    - target: {fileID: 3718496124005876260, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4429739979006184261, guid: 386aaec5f2f62e244ae06a51b18cbbe6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
