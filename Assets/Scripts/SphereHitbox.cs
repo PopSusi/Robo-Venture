@@ -12,13 +12,14 @@ public class SphereHitbox : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DestroyableWall"))
         {
-            foreach(Transform aChild in other.transform)
+            /*foreach(Transform aChild in other.transform)
             {
                 Rigidbody otherRb = aChild.gameObject.
                     GetComponent<Rigidbody>();
                 otherRb.isKinematic = false;
                 otherRb.AddExplosionForce(10, this.transform.position, this.transform.localScale.x);
-            }
+            }*/
+            other.gameObject.GetComponent<DestroyableWall>().Destroy();
         } 
         else if (other.gameObject.CompareTag("Enemy"))
         {
