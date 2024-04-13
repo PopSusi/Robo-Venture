@@ -62,9 +62,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public static ThirdPersonPlayerController instance;
     public int fuelCellsInserted;
     public int fuelCellsTotal;
-	
+    Quaternion targetRotation;
     //Establish Singleton
-	private void Awake(){
+    private void Awake(){
         if (instance == null)
         {
             instance = this;
@@ -177,9 +177,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         controller.Move(new Vector3(moveVelocity.x, ySpeed, moveVelocity.y) * Time.fixedDeltaTime);
         if (moveAction.IsPressed())
         {
-            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
-            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, turnSpeed*Time.fixedDeltaTime);
+            targetRotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
+            
         }
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
         if (!controller.isGrounded)
         {
             coyoteTime += Time.fixedDeltaTime;
