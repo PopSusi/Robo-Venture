@@ -133,7 +133,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //Enable one by one
         GetComponent<DashAbility>().unlocked = Settings.dash;
         GetComponent<GrappleAbility>().unlocked = Settings.grapple;
-        GetComponent<WallAbility>().unlocked = Settings.wall;
+        GetComponent<ChargeAbility>().unlocked = Settings.wall;
     }
 
     //Reenable activated abilities
@@ -148,7 +148,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
                 GetComponent<GrappleAbility>().unlocked = true;
                 break;
             case "wall":
-                GetComponent<WallAbility>().unlocked = true;
+                GetComponent<ChargeAbility>().unlocked = true;
                 break;
             default:
                 break;
@@ -306,7 +306,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public void EnableWall()
     {
         Settings.wall = true;
-        gameObject.GetComponent<WallAbility>().unlocked = true;
+        gameObject.GetComponent<ChargeAbility>().unlocked = true;
     }
     public void PlaySound(AudioClip clip)
     {

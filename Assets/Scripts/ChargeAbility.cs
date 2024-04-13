@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WallAbility : Ability
+public class ChargeAbility : Ability
 {
     [SerializeField] GameObject hitbox;
     [SerializeField] float lockoutTime;
@@ -25,9 +25,11 @@ public class WallAbility : Ability
     { 
         if(context.interaction is UnityEngine.InputSystem.Interactions.HoldInteraction)
         {
+            Debug.Log("Held");
             if (canAbility && !punching)
             {
-                StartChargePunch();
+                StartCoroutine("StartChargePunch");
+                Debug.Log("Activated");
             }
         }
     }
@@ -35,11 +37,12 @@ public class WallAbility : Ability
     IEnumerator StartChargePunch()
     {
         punching = true;
-        //RETURN MOVEMENT CONTROLS
+        //REMOVE MOVEMENT CONTROLS
         //BACK TO ANIMATION STATE
         WaitForSeconds wait = new WaitForSeconds(lockoutTime);
         yield return wait;
         ChargePunch();
+        Debug.Log("BIG PUNCH");
     }
 
     //Public method for other moves to end ability (like jumping or dashing)
@@ -64,5 +67,6 @@ public class WallAbility : Ability
         punching = false;
         StartCooldown();
         CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
+        Debug.Log("Should Spawn");
     }
 }
