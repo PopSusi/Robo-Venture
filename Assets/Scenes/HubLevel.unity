@@ -1864,6 +1864,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5465803657603970213, guid: 155546df91a829a43bdff127c8764af3, type: 3}
   m_PrefabInstance: {fileID: 569830830}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1863688620
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 91.82158
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15.116124
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 52.55636
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 176.93858
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25113678
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -272.46985
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8007733
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5989675
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 73.592
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822545561199115561, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288748660070004308, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: text
+      value: Use the left click to punch enemies! Using right click will throw a
+        grenade, hurting multiple at once!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463139123001694317, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: m_Name
+      value: TextBox
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
 --- !u!4 &1912388698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6635182658118842322, guid: 548c63526c4451f448f2b2638a8ea9a5, type: 3}
