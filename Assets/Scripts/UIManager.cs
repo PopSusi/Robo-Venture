@@ -91,7 +91,10 @@ public class UIManager : LevelData
     {
         string tempString = level + "Level";
         Time.timeScale = 1f;
-        Settings.prevLevel = RoboLevels.instance.currLevel;
+        if (RoboLevels.instance!= null)
+        {
+            Settings.prevLevel = RoboLevels.instance.currLevel;
+        }
         SceneManager.LoadScene(tempString, LoadSceneMode.Single);
     }
 
@@ -177,7 +180,7 @@ public class UIManager : LevelData
     public void SetAllModChips(bool value)
     {
         Settings.AllModChips = value;
-        allModChipIcon.gameObject.SetActive(value);
+        if (allModChipIcon != null) { allModChipIcon.gameObject.SetActive(value); }
         playerRef.OptionsInitialize();
     }
     public void SetInfiniteHealth(bool value)
