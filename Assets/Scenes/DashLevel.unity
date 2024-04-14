@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1023032536}
-  m_IndirectSpecularColor: {r: 0.016217798, g: 0.084929, b: 0.23125175, a: 1}
+  m_IndirectSpecularColor: {r: 0.016214343, g: 0.08491228, b: 0.23120886, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1419,7 +1419,7 @@ GameObject:
   m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &461586085
 Transform:
@@ -3381,7 +3381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shimmerSFX: {fileID: 8300000, guid: 2a7bc86df3056cf4687d6ab34d38fa1c, type: 3}
-  winSFX: {fileID: 8300000, guid: be112ff94f4ae98458bb38c28a1cffd6, type: 3}
+  myAudio: {fileID: 0}
 --- !u!135 &1461553562
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,9 +21,12 @@ public class StunAbility : Ability
     int segmentCount=50;
     Vector3[] segments;
     float curveLength = 3.5f;
+    [SerializeField]
+    CinemachineFreeLook freeLook;
     // Start is called before the first frame update
     void Start()
     {
+        //freeLook
         //lineRenderer=GetComponent<LineRenderer>();
         segments = new Vector3[segmentCount];
         lineRenderer.positionCount=segmentCount;
@@ -46,8 +50,11 @@ public class StunAbility : Ability
         if(active){
             //DRAW THE VISUALIZATION LINE
             //Debug.Log("held");
-            //this.transform.rotation = Quaternion.LookRotation(new Vector3(cam.transform.forward.x, 0, cam.transform.forward.y), Vector3.up);
+            //Quaternion rot = ;
+            this.transform.rotation = Quaternion.AngleAxis(freeLook.m_XAxis.Value, Vector3.up);
+            //this.transform.rotation = freeLook.m_XAxis.Value;
             TrajectoryLine();
+            //this.transform.rotation =
         }
         else
         {
