@@ -10,7 +10,7 @@ using TMPro;
 public class UIManager : LevelData
 {
     [Header("Menu Components")][Tooltip("List of Menus that will be referenced.")] public GameObject pauseMenu;
-    public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu, DeathMenu;
+    public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu, DeathMenu, returnToHubUI, FuelCellMenu;
     public TextMeshProUGUI warningUI, ObjectiveText, TutorialText, CoinTracker, FuelTracker;
     [Tooltip("Mask to modify HPBar")] public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
@@ -65,7 +65,10 @@ public class UIManager : LevelData
             //input.SwitchCurrentActionMap("UI");
             //input.actions["Pause"].performed+=OnPause;
             //input.SwitchCurrentActionMap("Player");
-            FillList();
+            if (MenuList.Count == 0)
+            {
+                FillList();
+            }
         }
     }
 
@@ -118,6 +121,9 @@ public class UIManager : LevelData
         MenuList.Add(howToMenu);
         MenuList.Add(KeyboardMenu);
         MenuList.Add(ControllerMenu);
+        MenuList.Add(DeathMenu);
+        MenuList.Add(returnToHubUI);
+        MenuList.Add(FuelCellMenu);
     }
     public void HealthbarUpdate(float HPCurr)
     {
@@ -139,8 +145,13 @@ public class UIManager : LevelData
     {
         Time.timeScale = 0f;
         warningUI.gameObject.SetActive(true);
-        warningUI.text = "You've gotten all the Fuel Cell! Wanna play again?";
+        warningUI.text = "You've gotten all the Fuel Cells! Wanna play again?";
         DeathMenu.gameObject.SetActive(true);
+    }
+    public void WinLevel()
+    {
+        Time.timeScale = 0f;
+        FuelCellMenu.gameObject.SetActive(true);
     }
     public void Retry()
     {

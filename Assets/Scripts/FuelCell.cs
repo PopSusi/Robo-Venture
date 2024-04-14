@@ -14,6 +14,7 @@ public class FuelCell : Collectibles
             myAudio.clip = winSFX;
             myAudio.Play();
             Destroy(this.gameObject);
+            UIManager.instance.WinLevel();
         }
     }
 }
