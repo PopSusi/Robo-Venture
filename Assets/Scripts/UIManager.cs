@@ -71,6 +71,9 @@ public class UIManager : LevelData
                 FillList();
             }
         }
+        SetAllModChips(Settings.AllModChips);
+        SetInfiniteHealth(Settings.InfiniteHealth);
+        SetHardMode(Settings.HardMode);
     }
 
 

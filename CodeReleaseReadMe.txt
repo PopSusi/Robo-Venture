@@ -79,7 +79,7 @@
 	|-> Infinite Health (Invulnerable to damage)
 	|-> All Mod Chips (Unlocks all abilities)
 	|-> Hard Mode (Take 2 damage instead of 1)
-	|-> Does not Display current cheats on HUD as of now, but does have consistent checkmark next to turned on options between levels and main menu.
+|-> Options Icons on HUD and checkmarks next to active mods are consistent across levels
 |-> No dead ends in levels or menus.
 |-> All menus and levels have finalized design.
 
