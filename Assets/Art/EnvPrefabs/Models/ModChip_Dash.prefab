@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2859616396982603745, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2859616396982603745, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19,6 +19,10 @@ PrefabInstance:
     - target: {fileID: 2859616396982603745, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234909833911571803, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
+      propertyPath: m_Name
+      value: ModChip_Dash
       objectReference: {fileID: 0}
     - target: {fileID: 4027424415742964878, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
       propertyPath: m_Materials.Array.data[3]
@@ -75,5 +79,26 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3234909833911571803, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8163829933858320049}
   m_SourcePrefab: {fileID: 100100000, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
+--- !u!1 &3430231266820144906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3234909833911571803, guid: c2440f309e851324d8f3f35e1579bab2, type: 3}
+  m_PrefabInstance: {fileID: 251661115329030737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8163829933858320049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3430231266820144906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6dd3e442e17ac49a4ec7d02c77dabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: {x: 30, y: 60, z: 13}

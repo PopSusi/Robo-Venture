@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4722685362123083606, guid: 41d0b5f58b4ba054c9a3c1f6c776908c, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4722685362123083606, guid: 41d0b5f58b4ba054c9a3c1f6c776908c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5386738345709196780, guid: 41d0b5f58b4ba054c9a3c1f6c776908c, type: 3}
       propertyPath: m_Name
-      value: ModChip_Punch Variant
+      value: ModChip_Punch
       objectReference: {fileID: 0}
     - target: {fileID: 5891119031990580281, guid: 41d0b5f58b4ba054c9a3c1f6c776908c, type: 3}
       propertyPath: m_Materials.Array.data[3]
@@ -63,5 +63,26 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5386738345709196780, guid: 41d0b5f58b4ba054c9a3c1f6c776908c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 290424104544223015}
   m_SourcePrefab: {fileID: 100100000, guid: 41d0b5f58b4ba054c9a3c1f6c776908c, type: 3}
+--- !u!1 &6966437863539376593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5386738345709196780, guid: 41d0b5f58b4ba054c9a3c1f6c776908c, type: 3}
+  m_PrefabInstance: {fileID: 3056901464348709949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &290424104544223015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6966437863539376593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6dd3e442e17ac49a4ec7d02c77dabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: {x: 30, y: 60, z: 13}

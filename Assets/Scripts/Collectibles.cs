@@ -17,8 +17,5 @@ public class Collectibles : MonoBehaviour
         myAudio.loop = true;
         myAudio.Play();
     }
-    public bool CollectedCheck(GameObject go)
-    {
-        return Settings.Collected.Contains(go);
-    }
+    public bool CollectedCheck(GameObject go) => Settings.Collected.Contains(go);
 }

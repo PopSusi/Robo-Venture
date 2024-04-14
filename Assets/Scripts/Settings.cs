@@ -41,7 +41,7 @@ public static class Settings
         get { return prevLevel; }
         set { prevLevel = value; }
     }
-    public static HashSet<GameObject> Collected;
+    public static HashSet<GameObject> Collected = new HashSet<GameObject>();
     
     //public static Settings instance;
     // Start is called before the first frame update
