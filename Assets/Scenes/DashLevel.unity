@@ -3823,6 +3823,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6288748660070004308, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
+      propertyPath: text
+      value: Use the Left Shift Button to dash in whatever direction you're moving!
+      objectReference: {fileID: 0}
     - target: {fileID: 6463139123001694317, guid: a7bc878eb69de7949b4403a90a064055, type: 3}
       propertyPath: m_Name
       value: DashTutorial
