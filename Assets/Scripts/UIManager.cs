@@ -12,6 +12,7 @@ public class UIManager : LevelData
     [Header("Menu Components")][Tooltip("List of Menus that will be referenced.")] public GameObject pauseMenu;
     public GameObject optionsMenu, verifyMenu, howToMenu, KeyboardMenu, ControllerMenu, DeathMenu, returnToHubUI, FuelCellMenu;
     public TextMeshProUGUI warningUI, ObjectiveText, TutorialText, CoinTracker, FuelTracker;
+    public Image infiniteHealthIcon, allModChipIcon, hardModeIcon;
     [Tooltip("Mask to modify HPBar")] public Image HPBarMask;
     List<GameObject> MenuList = new List<GameObject>();
     //GameplayComponents
@@ -173,16 +174,19 @@ public class UIManager : LevelData
     public void SetAllModChips(bool value)
     {
         Settings.AllModChips = value;
+        allModChipIcon.gameObject.SetActive(value);
         playerRef.OptionsInitialize();
     }
     public void SetInfiniteHealth(bool value)
     {
         Settings.InfiniteHealth = value;
+        infiniteHealthIcon.gameObject.SetActive(value);
         playerRef.OptionsInitialize();
     }
     public void SetHardMode(bool value)
     {
         Settings.HardMode = value;
+        hardModeIcon.gameObject.SetActive(value);
         playerRef.OptionsInitialize();
     }
     public void UpdateCoins(int coins)
