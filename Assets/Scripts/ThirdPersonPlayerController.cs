@@ -192,14 +192,19 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     void Movement(Vector2 targetVelocity)
     {
         moveVelocity = Vector2.MoveTowards(new Vector2(moveVelocity.x, moveVelocity.y), targetVelocity, (controller.isGrounded ? accel : airAccel));
-
         controller.Move(new Vector3(moveVelocity.x, ySpeed, moveVelocity.y) * Time.fixedDeltaTime);
-        if (moveAction.IsPressed())
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Stun"))
         {
-            targetRotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
             
+            if (moveAction.IsPressed())
+            {
+                targetRotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
+
+            }
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
         }
-        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+        
+       
         if (!controller.isGrounded)
         {
             coyoteTime += Time.fixedDeltaTime;

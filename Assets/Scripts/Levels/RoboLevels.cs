@@ -55,13 +55,13 @@ public class RoboLevels : LevelData
     public virtual void RespawnPlayer(){
 		if (!overrideSpawn)
 		{
-			playerCurr = Instantiate(playerPrefab,
+			    playerCurr = Instantiate(playerPrefab,
 				checkPoints[chkpntIndexLevels].transform.position,
 				checkPoints[chkpntIndexLevels].transform.rotation);
 		}
 		else
 		{
-			playerCurr = Instantiate(playerPrefab,
+			    playerCurr = Instantiate(playerPrefab,
 				checkPoints[overrideSpawnIndex].transform.position,
 				checkPoints[overrideSpawnIndex].transform.rotation);
 		}
