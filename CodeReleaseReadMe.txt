@@ -25,11 +25,13 @@
 	|-> Dash - 6 Unique
 		|-> Rock Platforms (3 Variants)
 		|-> Rock Variants (3 Variants)
-	|-> Grapple - 4 Unique
+	|-> Grapple - 5 Unique
 		|-> Grapple Point
 		|-> Spire
 		|-> Spire Variant
 		|-> Dead Tree
+		|-> Dead roots
+		|-> Dead branches
 	|-> Charged Punch - 7 Unique
 		|-> Wall
 		|-> Breakable Wall
@@ -80,3 +82,6 @@
 	|-> Does not Display current cheats on HUD as of now, but does have consistent checkmark next to turned on options between levels and main menu.
 |-> No dead ends in levels or menus.
 |-> All menus and levels have finalized design.
+
+=== Known Issues ===
+|-> Hub level start has very harsh lighting in build, not in editor.
