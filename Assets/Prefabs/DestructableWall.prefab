@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 6943003502512893675}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4433873531685058351
 PrefabInstance:
@@ -98,7 +98,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6240045381996675966, guid: 63d250887c6f44a428a1ce038abb503b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4711246819653997292}
+      addedObject: {fileID: 1046177742977788008}
+    - targetCorrespondingSourceObject: {fileID: 6240045381996675966, guid: 63d250887c6f44a428a1ce038abb503b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6626862308799188188}
   m_SourcePrefab: {fileID: 100100000, guid: 63d250887c6f44a428a1ce038abb503b, type: 3}
 --- !u!4 &6943003502512893675 stripped
 Transform:
@@ -110,15 +113,40 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6240045381996675966, guid: 63d250887c6f44a428a1ce038abb503b, type: 3}
   m_PrefabInstance: {fileID: 4433873531685058351}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4711246819653997292
-MonoBehaviour:
+--- !u!65 &1046177742977788008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715035919633527889}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 195.92615, y: 215.83447, z: 61.633392}
+  m_Center: {x: 2.3411095, y: 92.837776, z: -2.4054666}
+--- !u!208 &6626862308799188188
+NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7715035919633527889}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 123cc3eab106fca4784bb7241fe89efb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
