@@ -62,6 +62,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public static ThirdPersonPlayerController instance;
     public int fuelCellsInserted;
     public int fuelCellsTotal;
+    Quaternion targetRotation;
     public int FuelCellsInserted
     {
         get { return fuelCellsInserted; }
@@ -80,10 +81,9 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         }
     }
     int coinsTotal = 3;
-    
-	
+
     //Establish Singleton
-	private void Awake(){
+    private void Awake(){
         if (instance == null)
         {
             instance = this;
@@ -133,7 +133,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         //Enable one by one
         GetComponent<DashAbility>().unlocked = Settings.dash;
         GetComponent<GrappleAbility>().unlocked = Settings.grapple;
-        GetComponent<WallAbility>().unlocked = Settings.wall;
+        GetComponent<ChargeAbility>().unlocked = Settings.wall;
     }
 
     //Reenable activated abilities
@@ -148,7 +148,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
                 GetComponent<GrappleAbility>().unlocked = true;
                 break;
             case "wall":
-                GetComponent<WallAbility>().unlocked = true;
+                GetComponent<ChargeAbility>().unlocked = true;
                 break;
             default:
                 break;
@@ -196,9 +196,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         controller.Move(new Vector3(moveVelocity.x, ySpeed, moveVelocity.y) * Time.fixedDeltaTime);
         if (moveAction.IsPressed())
         {
-            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
-            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, turnSpeed*Time.fixedDeltaTime);
+            targetRotation = Quaternion.LookRotation(new Vector3(moveVelocity.x, 0, moveVelocity.y), Vector3.up);
+            
         }
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
         if (!controller.isGrounded)
         {
             coyoteTime += Time.fixedDeltaTime;
@@ -305,7 +306,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public void EnableWall()
     {
         Settings.wall = true;
-        gameObject.GetComponent<WallAbility>().unlocked = true;
+        gameObject.GetComponent<ChargeAbility>().unlocked = true;
     }
     public void PlaySound(AudioClip clip)
     {
