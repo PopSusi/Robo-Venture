@@ -24,7 +24,7 @@ public class ChargeAbility : Ability
     }
     private void OnPunch(InputAction.CallbackContext context)
     { 
-        if(context.interaction is UnityEngine.InputSystem.Interactions.HoldInteraction)
+        if(context.interaction is UnityEngine.InputSystem.Interactions.HoldInteraction && unlocked)
         {
             Debug.Log("Held");
             if (canAbility && !punching)
