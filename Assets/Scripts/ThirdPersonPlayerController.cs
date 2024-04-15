@@ -265,6 +265,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         {
             hitEffect1.Play();
             hitEffect2.Play();
+            anim.SetTrigger("Damaged");
             StopCoroutine("RegenDelay");
             HP -= damage;
             if(HP > 0){//Not at zero
