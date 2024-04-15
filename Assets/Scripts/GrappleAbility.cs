@@ -120,7 +120,7 @@ public class GrappleAbility : Ability
         if (unlocked & canAbility)
         {
             currentPoint = detectedPoint.GetComponent<GrapplePoint>();
-            grappleTarget = currentPoint.transform.GetChild(0).position; 
+            grappleTarget = currentPoint.transform.GetChild(1).GetChild(0).position; 
             currentPoint.Deactivate();
             pastPoint = currentPoint;
             StartCoroutine("Reenable");
