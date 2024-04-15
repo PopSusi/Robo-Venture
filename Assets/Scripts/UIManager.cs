@@ -152,6 +152,7 @@ public class UIManager : LevelData
     public void Win()
     {
         Time.timeScale = 0f;
+        paused = true;
         warningUI.gameObject.SetActive(true);
         warningUI.text = "You've gotten all the Fuel Cells! Wanna play again?";
         DeathMenu.gameObject.SetActive(true);
@@ -159,6 +160,7 @@ public class UIManager : LevelData
     public void WinLevel()
     {
         Time.timeScale = 0f;
+        paused = true;
         FuelCellMenu.gameObject.SetActive(true);
     }
     public void Retry()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class FuelCell : Collectibles
 {
     AudioClip winSFX;
+    [SerializeField] private bool debugNoMenu;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -14,7 +15,10 @@ public class FuelCell : Collectibles
             myAudio.clip = winSFX;
             myAudio.Play();
             Destroy(this.gameObject);
-            UIManager.instance.WinLevel();
+            if (!debugNoMenu)
+            {
+                UIManager.instance.WinLevel();
+            }
         }
     }
 }
