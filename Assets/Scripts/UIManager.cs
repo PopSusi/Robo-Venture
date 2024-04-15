@@ -19,7 +19,7 @@ public class UIManager : LevelData
     private GameObject playerCurr;
     private PlayerInput input;
     private ThirdPersonPlayerController playerRef;
-    bool paused;
+    public bool paused;
     public static UIManager instance;
     [SerializeField] Toggle amToggle;
     [SerializeField] Toggle infHToggle;
