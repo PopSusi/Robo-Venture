@@ -77,6 +77,7 @@ public class ChargeAbility : Ability
             //print("hit " + hit);
         }
         punching = false;
+        canAbility= false;
         StartCooldown();
         CooldownManager.CDMInstance.CooldownMaskStart(mySprite, cooldown);
         Debug.Log("Should Spawn");

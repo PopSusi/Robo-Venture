@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/CodeTestingScene.unity
     guid: b50dc9a7924e1184dbed125582d496f2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/StartLevel.unity
     guid: 1437e1fe3d4cd4641b97fc441b3a8832
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/HubLevel.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/DashLevel.unity
     guid: d41eb839708f8b24882981bc7f8d2831
   - enabled: 1

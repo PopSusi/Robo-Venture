@@ -1606,9 +1606,9 @@ GameObject:
   - component: {fileID: 240757399}
   - component: {fileID: 240757401}
   - component: {fileID: 240757400}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain_(500.00, 0.00, 500.00)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2050,9 +2050,9 @@ GameObject:
   - component: {fileID: 262249061}
   - component: {fileID: 262249063}
   - component: {fileID: 262249062}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain_(500.00, 0.00, -500.00)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4464,9 +4464,9 @@ GameObject:
   - component: {fileID: 861557625}
   - component: {fileID: 861557624}
   - component: {fileID: 861557626}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain_(-1500.00, 0.00, -500.00)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4652,9 +4652,9 @@ GameObject:
   - component: {fileID: 891190586}
   - component: {fileID: 891190588}
   - component: {fileID: 891190587}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain_(-1500.00, 0.00, 500.00)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -6217,9 +6217,9 @@ GameObject:
   - component: {fileID: 1282376806}
   - component: {fileID: 1282376808}
   - component: {fileID: 1282376807}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain_(500.00, 0.00, -1500.00)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8956,9 +8956,9 @@ GameObject:
   - component: {fileID: 1845602566}
   - component: {fileID: 1845602568}
   - component: {fileID: 1845602567}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain_(-500.00, 0.00, -1500.00)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -9135,9 +9135,9 @@ GameObject:
   - component: {fileID: 1861941484}
   - component: {fileID: 1861941483}
   - component: {fileID: 1861941485}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain_(-500.00, 0.00, 500.00)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -9496,9 +9496,9 @@ GameObject:
   - component: {fileID: 1969948562}
   - component: {fileID: 1969948564}
   - component: {fileID: 1969948563}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain_(-1500.00, 0.00, -1500.00)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

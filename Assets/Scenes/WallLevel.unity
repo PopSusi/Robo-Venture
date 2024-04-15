@@ -11207,7 +11207,7 @@ Transform:
   - {fileID: 5989021737203495754}
   - {fileID: 122553503}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &576658451
 PrefabInstance:
@@ -17467,7 +17467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6913731485381185246, guid: 3d1739bee2cf168418428b6be1bc34bb, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6913731485381185246, guid: 3d1739bee2cf168418428b6be1bc34bb, type: 3}
       propertyPath: m_LocalScale.x
@@ -37814,6 +37814,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 576109263}
     m_Modifications:
+    - target: {fileID: 2473334520519832861, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2473334520519832861, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 5989021735794918447, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -37873,6 +37881,14 @@ PrefabInstance:
     - target: {fileID: 6365441308514197141, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
       propertyPath: m_Name
       value: Maze_Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365441308514197141, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365441308514197141, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 7220745684740817387, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
       propertyPath: m_NavMeshData
@@ -41210,7 +41226,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 65399
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -41221,7 +41237,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.036666665
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: b52963603077dfc448e90810c1d8ab86, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &8070005795288553286
 PrefabInstance:

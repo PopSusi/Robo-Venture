@@ -58,6 +58,7 @@ public class RoboLevels : LevelData
 			    playerCurr = Instantiate(playerPrefab,
 				checkPoints[chkpntIndexLevels].transform.position,
 				checkPoints[chkpntIndexLevels].transform.rotation);
+            Debug.Log("spawned at " + chkpntIndexLevels);
 		}
 		else
 		{
