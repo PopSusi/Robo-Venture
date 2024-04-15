@@ -84,4 +84,6 @@
 |-> All menus and levels have finalized design.
 
 === Known Issues ===
-|-> Hub level start has very harsh lighting in build, not in editor.
+|-> Some art assets are missing collision.
+|-> Grapple Rope and Stun Grenade pre-aim (which uses line renderer) is pink.
+|-> 

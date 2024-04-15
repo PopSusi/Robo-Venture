@@ -257,6 +257,11 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     }
     public void TakeDamage(float damage)
     {
+        if(damage < 0)
+        {
+            HP -= damage;
+            return;
+        }
         if (moreDamage)
         {
             damage++;
