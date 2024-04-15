@@ -11,6 +11,8 @@ public class DashAbility : Ability
     float distanceTraveled;
     bool isDashing;
     Vector2 dashDir;
+    [SerializeField]
+    ParticleSystem dashVFX;
     private void Awake()
     {
         Initialize();
@@ -48,6 +50,7 @@ public class DashAbility : Ability
     {
         GetComponent<Animator>().SetBool("Dash", true);
         distanceTraveled = 0;
+        dashVFX.Play();
         while (distanceTraveled < dashDistance)
         {
             //Vector3 pos=characterController.transform.position;
@@ -59,5 +62,6 @@ public class DashAbility : Ability
         GetComponent<Animator>().SetBool("Dash", false);
         canAbility = false;
         StartCooldown();
+        dashVFX.Stop();
     }
 }
