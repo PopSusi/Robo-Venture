@@ -19,7 +19,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 588
     y: 61
-    width: 1419
+    width: 1423
     height: 1631
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -3080,7 +3080,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661614701}
-  m_UIPosition: {x: 1573.5088, y: 731.35205}
+  m_UIPosition: {x: 1587, y: 772}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
