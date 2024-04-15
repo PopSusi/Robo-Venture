@@ -7439,7 +7439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachineFreeLook: {fileID: 69286930459045374}
-  speed: 30
+  speed: 13
   accel: 5
   airAccel: 1
   jumpForce: 2
