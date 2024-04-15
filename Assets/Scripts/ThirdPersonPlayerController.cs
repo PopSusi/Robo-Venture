@@ -63,6 +63,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public int fuelCellsInserted;
     public int fuelCellsTotal;
     Quaternion targetRotation;
+    [SerializeField]
+    ParticleSystem hitEffect1, hitEffect2;
     public int FuelCellsInserted
     {
         get { return fuelCellsInserted; }
@@ -260,6 +262,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         }
         if (vulnerable && !invincible)
         {
+            hitEffect1.Play();
+            hitEffect2.Play();
             StopCoroutine("RegenDelay");
             HP -= damage;
             if(!(HP <= 0)){//Not at zero
