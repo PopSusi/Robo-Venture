@@ -25,7 +25,7 @@ public class ModChip : MonoBehaviour
                 default:
                     break;
             }
-            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
             TutorialBox.SetActive(true);
         }
     }
