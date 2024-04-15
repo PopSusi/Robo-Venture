@@ -7455,6 +7455,7 @@ MonoBehaviour:
   fuelCellsTotal: 0
   hitEffect1: {fileID: 4173361646916960779}
   hitEffect2: {fileID: 4492866031200102726}
+  deathVFX: {fileID: 7351635475669878482, guid: 0c1ce10937a1f6646aacf76149a50c48, type: 3}
   coinsCollected: 0
 --- !u!114 &3506694460168792469
 MonoBehaviour:
