@@ -64,7 +64,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public int fuelCellsTotal;
     Quaternion targetRotation;
     [SerializeField]
-    ParticleSystem hitEffect1, hitEffect2;
+    ParticleSystem hitEffect1, hitEffect2,deathVFX;
     public int FuelCellsInserted
     {
         get { return fuelCellsInserted; }
@@ -253,6 +253,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         Debug.Log("Death");
         sptnsSource.clip = lose;
         sptnsSource.Play();
+        Instantiate(deathVFX,this.transform.position,deathVFX.transform.rotation);
     }
     public void TakeDamage(float damage)
     {
@@ -266,7 +267,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
             hitEffect2.Play();
             StopCoroutine("RegenDelay");
             HP -= damage;
-            if(!(HP <= 0)){//Not at zero
+            if(HP > 0){//Not at zero
                 vulnerable = false;
                 GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
@@ -274,6 +275,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
                 UIman.HealthbarUpdate(HP);
             } else {
                 Die();
+                
             }
         }
     }
