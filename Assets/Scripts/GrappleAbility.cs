@@ -108,7 +108,7 @@ public class GrappleAbility : Ability
         else
         {
             lineRenderer.SetPosition(0, grappleHand.position);
-            lineRenderer.SetPosition(1, grappleTarget);
+            lineRenderer.SetPosition(1, currentPoint.transform.position);
             transform.rotation = Quaternion.LookRotation(new Vector3((grappleTarget - transform.position).x, 0, (grappleTarget - this.transform.position).z), Vector3.up);
         }
     }
@@ -120,7 +120,7 @@ public class GrappleAbility : Ability
         if (unlocked & canAbility)
         {
             currentPoint = detectedPoint.GetComponent<GrapplePoint>();
-            grappleTarget = currentPoint.transform.GetChild(1).GetChild(0).position; 
+            grappleTarget = currentPoint.transform.GetChild(0).position; 
             currentPoint.Deactivate();
             pastPoint = currentPoint;
             StartCoroutine("Reenable");
