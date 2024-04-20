@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 1417c91b828106941b890d0f27016089, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 7a0df71afeecd8d468cdd5658865c0a1, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -8323,6 +8323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shimmerSFX: {fileID: 8300000, guid: 2a7bc86df3056cf4687d6ab34d38fa1c, type: 3}
   myAudio: {fileID: 0}
+  debugNoMenu: 0
 --- !u!135 &1461553562
 SphereCollider:
   m_ObjectHideFlags: 0
