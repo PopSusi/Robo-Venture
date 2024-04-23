@@ -65,6 +65,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     Quaternion targetRotation;
     [SerializeField]
     ParticleSystem hitEffect1, hitEffect2,deathVFX;
+    bool isOnSlope;
     public int FuelCellsInserted
     {
         get { return fuelCellsInserted; }
@@ -193,6 +194,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     
     void Movement(Vector2 targetVelocity)
     {
+       
         moveVelocity = Vector2.MoveTowards(new Vector2(moveVelocity.x, moveVelocity.y), targetVelocity, (controller.isGrounded ? accel : airAccel));
         controller.Move(new Vector3(moveVelocity.x, ySpeed, moveVelocity.y) * Time.fixedDeltaTime);
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Stun"))
@@ -217,6 +219,23 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         {
             coyoteTime = 0;
             anim.SetBool("isFalling", false);
+
+            if (Physics.Raycast(new Ray(this.transform.position, Vector3.down), out RaycastHit hit, 2))
+            {
+                //Vector3 normal=hit.normal;
+                if (Vector3.Dot(Vector3.up, hit.normal) < .5)
+                {
+                    Vector3 slopeFall= hit.normal;
+                    slopeFall.y *= -9.81f;
+                    controller.Move(slopeFall*Time.deltaTime);
+                    isOnSlope = true;
+                }
+                else
+                {
+                    isOnSlope = false;
+                }
+                Debug.Log("is on slope"+isOnSlope);
+            }
             ySpeed = -0.1f;
             hasJumped = false;
         }
@@ -231,9 +250,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     }
     void OnJump(InputAction.CallbackContext context)
     {
-        anim.SetTrigger("Jump");
-        if (controller.isGrounded||(coyoteTime< coyoteTimeMax&&!hasJumped))
+      
+        if (controller.isGrounded||(coyoteTime< coyoteTimeMax&&!hasJumped) && !isOnSlope)
         {
+            anim.SetTrigger("Jump");
             //print("should jump");
             //coyoteTime = 0;
             ySpeed = Mathf.Sqrt(jumpForce * -3.0f * gravity);
