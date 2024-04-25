@@ -89,6 +89,9 @@ public class UIManager : LevelData
 
     public void LoadGame(string level) //yay
     {
+    	if(level == "Start"){
+	    Cursor.visible = true;
+     	}
         string tempString = level + "Level";
         Time.timeScale = 1f;
         if (RoboLevels.instance!= null)
