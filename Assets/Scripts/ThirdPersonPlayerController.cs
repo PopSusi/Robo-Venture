@@ -134,9 +134,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         moreDamage = Settings.HardMode;
 
         //Enable one by one
-        GetComponent<DashAbility>().unlocked = Settings.dash;
-        GetComponent<GrappleAbility>().unlocked = Settings.grapple;
-        GetComponent<ChargeAbility>().unlocked = Settings.wall;
+        GetComponent<DashAbility>().unlocked = Settings.Dash;
+        GetComponent<GrappleAbility>().unlocked = Settings.Grapple;
+        GetComponent<ChargeAbility>().unlocked = Settings.Wall;
+        Debug.Log($"Dash is {Settings.Dash}, Grapple is {Settings.Grapple}, Wall is {Settings.Wall}, ");
     }
 
     //Reenable activated abilities
