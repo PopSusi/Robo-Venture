@@ -48,6 +48,8 @@ public class RoboLevels : LevelData
     protected void Start()
     {
         RespawnPlayer();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     /// <summary>
     /// Respawn Player at previously set checkpoint

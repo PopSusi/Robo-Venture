@@ -106,6 +106,7 @@ public class UIManager : LevelData
             Time.timeScale = 0;
             //input.SwitchCurrentActionMap("UI"); //Go to UI Controls for controller
             MenuList[0].SetActive(true);
+            Cursor.visible = true;
         }
         else
         { //currently paused
@@ -119,6 +120,7 @@ public class UIManager : LevelData
                     menuObj.SetActive(false);
                 }
             }
+            Cursor.visible = false;
         }
     }
     private void FillList()
