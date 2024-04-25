@@ -11,5 +11,11 @@ public class DestroyableWall : MonoBehaviour
         {
             transform.GetChild(i).gameObject.GetComponent<WallPiece>()?.SetFalse();
         }
+        StartCoroutine("DestroySelf");
+    }
+    IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(.3f);
+        Destroy(this.transform.parent.gameObject);
     }
 }
