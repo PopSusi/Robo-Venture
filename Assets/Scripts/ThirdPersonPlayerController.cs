@@ -292,13 +292,15 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
             hitEffect2.Play();
             anim.SetTrigger("Damaged");
             StopCoroutine("RegenDelay");
+            StopCoroutine("BeginRegenDelay");
             HP -= damage;
-            if(HP > 0){//Not at zero
+            UIman.HealthbarUpdate(HP);
+            if (HP > 0){//Not at zero
                 vulnerable = false;
                 GetComponent<AudioSource>().Play();
                 StartCoroutine("DamageDelay");
                 StartCoroutine("BeginRegenDelay");
-                UIman.HealthbarUpdate(HP);
+               
             } else {
                 Die();
                 
