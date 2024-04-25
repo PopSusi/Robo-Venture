@@ -64,7 +64,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     public int fuelCellsTotal;
     Quaternion targetRotation;
     [SerializeField]
-    ParticleSystem hitEffect1, hitEffect2,deathVFX;
+    ParticleSystem hitEffect1, hitEffect2,deathVFX,footStepVFX;
     bool isOnSlope;
     public int FuelCellsInserted
     {
@@ -362,5 +362,10 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
                 UIManager.instance.Win();
             }
         }
+    }
+
+    void OnFootStep()
+    {
+        Instantiate(footStepVFX, this.transform);
     }
 }
