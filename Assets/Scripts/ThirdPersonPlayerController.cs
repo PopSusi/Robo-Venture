@@ -274,6 +274,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         sptnsSource.clip = lose;
         sptnsSource.Play();
         Instantiate(deathVFX,this.transform.position,deathVFX.transform.rotation);
+        Destroy(this.gameObject);
     }
     public void TakeDamage(float damage)
     {
@@ -334,17 +335,17 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
 
     public void EnableDash()
     {
-        Settings.dash = true;
+        Settings.Dash = true;
         gameObject.GetComponent<DashAbility>().unlocked = true;
     }
     public void EnableGrapple()
     {
-        Settings.grapple = true;
+        Settings.Grapple = true;
         gameObject.GetComponent<GrappleAbility>().unlocked = true;
     }
     public void EnableWall()
     {
-        Settings.wall = true;
+        Settings.Wall = true;
         gameObject.GetComponent<ChargeAbility>().unlocked = true;
     }
     public void PlaySound(AudioClip clip)

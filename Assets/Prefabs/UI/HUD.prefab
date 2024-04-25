@@ -2587,7 +2587,7 @@ RectTransform:
   - {fileID: 4443664372738036286}
   - {fileID: 5944343881905024083}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2687,6 +2687,7 @@ MonoBehaviour:
   allModChipIcon: {fileID: 5643474972631518110}
   hardModeIcon: {fileID: 5335307873390388946}
   HPBarMask: {fileID: 6614623499855366426}
+  paused: 0
   amToggle: {fileID: 8012630460635675780}
   infHToggle: {fileID: 2203350476743650206}
   hmToggle: {fileID: 6772557178885191}
@@ -4778,11 +4779,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2721597112913553844, guid: 02022fdc9ebb5974998a84c27725c34b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2721597112913553844, guid: 02022fdc9ebb5974998a84c27725c34b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2721597112913553844, guid: 02022fdc9ebb5974998a84c27725c34b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -4795,14 +4796,14 @@ PrefabInstance:
     - target: {fileID: 2721597112913553844, guid: 02022fdc9ebb5974998a84c27725c34b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 5952525274504874969}
+      objectReference: {fileID: 5660544604418967673}
     - target: {fileID: 2721597112913553844, guid: 02022fdc9ebb5974998a84c27725c34b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2721597112913553844, guid: 02022fdc9ebb5974998a84c27725c34b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadGame
+      value: Retry
       objectReference: {fileID: 0}
     - target: {fileID: 2721597112913553844, guid: 02022fdc9ebb5974998a84c27725c34b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4822,7 +4823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2721597112913553844, guid: 02022fdc9ebb5974998a84c27725c34b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2721597112913553844, guid: 02022fdc9ebb5974998a84c27725c34b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument

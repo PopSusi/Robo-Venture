@@ -174,7 +174,8 @@ public class UIManager : LevelData
     }
     public void Retry()
     {
-        gameObject.GetComponent<RoboLevels>().RespawnPlayer();
+        //Destroy(ThirdPersonPlayerController.instance.gameObject);
+        RoboLevels.instance.RespawnPlayer();
         Time.timeScale = 1f;
         Cursor.visible = false;
     }

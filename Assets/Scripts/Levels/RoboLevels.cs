@@ -35,14 +35,7 @@ public class RoboLevels : LevelData
     //Establish singleton
     protected virtual void Awake()
     {
-		if (instance == null)
-		{
             instance = this;
-		}
-		else
-		{
-			Destroy(gameObject);
-		}
 		
     }
     protected void Start()

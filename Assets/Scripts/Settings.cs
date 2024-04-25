@@ -4,17 +4,53 @@ using UnityEngine;
 
 public static class Settings
 {
-    public static bool dash=false, wall = false, grapple = false;
+    public static bool dash;
+    public static bool wall;
+    public static bool grapple;
+    public static bool Dash
+    {
+        get {
+            return dash;
+        }
+        set
+        { dash = value; Debug.Log(value);
+
+        }
+    }
+    public static bool Wall
+    {
+        get
+        {
+            return wall;
+        }
+        set
+        {
+            wall = value; Debug.Log(value);
+
+        }
+    }
+    public static bool Grapple
+    {
+        get
+        {
+            return grapple;
+        }
+        set
+        {
+            grapple = value; Debug.Log(value);
+
+        }
+    }
     public static bool allModChips = false;
-    public static bool AllModChips
+    public static bool AllModChips 
     {
         get { return allModChips; }
         set
         {
             allModChips = value;
-            dash = value;
-            wall = value;
-            grapple = value;
+            Dash = value;
+            Wall = value;
+            Grapple = value;
         }
     }
     public static bool infiniteHealth = false;
