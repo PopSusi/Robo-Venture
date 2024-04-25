@@ -370,4 +370,11 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     {
         Instantiate(footStepVFX, this.transform);
     }
+
+    private void OnDestroy()
+    {
+        Settings.dash = GetComponent<DashAbility>().unlocked;
+        Settings.Grapple = GetComponent<GrappleAbility>().unlocked;
+        Settings.Wall = GetComponent<ChargeAbility>().unlocked;
+    }
 }
