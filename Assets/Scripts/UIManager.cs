@@ -96,6 +96,7 @@ public class UIManager : LevelData
             Settings.prevLevel = RoboLevels.instance.currLevel;
         }
         SceneManager.LoadScene(tempString, LoadSceneMode.Single);
+        Cursor.visible = false;
     }
 
     public void PauseGame()
@@ -150,6 +151,7 @@ public class UIManager : LevelData
         warningUI.gameObject.SetActive(true);
         warningUI.text = "Try Again?";
         DeathMenu.gameObject.SetActive(true);
+        Cursor.visible = true;
     }
     public void Win()
     {
@@ -158,17 +160,20 @@ public class UIManager : LevelData
         warningUI.gameObject.SetActive(true);
         warningUI.text = "You've gotten all the Fuel Cells! Wanna play again?";
         DeathMenu.gameObject.SetActive(true);
+        Cursor.visible = true;
     }
     public void WinLevel()
     {
         Time.timeScale = 0f;
         paused = true;
         FuelCellMenu.gameObject.SetActive(true);
+        Cursor.visible = true;
     }
     public void Retry()
     {
         gameObject.GetComponent<RoboLevels>().RespawnPlayer();
         Time.timeScale = 1f;
+        Cursor.visible = false;
     }
     public void CoinAlert()
     {
