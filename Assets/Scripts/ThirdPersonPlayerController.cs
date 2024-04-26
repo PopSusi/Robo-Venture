@@ -72,6 +72,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         set
         {
             fuelCellsInserted = value;
+            Debug.Log(fuelCellsInserted);
             UIman.UpdateFuel(fuelCellsInserted);
         }
     }
