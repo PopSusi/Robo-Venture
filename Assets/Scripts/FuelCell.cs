@@ -10,7 +10,7 @@ public class FuelCell : Collectibles
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<ThirdPersonPlayerController>().fuelCellsTotal++;
+            ThirdPersonPlayerController.fuelCellsTotal++;
             myAudio.loop = false;
             myAudio.clip = winSFX;
             myAudio.Play();
