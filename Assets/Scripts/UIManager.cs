@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -194,7 +195,14 @@ public class UIManager : LevelData
     {
         Settings.AllModChips = value;
         if (allModChipIcon != null) { allModChipIcon.gameObject.SetActive(value); }
-        playerRef.OptionsInitialize();
+        try
+        {
+            playerRef.OptionsInitialize();
+        }
+        catch (ArgumentException e)
+        {
+            Debug.Log(e);
+        }
     }
     public void SetInfiniteHealth(bool value)
     {
