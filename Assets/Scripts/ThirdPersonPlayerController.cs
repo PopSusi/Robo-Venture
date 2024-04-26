@@ -359,7 +359,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         if (fuelCellsInserted != fuelCellsTotal)
         {
             FuelCellsInserted = fuelCellsTotal;
-            fuelCellsTotal = 0;
+            //fuelCellsTotal = 0;
             if (fuelCellsInserted >= 4)
             {
                 UIManager.instance.Win();

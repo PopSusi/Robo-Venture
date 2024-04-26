@@ -14,11 +14,12 @@ public class FuelCell : Collectibles
             myAudio.loop = false;
             myAudio.clip = winSFX;
             myAudio.Play();
-            Destroy(this.gameObject);
             if (!debugNoMenu)
             {
                 UIManager.instance.WinLevel();
             }
+            Destroy(this.gameObject);
+            
         }
     }
 }
