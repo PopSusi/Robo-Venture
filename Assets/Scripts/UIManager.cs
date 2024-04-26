@@ -54,11 +54,10 @@ public class UIManager : LevelData
     IEnumerator PlayerSetup()
     {
         yield return new WaitForSeconds( .1f );
-        playerCurr = ThirdPersonPlayerController.instance?.gameObject;
-        if (playerCurr != null)
+        playerRef = ThirdPersonPlayerController.instance;
+        if (playerRef != null)
         {
-            playerRef = playerCurr.GetComponent<ThirdPersonPlayerController>();
-            input = playerCurr.GetComponent<PlayerInput>();
+            input = playerRef.gameObject.GetComponent<PlayerInput>();
             print(input);
             //Need to switch and switch back to set Pause for UI and Player maps
 
@@ -72,9 +71,9 @@ public class UIManager : LevelData
                 FillList();
             }
         }
-        SetAllModChips(Settings.AllModChips);
-        SetInfiniteHealth(Settings.InfiniteHealth);
-        SetHardMode(Settings.HardMode);
+        //SetAllModChips(Settings.AllModChips);
+        //SetInfiniteHealth(Settings.InfiniteHealth);
+        //SetHardMode(Settings.HardMode);
     }
 
 
@@ -195,14 +194,8 @@ public class UIManager : LevelData
     {
         Settings.AllModChips = value;
         if (allModChipIcon != null) { allModChipIcon.gameObject.SetActive(value); }
-        try
-        {
+        if (playerRef != null)
             playerRef.OptionsInitialize();
-        }
-        catch (ArgumentException e)
-        {
-            Debug.Log(e);
-        }
     }
     public void SetInfiniteHealth(bool value)
     {
