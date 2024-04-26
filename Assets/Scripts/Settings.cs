@@ -48,9 +48,13 @@ public static class Settings
         set
         {
             allModChips = value;
-            Dash = value;
-            Wall = value;
-            Grapple = value;
+            if (value)
+            {
+                Dash = value;
+                Wall = value;
+                Grapple = value;
+            }
+            
         }
     }
     public static bool infiniteHealth = false;

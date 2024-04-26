@@ -15,12 +15,15 @@ public class ModChip : MonoBehaviour
             {
                 case Type.Dash:
                     other.gameObject.GetComponent<ThirdPersonPlayerController>().EnableDash();
+                    Settings.Dash = true;
                     break;
                 case Type.Grapple:
                     other.gameObject.GetComponent<ThirdPersonPlayerController>().EnableGrapple();
+                    Settings.Grapple = true;
                     break;
                 case Type.Wall:
                     other.gameObject.GetComponent<ThirdPersonPlayerController>().EnableWall();
+                    Settings.Wall= true;
                     break;
                 default:
                     break;

@@ -60,8 +60,8 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     [Tooltip("Enable abilities on startup.")]
     bool invincible, moreDamage;
     public static ThirdPersonPlayerController instance;
-    public int fuelCellsInserted;
-    public int fuelCellsTotal;
+    public static int fuelCellsInserted;
+    public static int fuelCellsTotal;
     Quaternion targetRotation;
     [SerializeField]
     ParticleSystem hitEffect1, hitEffect2,deathVFX,footStepVFX;
@@ -359,6 +359,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         if (fuelCellsInserted != fuelCellsTotal)
         {
             FuelCellsInserted = fuelCellsTotal;
+            //fuelCellsTotal = 0;
             if (fuelCellsInserted >= 4)
             {
                 UIManager.instance.Win();
@@ -369,5 +370,12 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
     void OnFootStep()
     {
         Instantiate(footStepVFX, this.transform);
+    }
+
+    private void OnDestroy()
+    {
+        Settings.dash = GetComponent<DashAbility>().unlocked;
+        Settings.Grapple = GetComponent<GrappleAbility>().unlocked;
+        Settings.Wall = GetComponent<ChargeAbility>().unlocked;
     }
 }
