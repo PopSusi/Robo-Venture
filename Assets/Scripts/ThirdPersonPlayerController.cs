@@ -106,6 +106,7 @@ public class ThirdPersonPlayerController : MonoBehaviour, Damageable
         Initialize();
         OptionsInitialize();
         UIman.warningUI.gameObject.SetActive(false);
+        UIman.UpdateFuel(fuelCellsInserted);
     }
 
     private void Initialize() //Variables and Components
