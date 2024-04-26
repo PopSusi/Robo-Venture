@@ -10,7 +10,8 @@ public class FuelCell : Collectibles
     {
         if (other.gameObject.CompareTag("Player"))
         {
-           ThirdPersonPlayerController.fuelCellsTotal++;
+            ThirdPersonPlayerController.fuelCellsTotal++;
+            Debug.Log("total fuel cells: " + ThirdPersonPlayerController.fuelCellsTotal);
             myAudio.loop = false;
             myAudio.clip = winSFX;
             myAudio.Play();
