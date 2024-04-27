@@ -9,6 +9,10 @@ public class FuelCellDeposit : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<ThirdPersonPlayerController>().CheckFuelCellDeposit();
+            if(ThirdPersonPlayerController.fuelCellsInserted >= 4)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
