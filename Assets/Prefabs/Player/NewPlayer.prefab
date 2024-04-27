@@ -101,7 +101,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 1
+    m_Definition: 2
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -4436,7 +4436,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 1
+    m_Definition: 2
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -5465,12 +5465,12 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: -1
       m_LegacyVelocityFilterStrength: -1
   m_Heading:
-    m_Definition: 1
+    m_Definition: 2
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
-    m_enabled: 0
-    m_WaitTime: 1
+    m_enabled: 1
+    m_WaitTime: 5
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
@@ -7482,8 +7482,6 @@ MonoBehaviour:
   hitVariant: {fileID: 0}
   footSteps: {fileID: 8300000, guid: 210176c021712da4b878bb2d89f3ac36, type: 3}
   lose: {fileID: 8300000, guid: 8095b01e730052949b674b8be5535060, type: 3}
-  fuelCellsInserted: 0
-  fuelCellsTotal: 0
   hitEffect1: {fileID: 4173361646916960779}
   hitEffect2: {fileID: 4492866031200102726}
   deathVFX: {fileID: 7351635475669878482, guid: 0c1ce10937a1f6646aacf76149a50c48, type: 3}
@@ -9467,7 +9465,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6883946371899614465}
-  m_LocalRotation: {x: 0.11054407, y: 0.000000008550464, z: -9.510318e-10, w: 0.9938713}
+  m_LocalRotation: {x: 0.11054407, y: 0.000000012310243, z: -0.0000000013692157, w: 0.9938713}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10052,7 +10050,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 1
+    m_Definition: 2
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -10538,7 +10536,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8217473272980153103}
-  m_LocalRotation: {x: 0.07843331, y: -0.000000017153374, z: 0.0000000013495536, w: 0.9969194}
+  m_LocalRotation: {x: 0.07843333, y: 0.000000011680612, z: -9.189804e-10, w: 0.9969194}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
