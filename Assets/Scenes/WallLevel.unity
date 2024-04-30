@@ -4196,7 +4196,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maze_Floor (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7220745684740817387, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17585,7 +17586,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maze_Floor
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7220745684740817387, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -27181,7 +27183,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -36988,7 +36990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224188699886218178, guid: a036b8279040353418312dec0d555940, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -373.68
+      value: -385.01
       objectReference: {fileID: 0}
     - target: {fileID: 1224188699886218178, guid: a036b8279040353418312dec0d555940, type: 3}
       propertyPath: m_LocalRotation.w
@@ -44048,7 +44050,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 28.4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7220745684740817387, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -46384,7 +46387,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maze_Floor (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7220745684740817387, guid: 0a3a4e3778eefb24c8538ffb4ab2b925, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -54428,7 +54432,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -65029,7 +65033,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.036666665
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: b52963603077dfc448e90810c1d8ab86, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e78c21a0539d6d24999ad82d4ce28213, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &8070005795288553286
 PrefabInstance:
